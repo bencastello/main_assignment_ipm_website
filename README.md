@@ -17,3 +17,8 @@ website_main.css - Stylesheet for HTML File
 
 - Better Design (Maybe different color scheme)
 - Adding HTML page for downloading the individual assignments
+
+
+## Main Assingment Documents
+I.pdf - Stage 1 
+II.pdf - Stage 2
