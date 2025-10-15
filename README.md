@@ -1,6 +1,6 @@
-### Final Project (10796) Interação Pessoa-Máquina (IPM)
+# Final Project (10796) Interação Pessoa-Máquina (IPM)
 
-This repository works as a host for the main webpage, where you will be able to find the following files:
+### This repository works as a host for the main webpage, where you will be able to find the following files:
 
 .idea 
 Stage PDFs - PDF Files for future Downloads
@@ -13,12 +13,12 @@ package.json - Important JavaScript functionality for the future
 
 website_main.css - Stylesheet for HTML File
 
-## Improvements for the Future
+### Improvements for the Future
 
 - Better Design (Maybe different color scheme)
 - Adding HTML page for downloading the individual assignments
 
 
-## Main Assingment Documents
-I.pdf - Stage 1 
-II.pdf - Stage 2
+### Main Assingment Documents
+- I.pdf - Stage 1
+- II.pdf - Stage 2
