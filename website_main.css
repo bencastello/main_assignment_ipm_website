@@ -163,7 +163,7 @@ h1 {
     cursor: pointer;
 
     position: absolute;
-    right: 16px;             /* immer Abstand zum Rand, unabhängig von Displaygröße */
+    right: 55px;             /* immer Abstand zum Rand, unabhängig von Displaygröße */
     top: 50%;
     transform: translateY(-50%);
 }
