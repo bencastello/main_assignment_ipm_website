@@ -41,7 +41,6 @@ button:hover {
 .container {
     max-width: 800px;
     margin: auto;
-    text-align: center;
 }
 
 /* Style for Title "Project Stages */
@@ -49,6 +48,7 @@ h1 {
     color: yellow;
     font-size: 40;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .stage-list {
@@ -117,3 +117,88 @@ h1 {
     color: lightgrey;
     cursor: not-allowed;
 }
+
+/* ========= SHELF APP DESIGN ========= */
+
+.app-body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+/* Header */
+.app-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    min-height: 60px;        /* verhindert Schrumpfen auf Mobile */
+    padding: 0 16px;         /* kleineres Padding für mobile */
+
+    background-color: black;
+    display: flex;
+    justify-content: center; /* wichtig: Logo in der Mitte */
+    align-items: center;
+    border-bottom: 1px solid #444;
+    z-index: 10;
+    position: relative;
+}
+
+/* ZENTRIERTES LOGO */
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: yellow;
+    font-size: clamp(20px, 5vw, 30px); 
+    /* → passt sich automatisch an Handy, Tablet, Desktop an */
+}
+
+/* ICON RECHTS */
+.user-icon {
+    width: clamp(28px, 5vw, 40px);   /* responsive size */
+    height: clamp(28px, 5vw, 40px);
+    border-radius: 50%;
+    cursor: pointer;
+
+    position: absolute;
+    right: 16px;             /* immer Abstand zum Rand, unabhängig von Displaygröße */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+/* Scrollable main area */
+.scroll-sections {
+    margin-top: 20px;
+}
+
+/* Each section fills the full width */
+.app-section {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.app-section:hover {
+    background: #111;
+}
+
+.app-section h2 {
+    color: white;
+    font-size: 32px;
+    margin: 0;
+}
+
+/* Optional different background tint per section */
+.app-section:nth-child(1) { background-color: #111; }
+.app-section:nth-child(2) { background-color: #151515; }
+.app-section:nth-child(3) { background-color: #1a1a1a; }
+.app-section:nth-child(4) { background-color: #202020; }
