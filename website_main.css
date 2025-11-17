@@ -118,8 +118,6 @@ h1 {
     cursor: not-allowed;
 }
 
-/* ========= SHELF APP DESIGN ========= */
-
 .app-body {
     background-color: black;
     margin: 0;
@@ -127,55 +125,53 @@ h1 {
     overflow-y: scroll;
 }
 
-/* Header */
 .app-header {
     position: sticky;
     top: 0;
     width: 100%;
-    min-height: 60px;        /* verhindert Schrumpfen auf Mobile */
-    padding: 0 16px;         /* kleineres Padding für mobile */
+    min-height: 60px;
+    padding: 0 16px;
 
     background-color: black;
+
     display: flex;
-    justify-content: center; /* wichtig: Logo in der Mitte */
+    justify-content: space-between; 
     align-items: center;
+
     border-bottom: 1px solid #444;
     z-index: 10;
+
     position: relative;
 }
 
-/* ZENTRIERTES LOGO */
+
+
+
 .logo {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
+
     color: yellow;
-    font-size: clamp(20px, 5vw, 30px); 
-    /* → passt sich automatisch an Handy, Tablet, Desktop an */
+    font-size: clamp(20px, 5vw, 30px);
+    pointer-events: none; 
 }
 
-/* ICON RECHTS */
+
+
 .user-icon {
-    width: clamp(28px, 5vw, 40px);   /* responsive size */
+    width: clamp(28px, 5vw, 40px);
     height: clamp(28px, 5vw, 40px);
     border-radius: 50%;
     cursor: pointer;
-
-    position: absolute;
-    right: 55px;             /* immer Abstand zum Rand, unabhängig von Displaygröße */
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 
-
-/* Scrollable main area */
 .scroll-sections {
     margin-top: 20px;
 }
 
-/* Each section fills the full width */
 .app-section {
     height: 250px;
     width: 100%;
@@ -197,8 +193,50 @@ h1 {
     margin: 0;
 }
 
-/* Optional different background tint per section */
 .app-section:nth-child(1) { background-color: #111; }
 .app-section:nth-child(2) { background-color: #151515; }
 .app-section:nth-child(3) { background-color: #1a1a1a; }
 .app-section:nth-child(4) { background-color: #202020; }
+
+.search-bar {
+    position: sticky;
+    top: 60px;  
+    background-color: black;
+    padding: 12px 16px;
+    border-bottom: 1px solid #444;
+    z-index: 9;
+}
+
+.search-bar {
+    position: sticky;
+    top: 60px;  
+    background-color: black;
+    padding: 12px 0; 
+    border-bottom: 1px solid #444;
+    z-index: 9;
+
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    width: 25%;                
+    min-width: 160px;         
+    max-width: 300px;          
+
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+
+    background-color: #111;
+    color: white;
+    border: 1px solid #333;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: yellow;
+    background-color: #181818;
+}
