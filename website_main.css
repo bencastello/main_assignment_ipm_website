@@ -229,3 +229,16 @@ h1 {
     border-color: yellow;
     background-color: #181818;
 }
+
+.book-section {
+    position: relative;
+}
+
+.reading-progress {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
