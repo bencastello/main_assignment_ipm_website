@@ -199,25 +199,14 @@ h1 {
 .app-section:nth-child(4) { background-color: #202020; }
 
 .search-bar {
-    position: sticky;
-    top: 60px;  
     background-color: black;
-    padding: 12px 16px;
+    padding: 12px 0;
     border-bottom: 1px solid #444;
-    z-index: 9;
-}
-
-.search-bar {
-    position: sticky;
-    top: 60px;  
-    background-color: black;
-    padding: 12px 0; 
-    border-bottom: 1px solid #444;
-    z-index: 9;
 
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Zentriert die Search Bar */
 }
+
 
 .search-bar input {
     width: 25%;                
