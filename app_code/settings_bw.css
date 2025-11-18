@@ -174,3 +174,161 @@ body {
         text-align: center;
     }
 }
+
+
+/* Homepage styling (matching the black/white settings page) */
+
+.homepage {
+    width: 70vw;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: #fff;
+    border: 2px solid #000;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Top bar same style */
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    border-bottom: 2px solid #000;
+}
+
+.app-title {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.user-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border: 2px solid #000;
+    border-radius: 50%;
+}
+
+/* Search bar */
+
+.search-container {
+    padding: 24px 28px;
+    border-bottom: 2px solid #000;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 6px;
+    background: #fff;
+}
+
+/* Main navigation sections */
+
+.section-list {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 28px;
+    gap: 20px;
+}
+
+.nav-section {
+    border: 2px solid #000;
+    padding: 26px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #fff;
+    transition: 0.15s ease-out;
+}
+
+.nav-section:hover {
+    background: #000;
+    color: #fff;
+}
+
+.nav-section h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* Responsive fallback for smaller screens */
+
+@media (max-width: 1000px) {
+    .homepage {
+        width: 90vw;
+    }
+}
+
+/* Friends list styling */
+
+.friends-list {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    gap: 18px;
+}
+
+.friend-tile {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 20px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #fff;
+    transition: 0.15s ease-in-out;
+}
+
+.friend-tile:hover {
+    background: #000;
+    color: #fff;
+}
+
+.friend-tile h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.friend-avatar {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+}
+
+/* Reading tiles */
+
+.reading-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reading-progress {
+    margin: 0;
+    font-size: 14px;
+    color: #444;
+}
+
+/* Optional: bottom section visually distinct */
+
+.bottom-tile {
+    margin-top: 24px;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+
