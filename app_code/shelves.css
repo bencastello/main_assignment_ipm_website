@@ -28,6 +28,14 @@ body {
     color: black;
 }
 
+.section {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: black;
+}
+
 /* Search */
 
 .search-wrapper {
@@ -239,3 +247,22 @@ body {
 .group-4-right .h-book:nth-child(3) { background: #f6a046; }
 .group-4-right .h-book:nth-child(4) { background: #f46b42; }
 .group-4-right .h-book:nth-child(5) { background: #2f641b; }
+
+
+/* Friends Icons */
+
+/* Friends Icons */
+.friends_icons {
+    position: absolute;
+    left: 14.5%;      /* exakt da, wo vorher die Bücher standen */
+    bottom: 32px;     /* gleiche Höhe wie books-vertical */
+    display: flex;
+    gap: 20px;        /* Abstand zwischen Icons */
+    align-items: flex-end;
+}
+
+.friend-icon {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+}
