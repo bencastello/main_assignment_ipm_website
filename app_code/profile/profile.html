@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Settings</title>
-    <link rel="stylesheet" href="OLD%20settings_bw.css">
+    <title>shelves.</title>
+
+    <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="profile.css">
 </head>
 
-<body class="settings-page">
+<body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='shelves_homepage.html'">←</button>
-    <h1 class="app-title">shelf.</h1>
-    <button class="search-button">Search</button>
+
+    <button class="back-button" onclick="window.location.href='../shelves_homepage.html'">
+        ←
+    </button>
+
+    <h1 class="logo" onclick="window.location.href='../shelves_homepage.html'">shelves.</h1>
+    <h2 class="section">profile</h2>
+
+    <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <label>
+            <input type="text" placeholder="find...">
+        </label>
+    </div>
 </header>
 
+
 <section class="profile-section">
+
     <div class="profile-picture">
         <img src="" alt="Profile Picture">
     </div>
@@ -28,10 +43,12 @@
     <button class="add-profile-picture">Add Profile Picture</button>
 </section>
 
+
 <section class="genres-section">
     <h2 class="section-title">My Genres:</h2>
     <button class="add-genre">+ Add</button>
 </section>
+
 
 <section class="privacy-section">
     <h2 class="section-title">Privacy Settings</h2>
@@ -50,6 +67,7 @@
         </label>
     </div>
 </section>
+
 
 <section class="apply-section">
     <button class="apply-button">Apply Changes</button>
