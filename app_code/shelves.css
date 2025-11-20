@@ -37,8 +37,8 @@ body {
 
 .search-wrapper {
     position: absolute;
-    right: 60px;
-    top: 55px;
+    right: 150px;
+    top: 70px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -54,6 +54,20 @@ body {
     font-size: 14px;
     background: transparent;
 }
+
+/* === SMALL PROFILE ICON (GLOBAL) === */
+
+.profile-mini {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
 
 /* -----------------------------------------------------
    SHELF SCENE
@@ -208,7 +222,7 @@ body {
 
 .back-button {
     position: absolute;
-    left: 40px;      /* wie der Filter-Button, nur gespiegelt */
+    left: 40px;
     top: 55px;
     font-size: 28px;
     background: none;
