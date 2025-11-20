@@ -1,0 +1,15 @@
+/* Books Icons */
+.books_icons {
+    position: absolute;
+    left: 14.5%;      /* exakt da, wo vorher die Bücher standen */
+    bottom: 32px;     /* gleiche Höhe wie books-vertical */
+    display: flex;
+    gap: 20px;        /* Abstand zwischen Icons */
+    align-items: flex-end;
+}
+
+.book-icon {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+}
