@@ -30,6 +30,7 @@ body {
     font-size: 64px;
     font-weight: 700;
     color: black;
+    cursor: pointer;
 }
 
 /* Search */
@@ -203,3 +204,20 @@ body {
 .yellow       { background: #f5d75c; }
 .peach        { background: #f7a78a; }
 .pink         { background: #f6b4c0; }
+
+
+.back-button {
+    position: absolute;
+    left: 40px;      /* wie der Filter-Button, nur gespiegelt */
+    top: 55px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: black;
+}
+
+.back-button:hover {
+    opacity: 0.6;
+}
