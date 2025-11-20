@@ -1,18 +1,24 @@
-/* Font Import */
+/* -----------------------------------------------------
+   FONTS & RESET
+----------------------------------------------------- */
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
 
-/* Reset */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     font-family: Outfit, Helvetica, Arial, sans-serif;
     background: #ffffff;
+    overflow-x: hidden;
 }
 
-/* === TOP BAR === */
+/* -----------------------------------------------------
+   TOP BAR
+----------------------------------------------------- */
 
 .top-bar {
     position: relative;
@@ -21,18 +27,8 @@ body {
 }
 
 .logo {
-    margin: 0;
     font-size: 64px;
     font-weight: 700;
-    letter-spacing: 0;
-    color: black;
-}
-
-.section {
-    margin: 0;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 0;
     color: black;
 }
 
@@ -45,12 +41,8 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+    font-size: 20px;
     color: black;
-    font-size: 20px;
-}
-
-.search-icon {
-    font-size: 20px;
 }
 
 .search-wrapper input {
@@ -59,10 +51,12 @@ body {
     padding: 4px 4px 4px 0;
     outline: none;
     font-size: 14px;
-    color: black;
+    background: transparent;
 }
 
-/* Main containing shelves */
+/* -----------------------------------------------------
+   SHELF SCENE
+----------------------------------------------------- */
 
 .scene {
     position: relative;
@@ -71,7 +65,7 @@ body {
     margin-top: 20px;
 }
 
-/* Vertical side bars */
+/* Wooden Side Bars */
 
 .side {
     position: absolute;
@@ -81,15 +75,12 @@ body {
     background: #b16d33;
 }
 
-.side-left {
-    left: 25%;
-}
+.side-left { left: 25%; }
+.side-right { right: 25%; }
 
-.side-right {
-    right: 25%;
-}
-
-/* Shelf containers */
+/* -----------------------------------------------------
+   SHELVES
+----------------------------------------------------- */
 
 .shelf {
     position: absolute;
@@ -98,14 +89,14 @@ body {
     height: 110px;
 }
 
-/* Corrected top positions */
+/* Shelf positions */
 
 .shelf-1 { top: 14%; }
 .shelf-2 { top: 35%; }
 .shelf-3 { top: 56%; }
 .shelf-4 { top: 77%; }
 
-/* Wooden plank */
+/* The plank */
 
 .plank {
     position: absolute;
@@ -116,7 +107,9 @@ body {
     background: #b16d33;
 }
 
-/* Shelf labels */
+/* -----------------------------------------------------
+   LABELS
+----------------------------------------------------- */
 
 .shelf-label {
     position: absolute;
@@ -125,12 +118,13 @@ body {
     padding: 8px 56px;
     border: 3px solid black;
     font-size: 30px;
-    color: black;
-    background: #ffffff;
+    background: white;
     text-align: center;
 }
 
-/* Vertical book groups */
+/* -----------------------------------------------------
+   BOOK GROUPS (vertical)
+----------------------------------------------------- */
 
 .books-vertical {
     position: absolute;
@@ -140,70 +134,62 @@ body {
     gap: 5px;
 }
 
-/* Updated left positions */
+/* Left positions */
 
-.group-1-left  { left: 11.5%; }
-.group-1-right { left: 45%; bottom: 28px; }
+.group-1-left { left: 11.5%; }
+.group-2-left { left: 11.5%; }
+.group-3-left { left: 11.5%; }
+.group-4-left { left: 11.5%; }
 
-.group-2-left  { left: 11.5%; }
-
-.group-3-left  { left: 11.5%; }
-
-.group-4-left  { left: 11.5%; }
-.group-4-right { left: 35%; bottom: 28px; }
-
-/* Book base styles */
+/* -----------------------------------------------------
+   BOOK SHAPES
+----------------------------------------------------- */
 
 .book {
     width: 26px;
 }
-.small{
-    height: 115px;
-}
-.medium{
-    height: 120px;
-}
-.tall {
-    height: 130px;
-}
 
-/* Basisregel, gilt überall */
-.h-book {
-    height: 20px;
-    margin-bottom: 2px;
-}
+.small { height: 115px; }
+.medium { height: 120px; }
+.tall { height: 130px; }
 
-/* Größenvarianten – funktionieren jetzt auch */
-.h-small {
-    width: 90px;
-}
-.h-medium {
-    width: 110px;
-}
-.h-large {
-    width: 130px;
-}
+/* Leaning books */
 
-/* Container für Stapel */
+.orange-lean  { transform: rotate(-6deg); transform-origin: bottom center; }
+.purple-lean  { transform: rotate(7deg);  transform-origin: bottom center; }
+.green-lean   { transform: rotate(-8deg); transform-origin: bottom center; }
+
+/* -----------------------------------------------------
+   HORIZONTAL STACKS
+----------------------------------------------------- */
+
 .stacked {
     position: absolute;
-    left: 500px;
+    left: 500px; /* adjust per shelf manually */
     bottom: 30px;
     display: flex;
     flex-direction: column;
 }
 
+.h-book {
+    height: 20px;
+    margin-bottom: 2px;
+}
 
+.h-small  { width: 90px; }
+.h-medium { width: 110px; }
+.h-large  { width: 130px; }
 
-/* Kleine Offsets für mehr "handgemacht"-Look */
+/* tiny offsets for "handmade" look */
 .stacked .h-book:nth-child(1) { transform: translateX(0); }
 .stacked .h-book:nth-child(2) { transform: translateX(6px); }
 .stacked .h-book:nth-child(3) { transform: translateX(12px); }
 .stacked .h-book:nth-child(4) { transform: translateX(4px); }
 .stacked .h-book:nth-child(5) { transform: translateX(10px); }
 
-
-/* Colors */
+/* -----------------------------------------------------
+   COLORS
+----------------------------------------------------- */
 
 .purple       { background: #4c2a7a; }
 .purple-dark  { background: #3a1f5d; }
@@ -217,52 +203,3 @@ body {
 .yellow       { background: #f5d75c; }
 .peach        { background: #f7a78a; }
 .pink         { background: #f6b4c0; }
-
-/* Rotations */
-
-.orange-lean {
-    transform: rotate(-6deg);
-    transform-origin: bottom center;
-}
-
-.purple-lean {
-    transform: rotate(7deg);
-    transform-origin: bottom center;
-}
-
-.green-lean {
-    transform: rotate(-8deg);
-    transform-origin: bottom center;
-}
-
-/* Horizontal stack exact colors */
-
-.group-1-right .h-book:nth-child(1) { background: #2f641b; }
-.group-1-right .h-book:nth-child(2) { background: #6ea3ff; }
-.group-1-right .h-book:nth-child(3) { background: #f6b4c0; }
-.group-1-right .h-book:nth-child(4) { background: #f46b42; }
-
-.group-4-right .h-book:nth-child(1) { background: #4c2a7a; }
-.group-4-right .h-book:nth-child(2) { background: #c7dd5f; }
-.group-4-right .h-book:nth-child(3) { background: #f6a046; }
-.group-4-right .h-book:nth-child(4) { background: #f46b42; }
-.group-4-right .h-book:nth-child(5) { background: #2f641b; }
-
-
-/* Friends Icons */
-
-/* Friends Icons */
-.friends_icons {
-    position: absolute;
-    left: 14.5%;      /* exakt da, wo vorher die Bücher standen */
-    bottom: 32px;     /* gleiche Höhe wie books-vertical */
-    display: flex;
-    gap: 20px;        /* Abstand zwischen Icons */
-    align-items: flex-end;
-}
-
-.friend-icon {
-    width: 120px;
-    height: 150px;
-    object-fit: cover;
-}

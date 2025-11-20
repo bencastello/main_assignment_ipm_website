@@ -1,0 +1,118 @@
+/* ===== Curator Page Layout ===== */
+
+.curators-page {
+    width: 60%;
+    margin: 200px auto 80px;
+}
+
+/* Section Titles */
+
+.curator-section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 60px 0 10px;
+    border-bottom: 4px solid black;
+    padding-bottom: 6px;
+}
+
+/* Individual tiles */
+
+.curator-tile {
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px 30px;
+    margin: 25px 0;
+    background: white;
+}
+
+.curator-tile h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.reading-progress {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Search override */
+
+.curator-search {
+    top: 65px;
+    right: 60px;
+}
+
+/* ===== FILTER OVERLAY ===== */
+
+.overlay.hidden,
+.filter-menu.hidden,
+.submenu.hidden {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 100;
+}
+
+
+/* Filter Menu Container */
+
+.filter-menu,
+.submenu {
+    position: fixed;
+    top: 140px;
+    right: 40px;
+    width: 320px;
+    background: white;
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 20px 25px;
+    z-index: 200;
+}
+
+.filter-menu h3,
+.submenu h3 {
+    margin-top: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.filter-list li,
+.submenu ul li {
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    font-size: 17px;
+}
+
+.filter-list li:last-child,
+.submenu ul li:last-child {
+    border-bottom: none;
+}
+
+/* ===== PRICE SLIDER FIX ===== */
+
+.price-slider-container {
+    margin: 20px 0;
+}
+
+.price-slider-container label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.price-label {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.price-slider-container input[type="range"] {
+    width: 100%;
+    display: block;
+}
