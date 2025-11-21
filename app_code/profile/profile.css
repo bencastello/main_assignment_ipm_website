@@ -49,6 +49,114 @@
     cursor: pointer;
 }
 
+/* Overlay */
+.picture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.picture-overlay.hidden {
+    display: none;
+}
+
+/* Selection Box */
+.selection-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid black;
+    z-index: 101;
+    min-width: 300px;
+}
+
+.selection-box.hidden {
+    display: none;
+}
+
+.selection-box h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.selection-option {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.selection-option:hover {
+    background: #e0e0e0;
+    border-color: #999;
+}
+
+/* Gallery Box */
+.gallery-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid black;
+    z-index: 101;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.gallery-box.hidden {
+    display: none;
+}
+
+.gallery-box h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery-item {
+    aspect-ratio: 1;
+    background: #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.gallery-item:hover {
+    background: #bbb;
+    transform: scale(1.05);
+}
+
+/* Profile Picture klickbar machen */
+.profile-picture {
+    cursor: pointer;
+}
+
+
 /* Genres section */
 .genres-section {
     width: 60%;
@@ -66,6 +174,54 @@
     border: 2px solid black;
     background: white;
     cursor: pointer;
+}
+
+.genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.genre-list label {
+    cursor: pointer;
+    padding: 8px 15px;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.genre-list label:hover {
+    background: #e0e0e0;
+}
+
+.genre-list input[type="checkbox"]:checked + label,
+.genre-list label:has(input:checked) {
+    background: #999;
+    color: white;
+    border-color: #999;
+}
+
+.genre-list label.hidden {
+    display: none;
+}
+
+.modify-genre {
+    cursor: pointer;
+    padding: 10px 20px;
+    background: #999;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.modify-genre:hover {
+    background: #ff5733;
 }
 
 /* Privacy section */
