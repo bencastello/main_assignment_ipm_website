@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelves.</title>
-    <link rel="stylesheet" href="shelves.css">
+    <title>shelf.</title>
+
+    <!-- Base styles for logo, font, header -->
+    <link rel="stylesheet" href="../shelves.css">
+
+    <!-- Filter-specific styles -->
+    <link rel="stylesheet" href="filter.css">
+
 </head>
 
 <body>
 
 <header class="top-bar">
-    <h1 class="logo">shelves.</h1>
+
+    <button class="back-button" onclick="window.location.href='../shelves_homepage.html'">←</button>
+
+    <h1 class="logo" onclick="window.location.href='../shelves_homepage.html'">shelves.</h1>
+    <h2 class="section">forU books</h2>
 
     <div class="search-wrapper">
         <span class="search-icon">⌕</span>
@@ -19,15 +29,19 @@
         </label>
     </div>
 
-    <img onclick="window.location.href='profile/profile.html'"
-         src="user_icon.png"
+    <img onclick="window.location.href='../profile/profile.html'"
+         src="../user_icon.png"
          class="profile-mini"
          alt="Profile">
 
-
 </header>
 
-<main class="scene">
+
+<main class="forU">
+
+    <button id="filterButton" class="filter-button">
+        <span class="filter-icon">⌔</span> Filter
+    </button>
 
     <!-- left support column -->
     <div class="side side-left"></div>
@@ -62,8 +76,8 @@
             <div class="h-book h-large red"></div>
         </div>
 
-        <button class="shelf-label" onclick="window.location.href='my_books/my_books.html'">
-            MY BOOKS
+        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
+            Harry Potter II
         </button>
     </section>
 
@@ -84,8 +98,8 @@
             <div class="book tall purple-lean"></div>
         </div>
 
-        <button class="shelf-label" onclick="window.location.href='for_u/for_u.html'">
-            FOR U
+        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
+            Faust II
         </button>
     </section>
 
@@ -107,8 +121,8 @@
             <div class="book tall peach"></div>
         </div>
 
-        <button class="shelf-label" onclick="window.location.href='friends/shelves_friends.html'">
-            FRIENDS
+        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
+            FRIENDS II
         </button>
     </section>
 
@@ -136,12 +150,60 @@
             <div class="h-book h-large green-dark"></div>
         </div>
 
-        <button class="shelf-label" onclick="window.location.href='curators/curators.html'">
-            CURATORS
+        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
+            Hitchhike trough the Galaxy
         </button>
     </section>
 
 </main>
+
+<!-- FILTER SYSTEM -->
+<div id="overlay" class="overlay hidden"></div>
+
+<div id="filterMenu" class="filter-menu hidden">
+    <h3>Filters</h3>
+    <ul class="filter-list">
+        <li data-menu="genres">Genres</li>
+        <li data-menu="price">Price</li>
+        <li data-menu="sortby">Sort By</li>
+        <li data-menu="apply">Apply Filters</li>
+    </ul>
+</div>
+
+<div id="submenu-genres" class="submenu hidden">
+    <h3>Genres</h3>
+    <ul>
+        <li>Roman</li>
+        <li>Krimi</li>
+        <li>Fantasy</li>
+        <li>Science Fiction</li>
+        <li>Biografie</li>
+    </ul>
+</div>
+
+<div id="submenu-price" class="submenu hidden">
+    <h3>Price</h3>
+
+    <div class="price-slider-container">
+        <div class="slider-track"></div>
+        <label>Min - Max</label>
+        <input id="priceMin" type="range" min="0" max="100" value="10">
+        <input id="priceMax" type="range" min="0" max="100" value="80">
+    </div>
+
+    <p class="price-label">10€ – 80€</p>
+</div>
+
+<div id="submenu-sortby" class="submenu hidden">
+    <h3>Sort By</h3>
+    <ul>
+        <li>reccomendations from friends</li>
+        <li>reccomendations from AI</li>
+        <li>best sold</li>
+    </ul>
+</div>
+
+<script src="filters.js"></script>
 
 </body>
 </html>
