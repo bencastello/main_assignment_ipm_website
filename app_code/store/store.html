@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shelves. – store</title>
+
+    <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="store.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <button class="back-button" onclick="window.location.href='../shelves_homepage.html'">←</button>
+
+    <h1 class="logo" onclick="window.location.href='../shelves_homepage.html'">shelves.</h1>
+    <h2 class="section">store</h2>
+
+    <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <label>
+            <input id="globalSearch" type="text" placeholder="search books...">
+        </label>
+    </div>
+
+    <img onclick="window.location.href='../profile/profile.html'"
+         src="../user_icon.png"
+         class="profile-mini"
+         alt="Profile">
+</header>
+
+
+<main class="store-page">
+
+    <!-- FILTERS -->
+    <aside class="store-filters">
+        <h3>Filters</h3>
+
+        <div class="filter-block">
+            <h4>Genre</h4>
+            <label><input type="checkbox" name="genre" value="Fantasy"> Fantasy</label>
+            <label><input type="checkbox" name="genre" value="Sci-Fi"> Sci-Fi</label>
+            <label><input type="checkbox" name="genre" value="Classics"> Classics</label>
+            <label><input type="checkbox" name="genre" value="Contemporary"> Contemporary</label>
+            <label><input type="checkbox" name="genre" value="Non-Fiction"> Non-Fiction</label>
+        </div>
+
+        <div class="filter-block">
+            <h4>Format</h4>
+            <label><input type="checkbox" name="format" value="Hardcover"> Hardcover</label>
+            <label><input type="checkbox" name="format" value="Paperback"> Paperback</label>
+            <label><input type="checkbox" name="format" value="E-Book"> E-Book</label>
+        </div>
+
+        <div class="filter-block">
+            <h4>Price</h4>
+            <div class="price-row">
+                <input type="number" id="priceMin" placeholder="min" min="0">
+                <span>–</span>
+                <input type="number" id="priceMax" placeholder="max" min="0">
+            </div>
+        </div>
+
+        <div class="filter-block">
+            <h4>Sort by</h4>
+            <select id="sortSelect">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price ↑</option>
+                <option value="price-desc">Price ↓</option>
+                <option value="title-asc">Title A–Z</option>
+            </select>
+        </div>
+
+        <button id="clearFiltersBtn" class="clear-filters-btn" type="button">
+            clear filters
+        </button>
+    </aside>
+
+
+    <!-- PRODUCTS -->
+    <section class="store-products">
+        <div class="products-header">
+            <h3>Books</h3>
+            <p id="resultsInfo"></p>
+        </div>
+
+        <div id="productGrid" class="product-grid">
+            <!-- JS renders cards here -->
+        </div>
+    </section>
+
+
+    <!-- CART -->
+    <aside class="store-cart">
+        <h3>Cart</h3>
+        <p id="cartEmptyText" class="cart-empty">Your cart is empty.</p>
+
+        <ul id="cartItems" class="cart-items"></ul>
+
+        <div class="cart-summary">
+            <div class="row">
+                <span>Items</span>
+                <span id="cartItemCount">0</span>
+            </div>
+            <div class="row">
+                <span>Total</span>
+                <span id="cartTotal">€0.00</span>
+            </div>
+        </div>
+
+        <button id="checkoutBtn" class="checkout-btn" type="button">
+            Checkout
+        </button>
+    </aside>
+
+</main>
+
+
+<!-- CHECKOUT MODAL (FAKE PAYMENT) -->
+
+<div id="modalOverlay" class="modal-overlay hidden"></div>
+
+<div id="checkoutModal" class="modal checkout-modal hidden">
+    <h2>Checkout</h2>
+
+    <div class="checkout-layout">
+
+        <section class="checkout-summary">
+            <h3>Order summary</h3>
+            <ul id="checkoutList"></ul>
+
+            <div class="checkout-total-row">
+                <span>Total</span>
+                <span id="checkoutTotal">€0.00</span>
+            </div>
+        </section>
+
+        <section class="checkout-form">
+            <h3>Customer details</h3>
+
+            <label class="input-block">
+                Full name
+                <input type="text" id="inputName" placeholder="Your name">
+            </label>
+
+            <label class="input-block">
+                Email
+                <input type="email" id="inputEmail" placeholder="you@example.com">
+            </label>
+
+            <label class="input-block">
+                Shipping address
+                <textarea id="inputAddress" rows="3"
+                          placeholder="Street, city, country"></textarea>
+            </label>
+
+            <label class="input-block">
+                Payment method
+                <select id="inputPayment">
+                    <option value="card">Credit card (mock)</option>
+                    <option value="paypal">PayPal (mock)</option>
+                    <option value="invoice">Invoice</option>
+                </select>
+            </label>
+
+            <p class="checkout-note">
+                This is a demo checkout. No real payments are processed.
+            </p>
+        </section>
+    </div>
+
+    <div class="modal-actions">
+        <button id="cancelCheckoutBtn" class="secondary-btn" type="button">Cancel</button>
+        <button id="confirmCheckoutBtn" class="primary-btn" type="button">Place order</button>
+    </div>
+
+    <p id="checkoutSuccessMsg" class="checkout-success hidden">
+        Thank you! Your order has been placed.
+    </p>
+</div>
+
+
+<script src="store.js"></script>
+</body>
+</html>
