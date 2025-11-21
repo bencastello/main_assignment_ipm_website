@@ -30,23 +30,57 @@
 
 
 <section class="profile-section">
-
-    <div class="profile-picture">
+    <div class="profile-picture" id="profilePicture">
         <img src="" alt="Profile Picture">
     </div>
-
     <div class="profile-info">
         <h2 class="username">@exampleuser</h2>
         <p class="realname">Petra Example</p>
+        <p class="bio">Book lover. Avid reader of mystery and fantasy novels. Always looking for the next great read!</p>
     </div>
-
-    <button class="add-profile-picture">Add Profile Picture</button>
+    <button class="add-profile-picture">Edit Profile</button>
 </section>
+
+<!-- Overlay -->
+<div id="pictureOverlay" class="picture-overlay hidden"></div>
+
+<!-- Selection Box -->
+<div id="selectionBox" class="selection-box hidden">
+    <h3>Choose Profile Picture</h3>
+    <button class="selection-option" id="randomAvatar">Select Random Avatar</button>
+    <button class="selection-option" id="fromLibrary">Select Picture from Library</button>
+</div>
+
+<!-- Gallery Box -->
+<div id="galleryBox" class="gallery-box hidden">
+    <h3>Select from Library</h3>
+    <div class="gallery-grid">
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+    </div>
+</div>
 
 
 <section class="genres-section">
     <h2 class="section-title">My Genres:</h2>
-    <button class="add-genre">+ Add</button>
+    <div class="genre-list">
+        <label><input type="checkbox" name="genre" value="roman"> Roman</label>
+        <label><input type="checkbox" name="genre" value="krimi"> Krimi</label>
+        <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label>
+        <label><input type="checkbox" name="genre" value="scifi"> Science Fiction</label>
+        <label><input type="checkbox" name="genre" value="biografie"> Biografie</label>
+        <label><input type="checkbox" name="genre" value="thriller"> Thriller</label>
+        <label><input type="checkbox" name="genre" value="romance"> Romance</label>
+        <label><input type="checkbox" name="genre" value="horror"> Horror</label>
+    </div>
+    <button class="modify-genre" id="modifyBtn">Modify</button>
 </section>
 
 
@@ -72,6 +106,8 @@
 <section class="apply-section">
     <button class="apply-button">Apply Changes</button>
 </section>
+
+<script src="profile.js"></script>
 
 </body>
 </html>
