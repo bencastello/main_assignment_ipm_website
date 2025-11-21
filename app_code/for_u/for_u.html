@@ -5,159 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelf.</title>
 
-    <!-- Base styles for logo, font, header -->
     <link rel="stylesheet" href="../shelves.css">
-
-    <!-- Filter-specific styles -->
     <link rel="stylesheet" href="filter.css">
-
+    <link rel="stylesheet" href="coverflow.css">
 </head>
 
 <body>
 
 <header class="top-bar">
-
     <button class="back-button" onclick="window.location.href='../shelves_homepage.html'">←</button>
 
     <h1 class="logo" onclick="window.location.href='../shelves_homepage.html'">shelves.</h1>
-    <h2 class="section">forU books</h2>
+    <h2 class="section">for you</h2>
 
     <div class="search-wrapper">
         <span class="search-icon">⌕</span>
-        <label>
-            <input type="text" placeholder="find...">
-        </label>
+        <label><input type="text" placeholder="find..."></label>
     </div>
 
-    <img onclick="window.location.href='../profile/profile.html'"
-         src="../user_icon.png"
-         class="profile-mini"
-         alt="Profile">
-
+    <img src="../user_icon.png" class="profile-mini" alt="Profile"
+         onclick="window.location.href='../profile/profile.html'">
 </header>
 
 
-<main class="scene">
+<main class="scene scene-foru">
 
-    <button id="filterButton" class="filter-button">
-        <span class="filter-icon">⌔</span> Filter
-    </button>
+    <div class="foru-center">
 
-    <!-- left support column -->
-    <div class="side side-left"></div>
 
-    <!-- right support column -->
-    <div class="side side-right"></div>
+        <div class="coverflow-wrapper">
 
-    <!-- Shelf 1 -->
-    <section class="shelf shelf-1">
-        <div class="plank"></div>
+            <button class="cf-arrow cf-arrow-left" aria-label="previous">⟨</button>
 
-        <!-- left vertical book group -->
-        <div class="books-vertical group-1-left">
-            <div class="book tall purple"></div>
-            <div class="book small blue-light"></div>
-            <div class="book tall blue-lighter"></div>
-            <div class="book tall yellow"></div>
-            <div class="book medium peach"></div>
-            <div class="book medium green-dark"></div>
-            <div class="book small blue-lighter"></div>
-            <div class="book tall yellow"></div>
-            <div class="book small peach"></div>
-            <div class="book tall green-dark"></div>
-            <div class="book tall orange-lean"></div>
+            <div class="cf-viewport">
+                <div class="cf-track">
+
+                    <article class="cf-item is-active" data-index="0">
+                        <div class="cf-cover hp2"></div>
+                        <h3 class="cf-title">Harry Potter II</h3>
+                        <p class="cf-meta">Fantasy · Friend rec</p>
+                    </article>
+
+                    <article class="cf-item" data-index="1">
+                        <div class="cf-cover faust2"></div>
+                        <h3 class="cf-title">Faust II</h3>
+                        <p class="cf-meta">Klassiker · Deep stuff</p>
+                    </article>
+
+                    <article class="cf-item" data-index="2">
+                        <div class="cf-cover friends2"></div>
+                        <h3 class="cf-title">FRIENDS II</h3>
+                        <p class="cf-meta">Roman · Lighthearted chaos</p>
+                    </article>
+
+                    <article class="cf-item" data-index="3">
+                        <div class="cf-cover hitchhike"></div>
+                        <h3 class="cf-title">Hitchhike through the Galaxy</h3>
+                        <p class="cf-meta">Sci-Fi · Absurdist humor</p>
+                    </article>
+
+                </div>
+            </div>
+
+            <button class="cf-arrow cf-arrow-right" aria-label="next">⟩</button>
+
         </div>
 
-        <!-- horizontal stack -->
-        <div class="stacked">
-            <div class="h-book h-small green-dark"></div>
-            <div class="h-book h-medium blue-light"></div>
-            <div class="h-book h-medium yellow"></div>
-            <div class="h-book h-large red"></div>
-        </div>
-
-        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
-            Harry Potter II
-        </button>
-    </section>
-
-    <!-- Shelf 2 -->
-    <section class="shelf shelf-2">
-        <div class="plank"></div>
-
-        <!-- left vertical book group -->
-        <div class="books-vertical group-2-left">
-            <div class="book tall red"></div>
-            <div class="book small purple"></div>
-            <div class="book tall blue-light"></div>
-            <div class="book medium blue-lighter"></div>
-            <div class="book tall green-light"></div>
-            <div class="book tall peach"></div>
-            <div class="book medium yellow"></div>
-            <div class="book tall orange"></div>
-            <div class="book tall purple-lean"></div>
-        </div>
-
-        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
-            Faust II
-        </button>
-    </section>
-
-    <!-- Shelf 3 -->
-    <section class="shelf shelf-3">
-        <div class="plank"></div>
-
-        <!-- left vertical book group -->
-        <div class="books-vertical group-3-left">
-            <div class="book small peach"></div>
-            <div class="book tall purple"></div>
-            <div class="book medium green-dark"></div>
-            <div class="book tall blue-light"></div>
-            <div class="book small blue-lighter"></div>
-            <div class="book tall red"></div>
-            <div class="book small blue-light"></div>
-            <div class="book tall blue-lighter"></div>
-            <div class="book tall green-light"></div>
-            <div class="book tall peach"></div>
-        </div>
-
-        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
-            FRIENDS II
-        </button>
-    </section>
-
-    <!-- Shelf 4 -->
-    <section class="shelf shelf-4">
-        <div class="plank"></div>
-
-        <!-- left vertical book group -->
-        <div class="books-vertical group-4-left">
-            <div class="book medium green-light"></div>
-            <div class="book tall blue-light"></div>
-            <div class="book small peach"></div>
-            <div class="book tall purple"></div>
-            <div class="book medium red"></div>
-            <div class="book tall blue-lighter"></div>
-            <div class="book tall purple-dark"></div>
-        </div>
-
-        <!-- horizontal stack -->
-        <div class="stacked">
-            <div class="h-book h-large purple"></div>
-            <div class="h-book h-medium green-light"></div>
-            <div class="h-book h-small orange"></div>
-            <div class="h-book h-medium red"></div>
-            <div class="h-book h-large green-dark"></div>
-        </div>
-
-        <button class="shelf-label" onclick="window.location.href='ADD LATER'">
-            Hitchhike trough the Galaxy
-        </button>
-    </section>
-
+    </div>
 </main>
 
-<!-- FILTER SYSTEM -->
+
+<!-- FILTER OVERLAY -->
 <div id="overlay" class="overlay hidden"></div>
 
 <div id="filterMenu" class="filter-menu hidden">
@@ -197,13 +115,14 @@
 <div id="submenu-sortby" class="submenu hidden">
     <h3>Sort By</h3>
     <ul>
-        <li>reccomendations from friends</li>
-        <li>reccomendations from AI</li>
+        <li>recommendations from friends</li>
+        <li>recommendations from AI</li>
         <li>best sold</li>
     </ul>
 </div>
 
-<script src="filters.js"></script>
+
+<script src="coverflow.js"></script>
 
 </body>
 </html>
