@@ -3,135 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelf.</title>
+    <title>shelves. – curators</title>
 
-    <!-- Base styles for logo, font, header -->
     <link rel="stylesheet" href="../shelves.css">
-
-    <!-- Curator-specific styles -->
     <link rel="stylesheet" href="curators.css">
-</head>
 
+</head>
 <body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='../shelves_homepage.html'">←</button>
+    <button class="back-button" onclick="history.back()">←</button>
+
     <h1 class="logo" onclick="window.location.href='../shelves_homepage.html'">shelves.</h1>
-    <div class="search-wrapper curator-search">
+    <h2 class="section">curators</h2>
+
+    <div class="search-wrapper">
         <span class="search-icon">⌕</span>
-        <label>
-            <input type="text" class="search-input" placeholder="Find...">
-        </label>
+        <label><input type="text" placeholder="find..."></label>
     </div>
 
-    <img onclick="window.location.href='../profile/profile.html'"
-         src="../user_icon.png"
-         class="profile-mini"
-         alt="Profile">
-
+    <img src="../user_icon.png" class="profile-mini" alt="Profile">
 </header>
+
 
 <main class="curators-page">
 
-    <button id="filterButton" class="filter-button">
-        <span class="filter-icon">⌔</span> Filter
-    </button>
+    <!-- ===========================
+         Book of the Week
+    ============================ -->
+    <section class="book-of-week">
 
-    <!-- Section 1 -->
-    <section class="curator-section-title">
-        Best of this Week
-    </section>
+        <div class="bow-cover"></div>
 
-    <section class="curator-tile">
-        <h2>Harry Potter and the Philosopher's Stone</h2>
-        <p class="reading-progress">Page 35 / 223</p>
-    </section>
+        <div class="bow-info">
+            <h2 class="bow-title">Book of the Week: Faust II</h2>
+            <p class="bow-author">by Goethe</p>
+            <p class="bow-teaser">
+                Our curators picked this masterpiece for its razor-sharp wit,
+                surreal imagery and philosophical depth.
+            </p>
+            <button class="bow-button"
+                    onclick="window.location.href='faust_detail.html'">
+                read more →
+            </button>
+        </div>
 
-    <section class="curator-tile">
-        <h2>Faust I</h2>
-        <p class="reading-progress">Page 12 / 180</p>
-    </section>
-
-    <section class="curator-tile">
-        <h2>Lucid Dreams</h2>
-        <p class="reading-progress">Page 92 / 423</p>
-    </section>
-
-    <section class="curator-tile">
-        <h2>1984</h2>
-        <p class="reading-progress">Page 47 / 250</p>
     </section>
 
 
-    <!-- Section 2 -->
-    <section class="curator-section-title">
-        Best of this Month
-    </section>
 
-    <section class="curator-tile">
-        <h2>The Great Gatsby</h2>
-        <p class="reading-progress">Page 110 / 190</p>
-    </section>
+    <!-- ===========================
+         CURATORS BLOG FEED
+    ============================ -->
+    <section class="curator-feed">
 
-    <section class="curator-tile">
-        <h2>Pride & Prejudice</h2>
-        <p class="reading-progress">Page 55 / 300</p>
-    </section>
+        <!-- Entry #1 -->
+        <article class="curator-entry" onclick="window.location.href='entry_1.html'">
 
-    <section class="curator-tile">
-        <h2>Siddhartha</h2>
-        <p class="reading-progress">Page 20 / 164</p>
+            <div class="entry-cover entry-hp2"></div>
+
+            <div class="entry-content">
+                <h3 class="entry-title">Why We Still Love Harry Potter II</h3>
+                <p class="entry-curator">by curator: Anna</p>
+                <p class="entry-teaser">
+                    A journey through nostalgia, magical worldbuilding and
+                    what makes this sequel emotionally brilliant.
+                </p>
+                <p class="entry-link">read more →</p>
+            </div>
+        </article>
+
+        <!-- Entry #2 -->
+        <article class="curator-entry" onclick="window.location.href='entry_2.html'">
+
+            <div class="entry-cover entry-friends"></div>
+
+            <div class="entry-content">
+                <h3 class="entry-title">FRIENDS II – The chaos we needed</h3>
+                <p class="entry-curator">curator: Ben</p>
+                <p class="entry-teaser">
+                    A warm dive into messy characters, silly drama and
+                    why comfort reads matter.
+                </p>
+                <p class="entry-link">read more →</p>
+            </div>
+        </article>
+
     </section>
 
 </main>
-
-<!-- FILTER SYSTEM -->
-<div id="overlay" class="overlay hidden"></div>
-
-<div id="filterMenu" class="filter-menu hidden">
-    <h3>Filters</h3>
-    <ul class="filter-list">
-        <li data-menu="genres">Genres</li>
-        <li data-menu="price">Price</li>
-        <li data-menu="sortby">Sort By</li>
-        <li data-menu="apply">Apply Filters</li>
-    </ul>
-</div>
-
-<div id="submenu-genres" class="submenu hidden">
-    <h3>Genres</h3>
-    <ul>
-        <li>Roman</li>
-        <li>Krimi</li>
-        <li>Fantasy</li>
-        <li>Science Fiction</li>
-        <li>Biografie</li>
-    </ul>
-</div>
-
-<div id="submenu-price" class="submenu hidden">
-    <h3>Price</h3>
-
-    <div class="price-slider-container">
-        <div class="slider-track"></div>
-        <label>Min - Max</label>
-        <input id="priceMin" type="range" min="0" max="100" value="10">
-        <input id="priceMax" type="range" min="0" max="100" value="80">
-    </div>
-
-    <p class="price-label">10€ – 80€</p>
-</div>
-
-<div id="submenu-sortby" class="submenu hidden">
-    <h3>Sort By</h3>
-    <ul>
-        <li>best reviewed Curator at all</li>
-        <li>best reviewed Curator in this Genre</li>
-        <li>best reviewed book</li>
-    </ul>
-</div>
-
-<script src="filters.js"></script>
 
 </body>
 </html>
