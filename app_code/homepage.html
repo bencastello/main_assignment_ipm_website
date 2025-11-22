@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shelves.</title>
+
+    <!-- GLOBAL shelves.css (nicht antasten!) -->
+    <link rel="stylesheet" href="shelves.css">
+
+    <!-- HOMEPAGE ONLY -->
+    <link rel="stylesheet" href="homepage.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <h1 class="logo" onclick="window.location.href='homepage.html'">shelves.</h1>
+
+    <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search books, authors, genres…">
+    </div>
+
+    <img src="user_icon.png" class="profile-mini" onclick="window.location.href='profile/profile.html'">
+</header>
+
+<main class="home-wrapper">
+
+
+
+    <!-- QUICK LINKS -->
+    <section class="home-links">
+        <div class="home-link-card" onclick="window.location.href='my_books/my_books.html'">
+            <div class="home-icon">📚</div>
+            <p>My Books</p>
+        </div>
+
+        <div class="home-link-card" onclick="window.location.href='for_u/for_u.html'">
+            <div class="home-icon">✨</div>
+            <p>For You</p>
+        </div>
+
+        <div class="home-link-card" onclick="window.location.href='friends/shelves_friends.html'">
+            <div class="home-icon">👥</div>
+            <p>Friends</p>
+        </div>
+
+        <div class="home-link-card" onclick="window.location.href='curators/curators.html'">
+            <div class="home-icon">🎨</div>
+            <p>Curated</p>
+        </div>
+
+        <div class="home-link-card" onclick="window.location.href='store/store.html'">
+            <div class="home-icon">🛒</div>
+            <p>Store</p>
+        </div>
+    </section>
+
+    <!-- CONTINUE READING -->
+    <section class="home-section">
+        <h3>Continue reading</h3>
+        <div id="continueList" class="home-scroll"></div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="home-section">
+        <h3>Featured</h3>
+        <div class="home-featured-card" onclick="window.location.href='my_books/book_detail.html?id=hitchhike'">
+            <div class="home-featured-cover" style="background-image:url('covers/hitch.jpg')"></div>
+            <div>
+                <h4>Hitchhike through the Galaxy</h4>
+                <p>Douglas Adams</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRENDING -->
+    <section class="home-section">
+        <h3>Trending</h3>
+        <div id="trendingList" class="home-scroll"></div>
+    </section>
+
+</main>
+
+<script src="homepage.js"></script>
+<script src="animations.js"></script>
+
+</body>
+</html>
