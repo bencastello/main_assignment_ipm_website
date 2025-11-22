@@ -1,0 +1,163 @@
+/* ===========================
+   COVERFLOW – FINAL VERSION
+   =========================== */
+
+.foru-center {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.scene-foru {
+    perspective: 1600px;
+    padding-top: 140px;
+}
+
+/* Wrapper für alles – bleibt breit */
+.coverflow-wrapper {
+    width: 100%;
+    position: relative;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ======================================
+   Arrows – perfekt zentriert links/rechts
+   ====================================== */
+
+.cf-arrow {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: none;
+    font-size: 34px;
+    opacity: 0.5;
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 9999; /* <-- wichtig */
+}
+
+
+.cf-arrow:hover {
+    opacity: 1;
+}
+
+.cf-arrow-left {
+    left: calc(50% - 420px);
+}
+
+.cf-arrow-right {
+    right: calc(50% - 420px);
+}
+
+/* ======================================
+   Track – absolut zentriert
+   ====================================== */
+
+.cf-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.cf-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* ======================================
+   Items – absolut in der Mitte
+   ====================================== */
+
+.cf-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform-origin: center center;
+    opacity: 0;
+
+    transition: transform 300ms ease, opacity 300ms ease;
+    text-align: center;
+    z-index: 1;
+    width: 200px;
+}
+
+.cf-item.is-active {
+    z-index: 10;
+    opacity: 1;
+}
+
+/* ======================================
+   Cover style
+   ====================================== */
+
+.cf-cover {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(135deg,#333,#666);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+/* ======================================
+   Text unter Covers
+   ====================================== */
+
+.cf-title {
+    margin: 12px 0 2px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.cf-meta {
+    font-size: 13px;
+    color: #555;
+}
+
+/* Textblock unten */
+.cf-info {
+    margin-top: 20px;
+}
+
+.cf-info-title {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.cf-info-text {
+    font-size: 14px;
+    color: #444;
+}
+
+/* ======================================
+   Placeholder Colors
+   ====================================== */
+
+.cf-cover.hp2 {
+    background: linear-gradient(135deg, #182848, #4b6cb7);
+}
+
+.cf-cover.faust2 {
+    background: linear-gradient(135deg, #4b0000, #c31432);
+}
+
+.cf-cover.friends2 {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+.cf-cover.hitchhike {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+}

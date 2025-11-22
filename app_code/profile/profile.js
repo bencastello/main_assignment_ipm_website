@@ -1,72 +1,155 @@
-/* === for the PROFILE PICTURE SELECTION === */
+document.addEventListener("DOMContentLoaded", () => {
+    // Elements
+    const profileImg = document.getElementById("profileImg");
+    const avatarClickable = document.getElementById("avatarClickable");
 
-const profilePicture = document.getElementById('profilePicture');
-const overlay = document.getElementById('pictureOverlay');
-const selectionBox = document.getElementById('selectionBox');
-const galleryBox = document.getElementById('galleryBox');
-const randomAvatarBtn = document.getElementById('randomAvatar');
-const fromLibraryBtn = document.getElementById('fromLibrary');
-const galleryItems = document.querySelectorAll('.gallery-item');
+    const displayUsername = document.getElementById("displayUsername");
+    const displayRealname = document.getElementById("displayRealname");
+    const displayBio = document.getElementById("displayBio");
 
-// Öffne Selection Box beim Klick auf Profilbild
-profilePicture.addEventListener('click', () => {
-    overlay.classList.remove('hidden');
-    selectionBox.classList.remove('hidden');
-});
+    const openEditBtn = document.getElementById("openEditBtn");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const editModal = document.getElementById("editModal");
+    const photoModal = document.getElementById("photoModal");
 
-// Schließe alles beim Klick auf Overlay
-overlay.addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    selectionBox.classList.add('hidden');
-    galleryBox.classList.add('hidden');
-});
+    const editUsernameInput = document.getElementById("editUsername");
+    const editRealnameInput = document.getElementById("editRealname");
+    const editBioInput = document.getElementById("editBio");
+    const saveProfileBtn = document.getElementById("saveProfileBtn");
+    const cancelEditBtn = document.getElementById("cancelEditBtn");
 
-// Random Avatar → Schließe alles
-randomAvatarBtn.addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    selectionBox.classList.add('hidden');
-    // Hier kannst du später einen zufälligen Avatar setzen
-});
+    const uploadInput = document.getElementById("uploadInput");
+    const randomAvatarBtn = document.getElementById("randomAvatarBtn");
 
-// From Library → Zeige Galerie
-fromLibraryBtn.addEventListener('click', () => {
-    selectionBox.classList.add('hidden');
-    galleryBox.classList.remove('hidden');
-});
+    const pills = Array.from(document.querySelectorAll(".pill"));
+    const progressFills = Array.from(document.querySelectorAll(".progress-fill"));
 
-// Galerie Item geklickt → Zurück zur Profilseite
-galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-        overlay.classList.add('hidden');
-        galleryBox.classList.add('hidden');
-        // Hier kannst du später das ausgewählte Bild setzen
+
+    // ==============
+    // Initial Avatar
+    // ==============
+    if (!profileImg.src) {
+        const seed = Math.floor(Math.random() * 100000);
+        profileImg.src = `https://api.dicebear.com/7.x/thumbs/svg?seed=${seed}`;
+    }
+
+
+    // ==============
+    // Progress Anim
+    // ==============
+    progressFills.forEach(fill => {
+        const target = Number(fill.dataset.progress || "0");
+        requestAnimationFrame(() => {
+            fill.style.width = `${target}%`;
+        });
     });
-});
 
 
-/* === for the GENRES === */
+    // ==============
+    // Preferences Pills
+    // ==============
+    pills.forEach(pill => {
+        pill.addEventListener("click", () => {
+            pill.classList.toggle("selected");
+        });
+    });
 
-const modifyBtn = document.getElementById('modifyBtn');
-const genreLabels = document.querySelectorAll('.genre-list label');
-let isModifyMode = false;
 
-modifyBtn.addEventListener('click', () => {
-    if (!isModifyMode) {
-        // MODIFY MODE: Verstecke nicht-ausgewählte
-        genreLabels.forEach(label => {
-            const checkbox = label.querySelector('input[type="checkbox"]');
-            if (!checkbox.checked) {
-                label.classList.add('hidden');
+    // ==============
+    // Modals helper
+    // ==============
+    function openModal(modal) {
+        modalOverlay.classList.remove("hidden");
+        modal.classList.remove("hidden");
+        requestAnimationFrame(() => {
+            modal.classList.add("visible");
+        });
+    }
+
+    function closeModal(modal) {
+        modal.classList.remove("visible");
+        setTimeout(() => {
+            modal.classList.add("hidden");
+            if (!document.querySelector(".modal.visible")) {
+                modalOverlay.classList.add("hidden");
+            }
+        }, 180);
+    }
+
+
+    // ==============
+    // Edit Profile Modal
+    // ==============
+    openEditBtn.addEventListener("click", () => {
+        editUsernameInput.value = displayUsername.textContent.trim();
+        editRealnameInput.value = displayRealname.textContent.trim();
+        editBioInput.value = displayBio.textContent.trim();
+        openModal(editModal);
+    });
+
+    saveProfileBtn.addEventListener("click", () => {
+        const newUser = editUsernameInput.value.trim();
+        const newReal = editRealnameInput.value.trim();
+        const newBio = editBioInput.value.trim();
+
+        if (newUser) displayUsername.textContent = newUser;
+        if (newReal) displayRealname.textContent = newReal;
+        displayBio.textContent = newBio || displayBio.textContent;
+
+        closeModal(editModal);
+    });
+
+    cancelEditBtn.addEventListener("click", () => {
+        closeModal(editModal);
+    });
+
+
+    // ==============
+    // Photo Modal
+    // ==============
+    function openPhotoModal() {
+        openModal(photoModal);
+    }
+
+    avatarClickable.addEventListener("click", openPhotoModal);
+
+    randomAvatarBtn.addEventListener("click", () => {
+        const seed = Math.floor(Math.random() * 100000);
+        profileImg.src = `https://api.dicebear.com/7.x/thumbs/svg?seed=${seed}`;
+        closeModal(photoModal);
+    });
+
+    uploadInput.addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            profileImg.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+        closeModal(photoModal);
+    });
+
+
+    // ==============
+    // Overlay & ESC
+    // ==============
+    modalOverlay.addEventListener("click", () => {
+        [editModal, photoModal].forEach(m => {
+            if (!m.classList.contains("hidden")) {
+                closeModal(m);
             }
         });
-        modifyBtn.textContent = 'Modify';
-        isModifyMode = true;
-    } else {
-        // ZURÜCK: Zeige alle wieder
-        genreLabels.forEach(label => {
-            label.classList.remove('hidden');
-        });
-        isModifyMode = false;
-    }
-});
+    });
 
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+            [editModal, photoModal].forEach(m => {
+                if (!m.classList.contains("hidden")) {
+                    closeModal(m);
+                }
+            });
+        }
+    });
+});
