@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves.</title>
 
-    <!-- GLOBAL shelves.css (nicht antasten!) -->
+    <!-- Global base styles -->
     <link rel="stylesheet" href="shelves.css">
 
-    <!-- HOMEPAGE ONLY -->
+    <!-- Homepage only -->
     <link rel="stylesheet" href="homepage.css">
 </head>
 
@@ -17,74 +17,103 @@
 <header class="top-bar">
     <h1 class="logo" onclick="window.location.href='homepage.html'">shelves.</h1>
 
-    <div class="search-wrapper">
+    <!-- klickbar, öffnet globale Suche -->
+    <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search books, authors, genres…">
+        <input type="text" placeholder="Search shelves…  (⌘K / Ctrl+K)" readonly>
     </div>
 
-    <img src="user_icon.png" class="profile-mini" onclick="window.location.href='profile/profile.html'">
+    <img src="user_icon.png"
+         class="profile-mini"
+         alt="Profile"
+         onclick="window.location.href='profile/profile.html'">
 </header>
+
+<!-- GLOBAL SEARCH OVERLAY -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends, store…"
+               autofocus>
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
 
 <main class="home-wrapper">
 
-
-
-    <!-- QUICK LINKS -->
-    <section class="home-links">
-        <div class="home-link-card" onclick="window.location.href='my_books/my_books.html'">
-            <div class="home-icon">📚</div>
-            <p>My Books</p>
-        </div>
-
-        <div class="home-link-card" onclick="window.location.href='for_u/for_u.html'">
-            <div class="home-icon">✨</div>
-            <p>For You</p>
-        </div>
-
-        <div class="home-link-card" onclick="window.location.href='friends/shelves_friends.html'">
-            <div class="home-icon">👥</div>
-            <p>Friends</p>
-        </div>
-
-        <div class="home-link-card" onclick="window.location.href='curators/curators.html'">
-            <div class="home-icon">🎨</div>
-            <p>Curated</p>
-        </div>
-
-        <div class="home-link-card" onclick="window.location.href='store/store.html'">
-            <div class="home-icon">🛒</div>
-            <p>Store</p>
-        </div>
+    <!-- OPTIONAL HERO / INTRO -->
+    <section class="home-hero">
+        <h2>Welcome back.</h2>
+        <p>Continue your reading or discover something new.</p>
     </section>
+
+    <!-- NAVIGATION -->
+    <nav class="home-nav">
+        <button class="home-nav-item" onclick="window.location.href='my_books/my_books.html'">
+            <span class="nav-label">My Books</span>
+            <span class="nav-sub">library & reading history</span>
+        </button>
+
+        <button class="home-nav-item" onclick="window.location.href='for_u/for_u.html'">
+            <span class="nav-label">For You</span>
+            <span class="nav-sub">algorithm & friend picks</span>
+        </button>
+
+        <button class="home-nav-item" onclick="window.location.href='friends/shelves_friends.html'">
+            <span class="nav-label">Friends</span>
+            <span class="nav-sub">see what others read</span>
+        </button>
+
+        <button class="home-nav-item" onclick="window.location.href='curators/curators.html'">
+            <span class="nav-label">Curated</span>
+            <span class="nav-sub">editorial shelves</span>
+        </button>
+
+        <button class="home-nav-item" onclick="window.location.href='store/store.html'">
+            <span class="nav-label">Store</span>
+            <span class="nav-sub">buy new books</span>
+        </button>
+    </nav>
 
     <!-- CONTINUE READING -->
     <section class="home-section">
-        <h3>Continue reading</h3>
-        <div id="continueList" class="home-scroll"></div>
+        <div class="home-section-header">
+            <h3>Continue reading</h3>
+            <a href="my_books/my_books.html">View all</a>
+        </div>
+        <div id="continueList" class="home-row"></div>
     </section>
 
     <!-- FEATURED -->
     <section class="home-section">
-        <h3>Featured</h3>
-        <div class="home-featured-card" onclick="window.location.href='my_books/book_detail.html?id=hitchhike'">
-            <div class="home-featured-cover" style="background-image:url('covers/hitch.jpg')"></div>
-            <div>
-                <h4>Hitchhike through the Galaxy</h4>
-                <p>Douglas Adams</p>
-            </div>
+        <div class="home-section-header">
+            <h3>Featured</h3>
         </div>
+        <article class="home-featured-card"
+                 onclick="window.location.href='my_books/book_detail.html?id=hitchhike'">
+            <div class="home-featured-cover" style="background-image:url('covers/hitch.jpg')"></div>
+            <div class="home-featured-text">
+                <h4>Hitchhike through the Galaxy</h4>
+                <p>Douglas Adams · Sci-Fi · absurdist humor</p>
+            </div>
+        </article>
     </section>
 
     <!-- TRENDING -->
     <section class="home-section">
-        <h3>Trending</h3>
-        <div id="trendingList" class="home-scroll"></div>
+        <div class="home-section-header">
+            <h3>Trending</h3>
+            <a href="store/store.html">Open store</a>
+        </div>
+        <div id="trendingList" class="home-row"></div>
     </section>
 
 </main>
 
 <script src="homepage.js"></script>
-<script src="animations.js"></script>
+<script src="search/search.js"></script>
 
 </body>
 </html>
