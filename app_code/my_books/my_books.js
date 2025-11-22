@@ -1,120 +1,92 @@
-// app_code/my_books/my_books.js
-document.addEventListener("DOMContentLoaded", () => {
+console.log("my_books.js loaded (JSON version)");
 
-    const books = [
-        {
-            id: "hp2",
-            title: "Harry Potter II",
-            author: "J.K. Rowling",
-            cover: "../covers/hp2.jpg",
-            progress: 0.62,
-            added: "2025-01-12"
-        },
-        {
-            id: "faust2",
-            title: "Faust II",
-            author: "J.W. von Goethe",
-            cover: "../covers/faust2.jpg",
-            progress: 0.15,
-            added: "2025-01-10"
-        },
-        {
-            id: "friends2",
-            title: "FRIENDS II",
-            author: "Lena Hart",
-            cover: "../covers/friends2.jpg",
-            progress: 1,
-            added: "2024-12-30"
-        },
-        {
-            id: "hitchhike",
-            title: "Hitchhike through the Galaxy",
-            author: "Douglas Adams",
-            cover: "../covers/hitch.jpg",
-            progress: 0,
-            added: "2024-12-20"
-        }
-    ];
+const BOOKS_URL = "../data/books.json";
 
-    // Progress aus localStorage mergen
-    books.forEach(book => {
-        const stored = localStorage.getItem("shelves_progress_" + book.id);
-        if (stored !== null) {
-            const val = parseFloat(stored);
-            if (!Number.isNaN(val)) {
-                book.progress = Math.min(1, Math.max(0, val));
-            }
-        }
-    });
-
-    const continueReading = books.filter(b => b.progress > 0 && b.progress < 1);
-
-    const recentAdded = books
-        .slice()
-        .sort((a, b) => new Date(b.added) - new Date(a.added))
-        .slice(0, 8);
-
-    const library = books;
-
-    function cardClickHandler(id) {
-        window.location.href = `book_detail.html?id=${encodeURIComponent(id)}`;
+async function loadBooks() {
+    try {
+        const res = await fetch(BOOKS_URL);
+        const data = await res.json();
+        return data.books || [];
+    } catch (err) {
+        console.error("Failed loading books.json", err);
+        return [];
     }
+}
 
-    function renderContinue() {
-        const container = document.getElementById("continueList");
-        if (!container) return;
+// ------------------------------
+// BOOK GROUPS
+// ------------------------------
+// Simpler: du könntest diese Infos auch später in users.json speichern.
+const USER_READING = ["hp2", "faust2"];           // continue reading
+const USER_RECENT  = ["friends2", "hitchhike"];   // recently added
+const USER_LIBRARY = true;                        // = alle books.json
 
-        container.innerHTML = continueReading.map(b => `
-            <div class="book-card-horizontal" data-id="${b.id}">
-                <div class="cover" style="background-image:url(${b.cover})"></div>
-                <div class="title">${b.title}</div>
-                <div class="author">${b.author}</div>
+// ------------------------------
+// DOM REFS
+// ------------------------------
+const continueList = document.getElementById("continueList");
+const recentList   = document.getElementById("recentList");
+const libraryGrid  = document.getElementById("libraryGrid");
+
+// ------------------------------
+// CARD TEMPLATES
+// ------------------------------
+
+function cardHorizontal(book, progress = null) {
+    return `
+        <div class="book-card-horizontal"
+             onclick="window.location.href='book_detail.html?id=${book.id}'">
+            <div class="cover" style="background-image:url('../${book.cover}')"></div>
+            <div class="title">${book.title}</div>
+            <div class="author">${book.author}</div>
+            ${
+        progress !== null
+            ? `
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width:${b.progress * 100}%"></div>
+                    <div class="progress-fill" style="width:${progress}%"></div>
                 </div>
-            </div>
-        `).join("");
-
-        container.querySelectorAll(".book-card-horizontal").forEach(card => {
-            card.addEventListener("click", () => cardClickHandler(card.dataset.id));
-        });
+            `
+            : ""
     }
+        </div>
+    `;
+}
 
-    function renderRecent() {
-        const container = document.getElementById("recentList");
-        if (!container) return;
+function cardGrid(book) {
+    return `
+        <div class="book-card-grid"
+             onclick="window.location.href='book_detail.html?id=${book.id}'">
+            <div class="cover" style="background-image:url('../${book.cover}')"></div>
+            <div class="title">${book.title}</div>
+            <div class="author">${book.author}</div>
+        </div>
+    `;
+}
 
-        container.innerHTML = recentAdded.map(b => `
-            <div class="book-card-horizontal" data-id="${b.id}">
-                <div class="cover" style="background-image:url(${b.cover})"></div>
-                <div class="title">${b.title}</div>
-                <div class="author">${b.author}</div>
-            </div>
-        `).join("");
+// ------------------------------
+// INIT
+// ------------------------------
 
-        container.querySelectorAll(".book-card-horizontal").forEach(card => {
-            card.addEventListener("click", () => cardClickHandler(card.dataset.id));
-        });
-    }
+async function initMyBooks() {
+    const books = await loadBooks();
+    if (!books.length) return;
 
-    function renderLibrary() {
-        const container = document.getElementById("libraryGrid");
-        if (!container) return;
+    // Continue reading
+    const continueBooks = books.filter(b => USER_READING.includes(b.id));
+    continueList.innerHTML = continueBooks.length
+        ? continueBooks
+            .map(b => cardHorizontal(b, b.progress || 0))
+            .join("")
+        : `<p class="empty-note">Nothing to show yet.</p>`;
 
-        container.innerHTML = library.map(b => `
-            <div class="book-card-grid" data-id="${b.id}">
-                <div class="cover" style="background-image:url(${b.cover})"></div>
-                <div class="title">${b.title}</div>
-                <div class="author">${b.author}</div>
-            </div>
-        `).join("");
+    // Recently added
+    const recentBooks = books.filter(b => USER_RECENT.includes(b.id));
+    recentList.innerHTML = recentBooks.length
+        ? recentBooks.map(cardHorizontal).join("")
+        : `<p class="empty-note">No recent additions.</p>`;
 
-        container.querySelectorAll(".book-card-grid").forEach(card => {
-            card.addEventListener("click", () => cardClickHandler(card.dataset.id));
-        });
-    }
+    // Library (Grid)
+    libraryGrid.innerHTML = books.map(cardGrid).join("");
+}
 
-    renderContinue();
-    renderRecent();
-    renderLibrary();
-});
+document.addEventListener("DOMContentLoaded", initMyBooks);

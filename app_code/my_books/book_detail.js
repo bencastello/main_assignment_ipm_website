@@ -1,69 +1,80 @@
-// app_code/my_books/book_detail.js
-document.addEventListener("DOMContentLoaded", () => {
+console.log("book_detail.js using books.json");
 
+const BOOKS_URL = "../data/books.json";
+
+async function loadBooks() {
+    try {
+        const res = await fetch(BOOKS_URL);
+        const data = await res.json();
+        return data.books || [];
+    } catch (err) {
+        console.error("Could not load books.json", err);
+        return [];
+    }
+}
+
+function getIdFromQuery() {
     const params = new URLSearchParams(window.location.search);
-    const bookId = params.get("id");
+    return params.get("id") || null;
+}
 
-    const books = [
-        {
-            id: "hp2",
-            title: "Harry Potter II",
-            author: "J.K. Rowling",
-            cover: "../covers/hp2.jpg",
-            description: "The second year at Hogwarts brings new dangers, a mysterious chamber and a very cursed diary.",
-            meta: "Fantasy · Friend rec"
-        },
-        {
-            id: "faust2",
-            title: "Faust II",
-            author: "J.W. von Goethe",
-            cover: "../covers/faust2.jpg",
-            description: "A dense, wild and surreal continuation of Faust’s pact and journey through allegorical worlds.",
-            meta: "Classics · Deep stuff"
-        },
-        {
-            id: "friends2",
-            title: "FRIENDS II",
-            author: "Lena Hart",
-            cover: "../covers/friends2.jpg",
-            description: "Chaotic friend group energy, messy love lives and questionable life choices. Light, fast, addictive.",
-            meta: "Contemporary · Lighthearted chaos"
-        },
-        {
-            id: "hitchhike",
-            title: "Hitchhike through the Galaxy",
-            author: "Douglas Adams",
-            cover: "../covers/hitch.jpg",
-            description: "Absurd sci-fi roadtrip with questionable survival chances and a lot of sarcasm.",
-            meta: "Sci-Fi · Absurdist humor"
-        }
-    ];
+async function initDetail() {
+    const books = await loadBooks();
+    const id = getIdFromQuery();
 
-    const book = books.find(b => b.id === bookId) || books[0];
+    if (!id) {
+        console.warn("No ID in query.");
+        document.getElementById("detailTitle").textContent = "No book selected";
+        return;
+    }
 
-    const coverEl = document.getElementById("detailCover");
-    const titleEl = document.getElementById("detailTitle");
-    const authorEl = document.getElementById("detailAuthor");
+    const book = books.find(b => b.id === id);
+
+    if (!book) {
+        console.warn("Book not found:", id);
+        document.getElementById("detailTitle").textContent = "Book not found";
+        return;
+    }
+
+    // Titel + Autor
+    document.getElementById("detailTitle").textContent = book.title;
+    document.getElementById("detailAuthor").textContent = book.author;
+
+    // Meta: Genre, pages, price
     const metaEl = document.getElementById("detailMeta");
-    const descEl = document.getElementById("detailDescription");
-    const progressLabel = document.getElementById("detailProgressLabel");
-    const progressFill = document.getElementById("detailProgressFill");
-    const continueBtn = document.getElementById("continueBtn");
+    const metaParts = [];
 
-    // Daten setzen
-    coverEl.style.backgroundImage = `url(${book.cover})`;
-    titleEl.textContent = book.title;
-    authorEl.textContent = book.author;
-    metaEl.textContent = book.meta;
-    descEl.textContent = book.description;
+    if (book.genre) metaParts.push(book.genre);
+    if (book.pages) metaParts.push(`${book.pages} pages`);
+    if (book.price) metaParts.push(`${book.price.toFixed(2)} €`);
 
-    const stored = localStorage.getItem("shelves_progress_" + book.id);
-    const progress = stored !== null ? Math.min(1, Math.max(0, parseFloat(stored))) : 0;
+    metaEl.textContent = metaParts.join(" · ");
 
-    progressLabel.textContent = Math.round(progress * 100) + "%";
-    progressFill.style.width = (progress * 100) + "%";
+    // Cover
+    const coverEl = document.getElementById("detailCover");
+    if (coverEl) {
+        coverEl.style.backgroundImage = `url('../${book.cover}')`;
+    }
 
-    continueBtn.addEventListener("click", () => {
-        window.location.href = `reader.html?id=${encodeURIComponent(book.id)}`;
+    // Progress
+    const progress = typeof book.progress === "number" ? book.progress : 0;
+
+    document.getElementById("detailProgressLabel").textContent = `${progress}%`;
+    const fill = document.getElementById("detailProgressFill");
+    fill.style.width = "0%";
+    requestAnimationFrame(() => {
+        fill.style.width = `${progress}%`;
     });
-});
+
+    // Description
+    document.getElementById("detailDescription").textContent =
+        book.description || "No description available.";
+
+    // Continue Reading Button
+    const contBtn = document.getElementById("continueBtn");
+    contBtn.addEventListener("click", () => {
+        window.location.href = "reader.html?id=" + book.id;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initDetail);

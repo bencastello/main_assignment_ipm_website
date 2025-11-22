@@ -1,0 +1,82 @@
+{
+  "friends": [
+    {
+      "id": "anna",
+      "username": "@anna",
+      "realname": "Anna Weber",
+      "avatar": "friends/anna.png",
+      "bio": "Chaotic fantasy reader. Loves dragons and long series.",
+      "favoriteGenres": ["Fantasy", "Romance"],
+      "currentReading": "hp2",
+      "currentProgress": 0.41,
+      "favorites": ["hp2", "hitchhike"],
+      "chatThread": "anna",
+      "tags": ["fantasy", "dragons"]
+    },
+    {
+      "id": "fiio",
+      "username": "@fiio",
+      "realname": "Fiio Example",
+      "avatar": "friends/fiio.png",
+      "bio": "Soft spot for sci-fi and quiet character stories.",
+      "favoriteGenres": ["Sci-Fi", "Literary"],
+      "currentReading": "long_way",
+      "currentProgress": 0.72,
+      "favorites": ["long_way", "hitchhike"],
+      "chatThread": "fiio",
+      "tags": ["sci-fi", "cozy"]
+    },
+    {
+      "id": "lara",
+      "username": "@lara",
+      "realname": "Lara K.",
+      "avatar": "friends/lara.png",
+      "bio": "Reads romance and then complains about romance.",
+      "favoriteGenres": ["Contemporary", "Romance"],
+      "currentReading": "friends2",
+      "currentProgress": 0.55,
+      "favorites": ["friends2"],
+      "chatThread": "lara",
+      "tags": ["romance", "contemporary"]
+    },
+    {
+      "id": "geri",
+      "username": "@geri",
+      "realname": "Geri M.",
+      "avatar": "friends/geri.png",
+      "bio": "Classics nerd. Will quote Goethe unprovoked.",
+      "favoriteGenres": ["Classics", "Philosophy"],
+      "currentReading": "faust2",
+      "currentProgress": 0.32,
+      "favorites": ["faust2"],
+      "chatThread": "geri",
+      "tags": ["classics", "german"]
+    },
+    {
+      "id": "sonja",
+      "username": "@sonja",
+      "realname": "Sonja R.",
+      "avatar": "friends/sonja.png",
+      "bio": "Non-fiction binge reader, explains everything with a study.",
+      "favoriteGenres": ["Non-Fiction"],
+      "currentReading": "nonfiction1",
+      "currentProgress": 0.23,
+      "favorites": ["nonfiction1", "sapiens"],
+      "chatThread": "sonja",
+      "tags": ["non-fiction", "psychology"]
+    },
+    {
+      "id": "sarah",
+      "username": "@sarah",
+      "realname": "Sarah L.",
+      "avatar": "friends/sarah.png",
+      "bio": "Lives in fanfic and coffee shops.",
+      "favoriteGenres": ["Fantasy", "Contemporary"],
+      "currentReading": "hp2",
+      "currentProgress": 0.8,
+      "favorites": ["hp2", "friends2"],
+      "chatThread": "sarah",
+      "tags": ["fantasy", "coffee"]
+    }
+  ]
+}

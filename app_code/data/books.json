@@ -1,0 +1,88 @@
+{
+  "books": [
+    {
+      "id": "hp2",
+      "title": "Harry Potter II",
+      "author": "J.K. Rowling",
+      "genre": "Fantasy",
+      "format": "Hardcover",
+      "price": 14.99,
+      "featured": true,
+      "inStock": true,
+      "cover": "covers/hp2.jpg",
+      "tags": ["magic", "school", "friend rec"]
+    },
+    {
+      "id": "faust2",
+      "title": "Faust II",
+      "author": "J. W. von Goethe",
+      "genre": "Classics",
+      "format": "Paperback",
+      "price": 11.5,
+      "featured": false,
+      "inStock": true,
+      "cover": "covers/faust2.jpg",
+      "tags": ["german", "classic", "deep stuff"]
+    },
+    {
+      "id": "friends2",
+      "title": "FRIENDS II",
+      "author": "Lena Hart",
+      "genre": "Contemporary",
+      "format": "Paperback",
+      "price": 16.9,
+      "featured": false,
+      "inStock": true,
+      "cover": "covers/friends2.jpg",
+      "tags": ["lighthearted", "relationships"]
+    },
+    {
+      "id": "hitchhike",
+      "title": "Hitchhike through the Galaxy",
+      "author": "Douglas Adams",
+      "genre": "Sci-Fi",
+      "format": "Paperback",
+      "price": 13.4,
+      "featured": true,
+      "inStock": true,
+      "cover": "covers/hitch.jpg",
+      "tags": ["space", "absurd", "humor"]
+    },
+    {
+      "id": "long_way",
+      "title": "The Long Way to a Small, Angry Planet",
+      "author": "Becky Chambers",
+      "genre": "Sci-Fi",
+      "format": "E-Book",
+      "price": 9.99,
+      "featured": true,
+      "inStock": true,
+      "cover": "covers/long_way.jpg",
+      "tags": ["cozy", "space", "found family"]
+    },
+    {
+      "id": "nonfiction1",
+      "title": "Thinking in Systems",
+      "author": "Donella Meadows",
+      "genre": "Non-Fiction",
+      "format": "Paperback",
+      "price": 19.9,
+      "featured": false,
+      "inStock": true,
+      "cover": "covers/thinking_systems.jpg",
+      "tags": ["systems", "non-fiction"]
+    },
+    {
+      "id": "sapiens",
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "genre": "Non-Fiction",
+      "format": "Paperback",
+      "price": 18.5,
+      "featured": true,
+      "inStock": true,
+      "cover": "covers/sapiens.jpg",
+      "tags": ["history", "big picture"]
+    }
+  ]
+}

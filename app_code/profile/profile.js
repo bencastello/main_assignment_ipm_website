@@ -1,143 +1,245 @@
 console.log("profile.js loaded");
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id") || "me";
+document.addEventListener("DOMContentLoaded", () => {
+    initProfile().catch(err => console.error(err));
+});
 
-const profileImg = document.getElementById("profileImg");
-const avatarClickable = document.getElementById("avatarClickable");
-const openEditBtn = document.getElementById("openEditBtn");
-const messageButton = document.getElementById("messageButton");
-const privacyCard = document.getElementById("privacyCard");
-const prefsContent = document.getElementById("prefsContent");
+async function initProfile() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id") || "me";
 
-const FRIENDS = {
-    me: {
-        name: "@exampleuser",
-        real: "Petra Example",
-        bio: "Book lover. Avid reader of mystery and fantasy.",
-        avatar: "../user_icon.png",
-        badges: ["📘 128 books", "🔥 streak 12 days", "⭐ curator"],
-        stats: { books: 34, pages: 11240, rating: "4.2★", streak: "28 d" },
-        favorites: ["hp2", "faust2", "friends2", "hitchhike"],
-        current: { title: "The Long Way...", meta: "Becky Chambers · cozy sci-fi", progress: 64 },
-        prefs: ["Fantasy", "Thriller", "Science Fiction"],
-        activity: [
-            "Curator since 2024",
-            "Created 7 recommendation lists",
-            "Wrote 15 curator posts",
-            "Last active 2 hours ago"
-        ]
-    },
-    anna: {
-        name: "@anna",
-        real: "Anna Weber",
-        bio: "Chaotic fantasy reader. Loves dragons.",
-        avatar: "../friends/anna.png",
-        badges: ["🐉 fantasy enjoyer"],
-        stats: { books: 12, pages: 3000, rating: "4.7★", streak: "6 d" },
-        favorites: ["hp2", "hitchhike"],
-        current: { title: "Eragon", meta: "dragons etc.", progress: 41 },
-        prefs: ["Fantasy", "Romance"],
-        activity: ["Finished: Eragon", "Rated ★★★★☆"]
-    },
-    // ... weitere Freunde
-};
+    const [userData, friendsData, booksData] = await Promise.all([
+        fetch("../data/users.json").then(r => r.json()),
+        fetch("../data/friends.json").then(r => r.json()),
+        fetch("../data/books.json").then(r => r.json())
+    ]);
 
-const p = FRIENDS[id] || FRIENDS["me"];
+    const users   = userData.users   || [];
+    const friends = friendsData.friends || [];
+    const books   = booksData.books  || [];
 
-document.getElementById("displayUsername").textContent = p.name;
-document.getElementById("displayRealname").textContent = p.real;
-document.getElementById("displayBio").textContent = p.bio;
-profileImg.src = p.avatar;
+    const userMap = {};
+    users.forEach(u => userMap[u.id] = u);
+    const friendMap = {};
+    friends.forEach(f => friendMap[f.id] = f);
+    const bookMap = {};
+    books.forEach(b => bookMap[b.id] = b);
 
+    let mode = "self";
+    let profile = null;
 
-// Badges
-document.getElementById("badgeRow").innerHTML =
-    p.badges.map(b => `<span class="badge">${b}</span>`).join("");
+    if (id === "me" || userMap[id]) {
+        mode = "self";
+        profile = userMap[id] || userMap["me"];
+    } else {
+        mode = "friend";
+        profile = friendMap[id];
+    }
 
+    if (!profile) {
+        document.body.innerHTML = "<p>Profile not found.</p>";
+        return;
+    }
 
-// Stats
-document.getElementById("statBooks").textContent = p.stats.books;
-document.getElementById("statPages").textContent = p.stats.pages;
-document.getElementById("statRating").textContent = p.stats.rating;
-document.getElementById("statStreak").textContent = p.stats.streak;
+    // DOM refs (an dein HTML angepasst)
+    const profileImg       = document.getElementById("profileImg");
+    const displayUsername  = document.getElementById("displayUsername");
+    const displayRealname  = document.getElementById("displayRealname");
+    const displayBio       = document.getElementById("displayBio");
+    const goalCount        = document.getElementById("goalCount");
+    const statBooks        = document.getElementById("statBooks");
+    const statPages        = document.getElementById("statPages");
+    const statRating       = document.getElementById("statRating");
+    const statStreak       = document.getElementById("statStreak");
+    const favRow           = document.getElementById("favRow");
+    const currentTitle     = document.querySelector(".current-title");
+    const currentMeta      = document.querySelector(".current-meta");
+    const currentCover     = document.querySelector(".current-cover");
+    const currentPercentEl = document.querySelector(".current-percent");
+    const progressFills    = Array.from(document.querySelectorAll(".progress-fill"));
+    const openEditBtn      = document.getElementById("openEditBtn");
+    const messageBtn       = document.getElementById("messageFriendBtn");
 
+    // Basisdaten
+    if (profileImg) {
+        const avatar = profile.avatar || "user_icon.png";
+        profileImg.src = avatar.startsWith("http") || avatar.startsWith("../")
+            ? avatar
+            : "../" + avatar;
+    }
+    if (displayUsername) displayUsername.textContent = profile.username || "@user";
+    if (displayRealname) displayRealname.textContent = profile.realname || profile.name || "";
+    if (displayBio)      displayBio.textContent = profile.bio || "";
 
-// Favorites
-const favRow = document.getElementById("favRow");
-favRow.innerHTML = p.favorites.map(f => {
-    return `
-    <article class="fav-book">
-        <div class="fav-cover fav-${f}"></div>
-        <p class="fav-title">${f}</p>
-    </article>`;
-}).join("");
+    // Stats & Goal (nur für self sinnvoll, aber wir faken für Freunde notfalls nichts)
+    if (mode === "self" && profile.stats) {
+        if (goalCount) {
+            const goalCur = profile.stats.booksThisYear || 0;
+            const goalTarget = 50;
+            goalCount.textContent = `${goalCur} / ${goalTarget}`;
+        }
+        if (statBooks)  statBooks.textContent  = profile.stats.booksThisYear || 0;
+        if (statPages)  statPages.textContent  = (profile.stats.pagesRead || 0).toLocaleString();
+        if (statRating) statRating.textContent = (profile.stats.avgRating || 0).toFixed(1) + "★";
+        if (statStreak) statStreak.textContent = (profile.stats.streakDays || 0) + " d";
+    }
 
+    // Favorites
+    if (favRow) {
+        const favIds = profile.favorites || profile.favourites || [];
+        favRow.innerHTML = favIds.map(id => {
+            const b = bookMap[id];
+            if (!b) return "";
+            const cover = b.cover ? `style="background-image:url('../${b.cover}')"` : "";
+            return `
+                <article class="fav-book">
+                    <div class="fav-cover" ${cover}></div>
+                    <p class="fav-title">${escapeHtml(b.title)}</p>
+                </article>
+            `;
+        }).join("");
+    }
 
-// Currently reading
-document.getElementById("currentBlock").innerHTML = `
-    <div class="current-cover"></div>
-    <div class="current-info">
-        <p class="current-title">${p.current.title}</p>
-        <p class="current-meta">${p.current.meta}</p>
+    // Currently reading
+    const currentId = profile.currentReading;
+    const progress  = profile.currentProgress || 0;
+    if (currentId && bookMap[currentId]) {
+        const b = bookMap[currentId];
+        if (currentTitle) currentTitle.textContent = b.title;
+        if (currentMeta)  currentMeta.textContent  = `${b.author} · ${b.genre}`;
+        if (currentCover) {
+            currentCover.style.backgroundImage = `linear-gradient(135deg, #283048, #859398), url('../${b.cover}')`;
+            currentCover.style.backgroundSize = "cover";
+        }
+        if (currentPercentEl) currentPercentEl.textContent = `${Math.round(progress * 100)}%`;
+        progressFills.forEach(fill => {
+            const target = fill.dataset.progress ? Number(fill.dataset.progress) : progress * 100;
+            requestAnimationFrame(() => {
+                fill.style.width = `${target}%`;
+            });
+        });
+    }
 
-        <div class="current-progress">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:${p.current.progress}%"></div>
-            </div>
-            <div class="current-percent">${p.current.progress}%</div>
-        </div>
-
-        <button class="continue-btn">Continue reading</button>
-    </div>
-`;
-
-
-// Activity
-document.getElementById("activityList").innerHTML =
-    p.activity.map(a => `<li>${a}</li>`).join("");
-
-
-// Preferences
-if (id === "me") {
-    // full interactive layout (your original pills)
-    prefsContent.innerHTML = `
-        <h4>Genres</h4>
-        <div class="pill-row">
-            <button class="pill">Fantasy</button>
-            <button class="pill">Thriller</button>
-            <button class="pill">Romance</button>
-            <button class="pill">Science Fiction</button>
-        </div>
-
-        <h4>Tone</h4>
-        <div class="pill-row">
-            <button class="pill">cozy</button>
-            <button class="pill">dark</button>
-            <button class="pill">wholesome</button>
-        </div>
-    `;
-} else {
-    // display-only
-    prefsContent.innerHTML = `
-        <h4>Preferences</h4>
-        <p>${p.prefs.join(", ")}</p>
-    `;
+    // Edit vs. Message
+    if (mode === "self") {
+        if (openEditBtn) openEditBtn.classList.remove("hidden");
+        if (messageBtn)  messageBtn.classList.add("hidden");
+        setupSelfEditing(profile);
+    } else {
+        if (openEditBtn) openEditBtn.classList.add("hidden");
+        if (messageBtn) {
+            messageBtn.classList.remove("hidden");
+            messageBtn.addEventListener("click", () => {
+                const thread = profile.chatThread || profile.id;
+                window.location.href = `../chat/chat.html?thread=${encodeURIComponent(thread)}`;
+            });
+        }
+    }
 }
 
+function setupSelfEditing(profile) {
+    const modalOverlay    = document.getElementById("modalOverlay");
+    const editModal       = document.getElementById("editModal");
+    const openEditBtn     = document.getElementById("openEditBtn");
+    const editUsername    = document.getElementById("editUsername");
+    const editRealname    = document.getElementById("editRealname");
+    const editBio         = document.getElementById("editBio");
+    const saveProfileBtn  = document.getElementById("saveProfileBtn");
+    const cancelEditBtn   = document.getElementById("cancelEditBtn");
+    const profileImg      = document.getElementById("profileImg");
+    const avatarClickable = document.getElementById("avatarClickable");
+    const photoModal      = document.getElementById("photoModal");
+    const uploadInput     = document.getElementById("uploadInput");
+    const randomAvatarBtn = document.getElementById("randomAvatarBtn");
 
-// MODE SWITCH (me vs friend)
-if (id === "me") {
-    // YOU — everything stays enabled
-    messageButton.classList.add("hidden");
-} else {
-    // FRIEND MODE — disable editing
-    avatarClickable.classList.add("disabled");
-    openEditBtn.classList.add("hidden");
-    privacyCard.classList.add("hidden");
+    const displayUsername = document.getElementById("displayUsername");
+    const displayRealname = document.getElementById("displayRealname");
+    const displayBio      = document.getElementById("displayBio");
 
-    messageButton.classList.remove("hidden");
-    messageButton.onclick = () => {
-        window.location.href = `../chat/chat.html?thread=${id}`;
-    };
+    function openModal(modal) {
+        modalOverlay.classList.remove("hidden");
+        modal.classList.remove("hidden");
+        requestAnimationFrame(() => modal.classList.add("visible"));
+    }
+
+    function closeModal(modal) {
+        modal.classList.remove("visible");
+        setTimeout(() => {
+            modal.classList.add("hidden");
+            if (!document.querySelector(".modal.visible")) {
+                modalOverlay.classList.add("hidden");
+            }
+        }, 180);
+    }
+
+    if (openEditBtn) {
+        openEditBtn.addEventListener("click", () => {
+            editUsername.value = displayUsername.textContent.trim();
+            editRealname.value = displayRealname.textContent.trim();
+            editBio.value      = displayBio.textContent.trim();
+            openModal(editModal);
+        });
+    }
+
+    if (saveProfileBtn) {
+        saveProfileBtn.addEventListener("click", () => {
+            const newUser = editUsername.value.trim();
+            const newReal = editRealname.value.trim();
+            const newBio  = editBio.value.trim();
+
+            if (newUser) displayUsername.textContent = newUser;
+            if (newReal) displayRealname.textContent = newReal;
+            displayBio.textContent = newBio || displayBio.textContent;
+
+            closeModal(editModal);
+        });
+    }
+
+    if (cancelEditBtn) cancelEditBtn.addEventListener("click", () => closeModal(editModal));
+
+    if (avatarClickable) {
+        avatarClickable.addEventListener("click", () => openModal(photoModal));
+    }
+
+    if (randomAvatarBtn) {
+        randomAvatarBtn.addEventListener("click", () => {
+            const seed = Math.floor(Math.random() * 100000);
+            profileImg.src = `https://api.dicebear.com/7.x/thumbs/svg?seed=${seed}`;
+            closeModal(photoModal);
+        });
+    }
+
+    if (uploadInput) {
+        uploadInput.addEventListener("change", e => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => { profileImg.src = reader.result; };
+            reader.readAsDataURL(file);
+            closeModal(photoModal);
+        });
+    }
+
+    modalOverlay.addEventListener("click", () => {
+        [editModal, photoModal].forEach(m => {
+            if (!m.classList.contains("hidden")) closeModal(m);
+        });
+    });
+
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+            [editModal, photoModal].forEach(m => {
+                if (!m.classList.contains("hidden")) closeModal(m);
+            });
+        }
+    });
+}
+
+function escapeHtml(str) {
+    return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }

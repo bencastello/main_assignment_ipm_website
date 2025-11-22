@@ -1,0 +1,61 @@
+.friend-profile-wrapper {
+    max-width: 900px;
+    margin: 140px auto 60px;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.friend-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 16px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+.friend-name {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.friend-username {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 16px;
+}
+
+.friend-bio {
+    max-width: 480px;
+    margin: 0 auto 24px;
+    font-size: 15px;
+    color: #444;
+}
+
+.friend-books-section {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.friend-books-wrapper {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 12px 0;
+}
+
+.friend-book-card {
+    min-width: 120px;
+    text-align: center;
+}
+
+.friend-book-cover {
+    width: 120px;
+    height: 180px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    margin-bottom: 6px;
+}
