@@ -103,7 +103,7 @@ if (!overlay || !input || !results) {
             .forEach(u => {
                 out.push(`
                     <div class="result-item"
-                        onclick="window.location.href='friends/shelves_friends.html'">
+                        onclick="window.location.href='friends/friends.html'">
                         <div class="result-meta">
                             <h4>${u.name}</h4>
                             <p>Friend on shelves</p>
