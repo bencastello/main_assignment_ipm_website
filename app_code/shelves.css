@@ -1,19 +1,19 @@
 /* -----------------------------------------------------
-   FONTS & RESET
+   GLOBAL RESETS
 ----------------------------------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: Outfit, Helvetica, Arial, sans-serif;
+    font-family: "Outfit", sans-serif;
     background: #ffffff;
-    overflow-x: hidden;
+    color: #111;
 }
 
 /* -----------------------------------------------------
@@ -21,226 +21,106 @@ body {
 ----------------------------------------------------- */
 
 .top-bar {
-    position: relative;
-    text-align: center;
-    padding-top: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 48px;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 50;
+    border-bottom: 1px solid #eee;
 }
 
 .logo {
-    font-size: 64px;
+    font-size: 42px;
     font-weight: 700;
-    color: black;
     cursor: pointer;
 }
 
-/* Search */
+/* -----------------------------------------------------
+   SEARCH BAR (TOP)
+----------------------------------------------------- */
 
 .search-wrapper {
-    position: absolute;
-    right: 150px;
-    top: 70px;
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 20px;
-    color: black;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    background: #fafafa;
+    width: 350px;
+    margin: 0 auto;
+    cursor: pointer;
 }
 
 .search-wrapper input {
+    width: 100%;
     border: none;
-    border-bottom: 1px solid #c7c7c7;
-    padding: 4px 4px 4px 0;
     outline: none;
-    font-size: 14px;
     background: transparent;
 }
 
-/* === SMALL PROFILE ICON (GLOBAL) === */
+/* -----------------------------------------------------
+   PROFILE ICON
+----------------------------------------------------- */
 
 .profile-mini {
-    position: absolute;
-    top: 60px;
-    right: 60px;
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    object-fit: cover;
     cursor: pointer;
 }
 
-/* === SHELF LABEL HOVER EFFECT === */
-.shelf-label {
-    cursor: pointer;
-    transition: background-color 0.3s ease;  /* Sanfter Übergang */
-}
-
-.shelf-label:hover {
-    background-color: #ccc;
-}
-
 /* -----------------------------------------------------
-   SHELF SCENE
+   GLOBAL SEARCH OVERLAY
 ----------------------------------------------------- */
 
-.scene {
-    position: relative;
-    width: 100vw;
-    height: calc(100vh - 150px);
-    margin-top: 20px;
+.global-search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    animation: fadeIn 0.25s ease forwards;
 }
 
-/* Wooden Side Bars */
-
-.side {
-    position: absolute;
-    top: 5%;
-    bottom: 5%;
-    width: 30px;
-    background: #b16d33;
+.global-search-hidden {
+    display: none;
 }
 
-.side-left { left: 25%; }
-.side-right { right: 25%; }
-
-/* -----------------------------------------------------
-   SHELVES
------------------------------------------------------ */
-
-.shelf {
-    position: absolute;
-    left: 20%;
-    right: 20%;
-    height: 110px;
-}
-
-/* Shelf positions */
-
-.shelf-1 { top: 14%; }
-.shelf-2 { top: 35%; }
-.shelf-3 { top: 56%; }
-.shelf-4 { top: 77%; }
-
-/* The plank */
-
-.plank {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 30px;
-    background: #b16d33;
-}
-
-/* -----------------------------------------------------
-   LABELS
------------------------------------------------------ */
-
-.shelf-label {
-    position: absolute;
-    right: 160px;
-    bottom: 70px;
-    padding: 8px 56px;
-    border: 3px solid black;
-    font-size: 30px;
+.global-search-panel {
     background: white;
-    text-align: center;
+    width: 600px;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.2);
 }
 
-/* -----------------------------------------------------
-   BOOK GROUPS (vertical)
------------------------------------------------------ */
-
-.books-vertical {
-    position: absolute;
-    bottom: 32px;
-    display: flex;
-    align-items: flex-end;
-    gap: 5px;
+.global-search-input {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
-/* Left positions */
-
-.group-1-left { left: 11.5%; }
-.group-2-left { left: 11.5%; }
-.group-3-left { left: 11.5%; }
-.group-4-left { left: 11.5%; }
-
-/* -----------------------------------------------------
-   BOOK SHAPES
------------------------------------------------------ */
-
-.book {
-    width: 26px;
+.global-search-results {
+    margin-top: 20px;
+    font-size: 18px;
 }
 
-.small { height: 115px; }
-.medium { height: 120px; }
-.tall { height: 130px; }
-
-/* Leaning books */
-
-.orange-lean  { transform: rotate(-6deg); transform-origin: bottom center; }
-.purple-lean  { transform: rotate(7deg);  transform-origin: bottom center; }
-.green-lean   { transform: rotate(-8deg); transform-origin: bottom center; }
-
-/* -----------------------------------------------------
-   HORIZONTAL STACKS
------------------------------------------------------ */
-
-.stacked {
-    position: absolute;
-    left: 500px; /* adjust per shelf manually */
-    bottom: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
-.h-book {
-    height: 20px;
-    margin-bottom: 2px;
-}
-
-.h-small  { width: 90px; }
-.h-medium { width: 110px; }
-.h-large  { width: 130px; }
-
-/* tiny offsets for "handmade" look */
-.stacked .h-book:nth-child(1) { transform: translateX(0); }
-.stacked .h-book:nth-child(2) { transform: translateX(6px); }
-.stacked .h-book:nth-child(3) { transform: translateX(12px); }
-.stacked .h-book:nth-child(4) { transform: translateX(4px); }
-.stacked .h-book:nth-child(5) { transform: translateX(10px); }
-
-/* -----------------------------------------------------
-   COLORS
------------------------------------------------------ */
-
-.purple       { background: #4c2a7a; }
-.purple-dark  { background: #3a1f5d; }
-.blue-light   { background: #6ea3ff; }
-.blue-lighter { background: #9ec5ff; }
-.green-light  { background: #c7dd5f; }
-.green-dark   { background: #2f641b; }
-.red          { background: #c92b1c; }
-.orange       { background: #f6a046; }
-.orange-lean  { background: #f3824f; }
-.yellow       { background: #f5d75c; }
-.peach        { background: #f7a78a; }
-.pink         { background: #f6b4c0; }
-
-
-.back-button {
-    position: absolute;
-    left: 40px;
-    top: 55px;
-    font-size: 28px;
-    background: none;
-    border: none;
+.global-search-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
     cursor: pointer;
-    padding: 0;
-    color: black;
 }
 
-.back-button:hover {
-    opacity: 0.6;
+.global-search-item:hover {
+    color: #444;
 }

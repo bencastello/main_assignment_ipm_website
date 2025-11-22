@@ -1,272 +1,136 @@
-/* ===== Curator Page Layout ===== */
+/* ===========================
+   Curators main layout
+=========================== */
 
 .curators-page {
-    width: 60%;
-    margin: 10px auto 50px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 160px 20px 60px;
+    font-family: inherit;
 }
 
-/* Section Titles */
+/* ===========================
+   BOOK OF THE WEEK (hero)
+=========================== */
 
-.curator-section-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 60px 0 10px;
-    border-bottom: 4px solid black;
-    padding-bottom: 6px;
-}
-
-/* Individual tiles */
-
-.curator-tile {
-    border: 3px solid black;
-    border-radius: 10px;
-    padding: 20px 30px;
-    margin: 25px 0;
-    background: white;
-}
-
-.curator-tile h2 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.reading-progress {
-    margin-top: 6px;
-    font-size: 14px;
-    color: #333;
-}
-
-/* Search override */
-
-.curator-search {
-    top: 65px;
-    right: 60px;
-}
-
-/* ===== FILTER OVERLAY ===== */
-
-.overlay.hidden,
-.filter-menu.hidden,
-.submenu.hidden {
-    display: none;
-}
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    z-index: 100;
-}
-
-
-/* Filter Menu Container */
-
-.filter-menu,
-.submenu {
-    position: fixed;
-    top: 140px;
-    right: 40px;
-    width: 320px;
-    background: white;
-    border: 3px solid black;
-    border-radius: 12px;
-    padding: 20px 25px;
-    z-index: 200;
-}
-
-.filter-menu h3,
-.submenu h3 {
-    margin-top: 0;
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.filter-list li,
-.submenu ul li {
-    padding: 10px 0;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-    font-size: 17px;
-}
-
-.filter-list li:last-child,
-.submenu ul li:last-child {
-    border-bottom: none;
-}
-
-/* ===== PRICE SLIDER FIX ===== */
-
-.price-slider-container {
-    margin: 20px 0;
-}
-
-.price-slider-container label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.price-label {
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.price-slider-container input[type="range"] {
-    width: 100%;
-    display: block;
-}
-
-/* --- MODERN UI EXPANSION FOR FILTER SYSTEM --- */
-
-/* Filter Button */
-.filter-button {
-    position: absolute;
-    left: 20px;
-    top: 35px;
-    display: flex;
+.book-of-week {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
     align-items: center;
-    gap: 6px;
+    margin-bottom: 80px;
+}
 
-    background: #fff;
-    padding: 8px 14px;
-    border-radius: 10px;
+.bow-cover {
+    width: 100%;
+    height: 380px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #4b0000, #c31432);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+}
+
+.bow-info h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.bow-author {
+    margin-top: 6px;
+    font-size: 16px;
+    color: #777;
+}
+
+.bow-teaser {
+    font-size: 16px;
+    margin: 16px 0 30px;
+    color: #444;
+}
+
+.bow-button {
+    padding: 10px 18px;
+    border-radius: 12px;
     border: 2px solid black;
-
-    font-size: 20px;
+    background: white;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
 }
 
-.filter-icon {
-    font-size: 18px;
+
+/* ===========================
+   CURATOR FEED LIST
+=========================== */
+
+.curator-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
 }
 
-/* Overlay (dark grey transparent) */
-.overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(80, 80, 80, 0.5);
-    z-index: 10;
+/* Single Entry */
+.curator-entry {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    cursor: pointer;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #eee;
 }
 
-.hidden {
-    display: none;
+.entry-cover {
+    width: 100%;
+    height: 260px;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.10);
 }
 
-/* Filter main menu */
-.filter-menu {
-    position: absolute;
-    left: 5%;
-    top: 10%;
-    width: 60%;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid black;
-
-    z-index: 20;
+/* Example cover colors */
+.entry-hp2 {
+    background: linear-gradient(135deg, #182848, #4b6cb7);
 }
 
-.filter-menu h3 {
+.entry-friends {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+/* CONTENT */
+.entry-content h3 {
     margin-top: 0;
     font-size: 22px;
+    font-weight: 700;
 }
 
-.filter-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+.entry-curator {
+    margin: 6px 0;
+    color: #777;
+    font-size: 14px;
 }
 
-.filter-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid #ddd;
-    font-size: 18px;
-    cursor: pointer;
+.entry-teaser {
+    font-size: 15px;
+    color: #444;
+    margin: 10px 0 16px;
 }
 
-/* SUBMENUS */
-.submenu {
-    position: absolute;
-    width: 60%;            /* Full width of filter menu */
-    top: 50%;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid black;
-    z-index: 25;
+.entry-link {
+    font-size: 15px;
+    font-weight: 600;
 }
 
-.submenu h3 {
-    margin-top: 0;
-    font-size: 22px;
-}
+/* Small screens */
+@media (max-width: 700px) {
+    .book-of-week {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-.submenu ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
+    .curator-entry {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-.submenu ul li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.submenu.hidden {
-    display: none;
-}
-
-/* PRICE SLIDER */
-/* Price Slider Container */
-.price-slider-container {
-    position: relative;
-    width: 100%;
-    padding: 20px 0;
-    margin: 20px 0;
-}
-
-.price-slider-container label {
-    display: block;
-    margin-bottom: 30px;
-    font-weight: 500;
-    color: #333;
-}
-
-/* Slider Track (Background) */
-.slider-track {
-    position: relative;
-    width: 100%;
-    height: 6px;
-    background: #ddd;
-    border-radius: 3px;
-    margin-bottom: 10px;
-}
-
-/* Active Range (Colored Bar Between Handles) */
-.slider-active-range {
-    position: absolute;
-    height: 6px;
-    background: #ff5733; /* Change to your brand color */
-    border-radius: 3px;
-    top: 0;
-}
-
-/* Range Inputs (Both Sliders) */
-.price-slider-container input[type="range"] {
-    position: absolute;
-    width: 100%;
-    height: 6px;
-    top: 20px; /* Adjust based on label height */
-    left: 0;
-    background: transparent;
-    pointer-events: none;
-    -webkit-appearance: none;
-    appearance: none;
+    .entry-cover {
+        margin: 0 auto;
+    }
 }
