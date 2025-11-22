@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shelves · chat</title>
+
+    <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
+    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+    <h2 class="section">chat</h2>
+</header>
+
+<main class="chat-layout">
+
+    <aside class="chat-sidebar">
+        <h2 class="chat-sidebar-title">Messages</h2>
+        <div id="chatThreadsList" class="chat-thread-list"></div>
+    </aside>
+
+    <section class="chat-main">
+        <header class="chat-main-header">
+            <h2 id="chatThreadTitle">Group chat</h2>
+            <p id="chatThreadSubtitle">Project chaos &amp; updates</p>
+        </header>
+
+        <div id="chatMessagesPage" class="chat-messages"></div>
+
+        <div class="chat-input-row">
+            <input id="chatInputPage" type="text" placeholder="Type a message…">
+            <button id="chatSendPage">Send</button>
+        </div>
+    </section>
+
+</main>
+
+<script src="chat.js"></script>
+</body>
+</html>
