@@ -2,17 +2,60 @@ console.log("reader.js loaded");
 
 const BOOKS_URL = "../data/books.json";
 const PROGRESS_KEY = "shelves_reader_progress";
+const CHARS_PER_PAGE = 1500;
 
-// ------- Load JSON -------
-
+/* Load books.json */
 async function loadBooks() {
     const res = await fetch(BOOKS_URL);
     const data = await res.json();
     return data.books || [];
 }
 
-// ------- Helpers -------
+/*
+   Load text file of book.
+   This version automatically handles:
+   - "books/hp2.txt"
+   - "data/books/hp2.txt"
+   - "/books/hp2.txt"
+   - "../books/hp2.txt"
+   - ANY relative or root path
+*/
+async function loadBookText(path) {
 
+    // If path starts with "/", "../", "./" → use directly
+    if (path.startsWith("/") || path.startsWith("../") || path.startsWith("./")) {
+        const res = await fetch(path);
+        return await res.text();
+    }
+
+    // If path starts with "books/" → treat as "../books/"
+    if (path.startsWith("books/")) {
+        const res = await fetch("../" + path);
+        return await res.text();
+    }
+
+    // Otherwise treat as "../data/<path>"
+    const res = await fetch("../data/" + path);
+    return await res.text();
+}
+
+/* Split text into pages */
+function splitIntoPages(text) {
+    const pages = [];
+    let pos = 0;
+
+    while (pos < text.length) {
+        const slice = text.slice(pos, pos + CHARS_PER_PAGE);
+        const lastSpace = slice.lastIndexOf(" ");
+        const cut = lastSpace > 0 ? lastSpace : slice.length;
+        pages.push(slice.slice(0, cut).trim());
+        pos += cut;
+    }
+
+    return pages;
+}
+
+/* Helpers */
 function getIdFromQuery() {
     const params = new URLSearchParams(window.location.search);
     return params.get("id") || "hitchhike";
@@ -20,69 +63,85 @@ function getIdFromQuery() {
 
 function loadProgress(bookId) {
     const all = JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}");
-    return all[bookId] || { chunk: 0 };
+    return all[bookId] || { page: 0 };
 }
 
-function saveProgress(bookId, chunk) {
+function saveProgress(bookId, page) {
     const all = JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}");
-    all[bookId] = { chunk };
+    all[bookId] = { page };
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(all));
 }
 
-// ------- Reader Logic -------
-
+/* Init Reader */
 async function initReader() {
     const books = await loadBooks();
     const bookId = getIdFromQuery();
     const book = books.find(b => b.id === bookId);
 
+    const titleEl = document.getElementById("readerTitle");
+    const progressLabel = document.getElementById("readerProgressLabel");
+    const progressFill = document.getElementById("readerProgressFill");
+    const leftPage = document.getElementById("leftPage");
+    const rightPage = document.getElementById("rightPage");
+
     if (!book) {
-        document.getElementById("readerTitle").textContent = "Not found";
-        document.getElementById("readerContent").textContent =
-            "This book does not exist.";
+        titleEl.textContent = "Not found";
+        leftPage.textContent = "This book does not exist.";
+        rightPage.textContent = "";
         return;
     }
 
-    const titleEl = document.getElementById("readerTitle");
-    const contentEl = document.getElementById("readerContent");
-    const progressLabel = document.getElementById("readerProgressLabel");
-    const progressFill = document.getElementById("readerProgressFill");
-
     titleEl.textContent = book.title;
 
-    // Handle chunks
-    const chunks = book.contentChunks || [
-        "No content available for this book."
-    ];
+    // Load & split pages
+    let pages = [];
 
-    const progress = loadProgress(bookId);
-    let currentChunk = progress.chunk;
+    if (book.textFile) {
+        try {
+            const raw = await loadBookText(book.textFile);
+            pages = splitIntoPages(raw);
+        } catch (e) {
+            pages = ["Could not load text file: " + e.message];
+        }
+    } else {
+        pages = ["No content available for this book."];
+    }
 
-    function renderChunk() {
-        contentEl.textContent = chunks[currentChunk];
+    let currentPage = loadProgress(bookId).page;
 
-        // update progress
-        const pct = Math.round((currentChunk / (chunks.length - 1)) * 100);
+    function renderSpread() {
+        leftPage.textContent = pages[currentPage] || "";
+        rightPage.textContent = pages[currentPage + 1] || "";
+
+        const pct = Math.round((currentPage / (pages.length - 1)) * 100);
         progressLabel.textContent = pct + "%";
         progressFill.style.width = pct + "%";
 
-        saveProgress(bookId, currentChunk);
+        saveProgress(bookId, currentPage);
     }
 
-    renderChunk();
+    renderSpread();
 
-    // ---- Buttons ----
+    /* Buttons */
     document.getElementById("nextChunk").addEventListener("click", () => {
-        if (currentChunk < chunks.length - 1) {
-            currentChunk++;
-            renderChunk();
+        if (currentPage < pages.length - 2) {
+            rightPage.classList.add("flipping");
+            setTimeout(() => {
+                currentPage += 2;
+                rightPage.classList.remove("flipping");
+                renderSpread();
+            }, 700);
         }
     });
 
     document.getElementById("prevChunk").addEventListener("click", () => {
-        if (currentChunk > 0) {
-            currentChunk--;
-            renderChunk();
+        if (currentPage >= 2) {
+            leftPage.classList.add("flipping");
+            setTimeout(() => {
+                currentPage -= 2;
+                leftPage.classList.remove("flipping");
+                renderSpread();
+            }, 700);
         }
     });
 

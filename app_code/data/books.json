@@ -10,7 +10,8 @@
       "featured": true,
       "cover": "covers/hp2.jpg",
       "tags": ["magic", "school", "bestseller"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/hp2.txt"
     },
     {
       "id": "faust2",
