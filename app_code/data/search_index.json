@@ -1,54 +1,75 @@
 {
   "books": [
-    {
-      "id": "hp2",
-      "title": "Harry Potter II",
-      "author": "J.K. Rowling",
-      "genre": "Fantasy",
-      "cover": "covers/hp2.jpg"
-    },
-    {
-      "id": "faust2",
-      "title": "Faust II",
-      "author": "J. W. von Goethe",
-      "genre": "Classics",
-      "cover": "covers/faust2.jpg"
-    },
-    {
-      "id": "friends2",
-      "title": "FRIENDS II",
-      "author": "Lena Hart",
-      "genre": "Contemporary",
-      "cover": "covers/friends2.jpg"
-    },
-    {
-      "id": "hitchhike",
-      "title": "Hitchhike through the Galaxy",
-      "author": "Douglas Adams",
-      "genre": "Sci-Fi",
-      "cover": "covers/hitch.jpg"
-    },
-    {
-      "id": "long_way",
-      "title": "The Long Way to a Small, Angry Planet",
-      "author": "Becky Chambers",
-      "genre": "Sci-Fi",
-      "cover": "covers/long_way.jpg"
-    },
-    {
-      "id": "nonfiction1",
-      "title": "Thinking in Systems",
-      "author": "Donella Meadows",
-      "genre": "Non-Fiction",
-      "cover": "covers/thinking_systems.jpg"
-    },
-    {
-      "id": "sapiens",
-      "title": "Sapiens",
-      "author": "Yuval Noah Harari",
-      "genre": "Non-Fiction",
-      "cover": "covers/sapiens.jpg"
-    }
+    { "id": "hp2", "title": "Harry Potter and the Chamber of Secrets", "author": "J.K. Rowling", "genre": "Fantasy", "cover": "covers/hp2.jpg" },
+    { "id": "faust2", "title": "Faust: Part Two", "author": "Johann Wolfgang von Goethe", "genre": "Classics", "cover": "covers/faust2.jpg" },
+    { "id": "friends2", "title": "Normal People", "author": "Sally Rooney", "genre": "Contemporary", "cover": "covers/normal_people.jpg" },
+    { "id": "hitchhike", "title": "The Hitchhiker's Guide to the Galaxy", "author": "Douglas Adams", "genre": "Sci-Fi", "cover": "covers/hitchhiker_guide.jpg" },
+    { "id": "long_way", "title": "The Long Way to a Small, Angry Planet", "author": "Becky Chambers", "genre": "Sci-Fi", "cover": "covers/long_way.jpg" },
+    { "id": "nonfiction1", "title": "Thinking in Systems", "author": "Donella Meadows", "genre": "Non-Fiction", "cover": "covers/thinking_systems.jpg" },
+    { "id": "sapiens", "title": "Sapiens: A Brief History of Humankind", "author": "Yuval Noah Harari", "genre": "Non-Fiction", "cover": "covers/sapiens.jpg" },
+
+    { "id": "hp1", "title": "Harry Potter and the Philosopher's Stone", "author": "J.K. Rowling", "genre": "Fantasy", "cover": "covers/hp1.jpg" },
+    { "id": "hp3", "title": "Harry Potter and the Prisoner of Azkaban", "author": "J.K. Rowling", "genre": "Fantasy", "cover": "covers/hp3.jpg" },
+
+    { "id": "hobbit", "title": "The Hobbit", "author": "J.R.R. Tolkien", "genre": "Fantasy", "cover": "covers/hobbit.jpg" },
+    { "id": "lotr1", "title": "The Fellowship of the Ring", "author": "J.R.R. Tolkien", "genre": "Fantasy", "cover": "covers/lotr1.jpg" },
+    { "id": "lotr2", "title": "The Two Towers", "author": "J.R.R. Tolkien", "genre": "Fantasy", "cover": "covers/lotr2.jpg" },
+    { "id": "lotr3", "title": "The Return of the King", "author": "J.R.R. Tolkien", "genre": "Fantasy", "cover": "covers/lotr3.jpg" },
+
+    { "id": "got1", "title": "A Game of Thrones", "author": "George R.R. Martin", "genre": "Fantasy", "cover": "covers/got1.jpg" },
+    { "id": "got2", "title": "A Clash of Kings", "author": "George R.R. Martin", "genre": "Fantasy", "cover": "covers/got2.jpg" },
+    { "id": "got3", "title": "A Storm of Swords", "author": "George R.R. Martin", "genre": "Fantasy", "cover": "covers/got3.jpg" },
+    { "id": "got4", "title": "A Feast for Crows", "author": "George R.R. Martin", "genre": "Fantasy", "cover": "covers/got4.jpg" },
+    { "id": "got5", "title": "A Dance with Dragons", "author": "George R.R. Martin", "genre": "Fantasy", "cover": "covers/got5.jpg" },
+
+    { "id": "earthsea1", "title": "A Wizard of Earthsea", "author": "Ursula K. Le Guin", "genre": "Fantasy", "cover": "covers/earthsea1.jpg" },
+    { "id": "earthsea2", "title": "The Tombs of Atuan", "author": "Ursula K. Le Guin", "genre": "Fantasy", "cover": "covers/earthsea2.jpg" },
+
+    { "id": "dune1", "title": "Dune", "author": "Frank Herbert", "genre": "Sci-Fi", "cover": "covers/dune.jpg" },
+    { "id": "neuromancer", "title": "Neuromancer", "author": "William Gibson", "genre": "Sci-Fi", "cover": "covers/neuromancer.jpg" },
+    { "id": "foundation1", "title": "Foundation", "author": "Isaac Asimov", "genre": "Sci-Fi", "cover": "covers/foundation1.jpg" },
+
+    { "id": "1984", "title": "1984", "author": "George Orwell", "genre": "Classics", "cover": "covers/1984.jpg" },
+    { "id": "brave_new_world", "title": "Brave New World", "author": "Aldous Huxley", "genre": "Classics", "cover": "covers/brave_new_world.jpg" },
+    { "id": "catch22", "title": "Catch-22", "author": "Joseph Heller", "genre": "Classics", "cover": "covers/catch22.jpg" },
+    { "id": "gwtw", "title": "Gone with the Wind", "author": "Margaret Mitchell", "genre": "Classics", "cover": "covers/gwtw.jpg" },
+    { "id": "pride_prejudice", "title": "Pride and Prejudice", "author": "Jane Austen", "genre": "Classics", "cover": "covers/pride_prejudice.jpg" },
+    { "id": "jane_eyre", "title": "Jane Eyre", "author": "Charlotte Brontë", "genre": "Classics", "cover": "covers/jane_eyre.jpg" },
+    { "id": "wuthering_heights", "title": "Wuthering Heights", "author": "Emily Brontë", "genre": "Classics", "cover": "covers/wuthering_heights.jpg" },
+
+    { "id": "kite_runner", "title": "The Kite Runner", "author": "Khaled Hosseini", "genre": "Contemporary", "cover": "covers/kite_runner.jpg" },
+    { "id": "little_life", "title": "A Little Life", "author": "Hanya Yanagihara", "genre": "Contemporary", "cover": "covers/a_little_life.jpg" },
+    { "id": "the_goldfinch", "title": "The Goldfinch", "author": "Donna Tartt", "genre": "Contemporary", "cover": "covers/goldfinch.jpg" },
+    { "id": "secret_history", "title": "The Secret History", "author": "Donna Tartt", "genre": "Contemporary", "cover": "covers/secret_history.jpg" },
+    { "id": "midnight_library", "title": "The Midnight Library", "author": "Matt Haig", "genre": "Contemporary", "cover": "covers/midnight_library.jpg" },
+
+    { "id": "ninth_house", "title": "Ninth House", "author": "Leigh Bardugo", "genre": "Fantasy", "cover": "covers/ninth_house.jpg" },
+    { "id": "shadow_bone", "title": "Shadow and Bone", "author": "Leigh Bardugo", "genre": "Fantasy", "cover": "covers/shadow_bone.jpg" },
+    { "id": "six_of_crows", "title": "Six of Crows", "author": "Leigh Bardugo", "genre": "Fantasy", "cover": "covers/six_of_crows.jpg" },
+
+    { "id": "song_achilles", "title": "The Song of Achilles", "author": "Madeline Miller", "genre": "Historical", "cover": "covers/song_achilles.jpg" },
+    { "id": "circe", "title": "Circe", "author": "Madeline Miller", "genre": "Fantasy", "cover": "covers/circe.jpg" },
+
+    { "id": "homo_deus", "title": "Homo Deus", "author": "Yuval Noah Harari", "genre": "Non-Fiction", "cover": "covers/homo_deus.jpg" },
+    { "id": "21_lessons", "title": "21 Lessons for the 21st Century", "author": "Yuval Noah Harari", "genre": "Non-Fiction", "cover": "covers/21_lessons.jpg" },
+
+    { "id": "black_swan", "title": "The Black Swan", "author": "Nassim Nicholas Taleb", "genre": "Non-Fiction", "cover": "covers/black_swan.jpg" },
+    { "id": "antifragile", "title": "Antifragile", "author": "Nassim Nicholas Taleb", "genre": "Non-Fiction", "cover": "covers/antifragile.jpg" },
+    { "id": "thinking_fast_slow", "title": "Thinking, Fast and Slow", "author": "Daniel Kahneman", "genre": "Non-Fiction", "cover": "covers/thinking_fast_slow.jpg" },
+    { "id": "nudge", "title": "Nudge", "author": "Richard H. Thaler", "genre": "Non-Fiction", "cover": "covers/nudge.jpg" },
+    { "id": "atomic_habits", "title": "Atomic Habits", "author": "James Clear", "genre": "Non-Fiction", "cover": "covers/atomic_habits.jpg" },
+    { "id": "deep_work", "title": "Deep Work", "author": "Cal Newport", "genre": "Non-Fiction", "cover": "covers/deep_work.jpg" },
+    { "id": "so_good", "title": "So Good They Can't Ignore You", "author": "Cal Newport", "genre": "Non-Fiction", "cover": "covers/so_good.jpg" },
+
+    { "id": "educated", "title": "Educated", "author": "Tara Westover", "genre": "Non-Fiction", "cover": "covers/educated.jpg" },
+    { "id": "born_crime", "title": "Born a Crime", "author": "Trevor Noah", "genre": "Non-Fiction", "cover": "covers/born_a_crime.jpg" },
+    { "id": "quiet", "title": "Quiet", "author": "Susan Cain", "genre": "Non-Fiction", "cover": "covers/quiet.jpg" },
+    { "id": "sapiens_graphic1", "title": "Sapiens: A Graphic History, Vol. 1", "author": "Yuval Noah Harari", "genre": "Non-Fiction", "cover": "covers/sapiens_graphic1.jpg" },
+
+    { "id": "bad_blood", "title": "Bad Blood", "author": "John Carreyrou", "genre": "Non-Fiction", "cover": "covers/bad_blood.jpg" },
+    { "id": "psychopath_test", "title": "The Psychopath Test", "author": "Jon Ronson", "genre": "Non-Fiction", "cover": "covers/psychopath_test.jpg" },
+    { "id": "into_thin_air", "title": "Into Thin Air", "author": "Jon Krakauer", "genre": "Non-Fiction", "cover": "covers/into_thin_air.jpg" },
+    { "id": "into_wild", "title": "Into the Wild", "author": "Jon Krakauer", "genre": "Non-Fiction", "cover": "covers/into_the_wild.jpg" }
   ],
 
   "users": [
@@ -62,35 +83,11 @@
   ],
 
   "friends": [
-    {
-      "id": "anna",
-      "name": "Anna",
-      "avatar": "friends/anna.png"
-    },
-    {
-      "id": "fiio",
-      "name": "Fiio",
-      "avatar": "friends/fiio.png"
-    },
-    {
-      "id": "lara",
-      "name": "Lara",
-      "avatar": "friends/lara.png"
-    },
-    {
-      "id": "geri",
-      "name": "Geri",
-      "avatar": "friends/geri.png"
-    },
-    {
-      "id": "sonja",
-      "name": "Sonja",
-      "avatar": "friends/sonja.png"
-    },
-    {
-      "id": "sarah",
-      "name": "Sarah",
-      "avatar": "friends/sarah.png"
-    }
+    { "id": "anna", "name": "Anna", "avatar": "friends/anna.png" },
+    { "id": "fiio", "name": "Fiio", "avatar": "friends/fiio.png" },
+    { "id": "lara", "name": "Lara", "avatar": "friends/lara.png" },
+    { "id": "geri", "name": "Geri", "avatar": "friends/geri.png" },
+    { "id": "sonja", "name": "Sonja", "avatar": "friends/sonja.png" },
+    { "id": "sarah", "name": "Sarah", "avatar": "friends/sarah.png" }
   ]
 }
