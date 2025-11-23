@@ -1,17 +1,24 @@
 console.log("search.js loaded (universal paths fix)");
 
-// Determine correct root path dynamically
+/* -----------------------------------------------------------
+   UNIVERSAL ROOT RESOLUTION WITH CURATORS SUPPORT
+   ----------------------------------------------------------- */
+
 function root(path) {
-    // if script runs from homepage.html:
-    //   page URL ends with ".../homepage.html" → root = "./"
-    // if script runs from my_books/my_books.html:
-    //   page URL contains "/my_books/" → root = "../"
+    // Handle all feature folders that sit one level deep
     if (window.location.pathname.includes("/my_books/")) return "../" + path;
     if (window.location.pathname.includes("/store/")) return "../" + path;
     if (window.location.pathname.includes("/friends/")) return "../" + path;
     if (window.location.pathname.includes("/profile/")) return "../" + path;
-    return path; // homepage
+    if (window.location.pathname.includes("/curators/")) return "../" + path;   // <-- THE FIX
+
+    // Homepage or top-level pages
+    return path;
 }
+
+/* -----------------------------------------------------------
+   LOAD DATA
+   ----------------------------------------------------------- */
 
 async function loadAllData() {
     const [booksRes, usersRes, friendsRes] = await Promise.all([
@@ -28,7 +35,10 @@ async function loadAllData() {
     };
 }
 
-// ---------- DOM refs ----------
+/* -----------------------------------------------------------
+   DOM REFS
+   ----------------------------------------------------------- */
+
 const overlay  = document.getElementById("globalSearchOverlay");
 const input    = document.getElementById("globalSearchInput");
 const results  = document.getElementById("globalSearchResults");
@@ -36,7 +46,10 @@ const trigger  = document.getElementById("searchTrigger");
 
 let CACHE = null;
 
-// ---------- overlay controls ----------
+/* -----------------------------------------------------------
+   OPEN/CLOSE OVERLAY
+   ----------------------------------------------------------- */
+
 function openSearch() {
     overlay.classList.remove("hidden");
     input.value = "";
@@ -46,8 +59,8 @@ function openSearch() {
 
 function closeSearch() {
     overlay.classList.add("hidden");
-    results.innerHTML = "";
     input.value = "";
+    results.innerHTML = "";
 }
 
 if (trigger) trigger.addEventListener("click", openSearch);
@@ -65,7 +78,10 @@ overlay.addEventListener("click", (e) => {
     if (e.target === overlay) closeSearch();
 });
 
-// ---------- RESULT PATH HELPERS ----------
+/* -----------------------------------------------------------
+   PATH HELPERS
+   ----------------------------------------------------------- */
+
 function linkToBook(id) {
     if (window.location.pathname.includes("/my_books/"))
         return `book_detail.html?id=${id}`;
@@ -84,21 +100,28 @@ function linkToFriend(id) {
     return `friends/friend_profile.html?id=${id}`;
 }
 
-// ---------- LIVE SEARCH ----------
+/* -----------------------------------------------------------
+   LIVE SEARCH
+   ----------------------------------------------------------- */
+
 input.addEventListener("input", async (e) => {
     const q = e.target.value.trim().toLowerCase();
-    if (!q) return (results.innerHTML = "");
+    if (!q) {
+        results.innerHTML = "";
+        return;
+    }
 
     if (!CACHE) CACHE = await loadAllData();
     const { books, users, friends } = CACHE;
 
     const out = [];
 
-    // BOOKS
+    /* BOOKS */
     const foundBooks = books.filter(b =>
         b.title.toLowerCase().includes(q) ||
         (b.author || "").toLowerCase().includes(q)
     );
+
     if (foundBooks.length) {
         out.push(`<div class="result-category">Books</div>`);
         foundBooks.forEach(b => {
@@ -114,11 +137,12 @@ input.addEventListener("input", async (e) => {
         });
     }
 
-    // USERS
+    /* USERS */
     const foundUsers = users.filter(u =>
         u.name.toLowerCase().includes(q) ||
         u.realname.toLowerCase().includes(q)
     );
+
     if (foundUsers.length) {
         out.push(`<div class="result-category">Users</div>`);
         foundUsers.forEach(u => {
@@ -133,10 +157,11 @@ input.addEventListener("input", async (e) => {
         });
     }
 
-    // FRIENDS
+    /* FRIENDS */
     const foundFriends = friends.filter(f =>
         f.name.toLowerCase().includes(q)
     );
+
     if (foundFriends.length) {
         out.push(`<div class="result-category">Friends</div>`);
         foundFriends.forEach(f => {

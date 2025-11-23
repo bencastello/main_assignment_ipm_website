@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelves. – curators</title>
+    <title>shelves — curators</title>
 
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="curators.css">
@@ -12,19 +12,40 @@
 <body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
 
-    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">curators</h2>
+    <!-- Left -->
+    <div class="top-left">
+        <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
 
-    <div class="search-wrapper">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="find..." id="searchCurators">
+        <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+        <h2 class="section">curators</h2>
     </div>
 
-    <img src="../user_icon.png" class="profile-mini"
-         onclick="window.location.href='../profile/profile.html'">
+    <!-- Center: global search trigger -->
+    <div class="search-wrapper" id="searchTrigger">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    </div>
+
+    <!-- Right -->
+    <div class="top-right">
+        <img src="../user_icon.png"
+             class="profile-mini"
+             onclick="window.location.href='../profile/profile.html'">
+    </div>
+
 </header>
+
+<!-- GLOBAL SEARCH OVERLAY (1:1 aus my_books) -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends, store…">
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
 
 <main class="curators-page">
 
@@ -32,12 +53,12 @@
 
     <h2 style="margin: 40px 0 20px;">Our Curators</h2>
 
-    <div id="curatorsGrid" class="curators-grid">
-        <!-- JS injected cards -->
-    </div>
+    <div id="curatorsGrid" class="curators-grid"></div>
 
 </main>
 
 <script src="curators.js"></script>
+<script src="../search/search.js"></script>
+
 </body>
 </html>
