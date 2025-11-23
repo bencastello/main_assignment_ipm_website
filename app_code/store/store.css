@@ -460,3 +460,25 @@
         grid-template-columns: 1fr;
     }
 }
+
+.product-card {
+    position: relative;
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.12);
+}
+
+.owned-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #118a3c;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    z-index: 2;
+}
