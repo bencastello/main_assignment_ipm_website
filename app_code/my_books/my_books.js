@@ -1,7 +1,17 @@
-console.log("my_books.js loaded (JSON version)");
+console.log("my_books.js loaded (ownedBooks version)");
 
 const BOOKS_URL = "../data/books.json";
 
+/* ------------------------------
+   LOAD/SAVE OWNED BOOKS
+------------------------------ */
+function loadOwnedBooks() {
+    return JSON.parse(localStorage.getItem("ownedBooks") || "[]");
+}
+
+/* ------------------------------
+   LOAD ALL BOOKS
+------------------------------ */
 async function loadBooks() {
     try {
         const res = await fetch(BOOKS_URL);
@@ -13,24 +23,16 @@ async function loadBooks() {
     }
 }
 
-// ------------------------------
-// BOOK GROUPS
-// ------------------------------
-// Simpler: du könntest diese Infos auch später in users.json speichern.
-const USER_READING = ["hp2", "faust2"];           // continue reading
-const USER_RECENT  = ["friends2", "hitchhike"];   // recently added
-const USER_LIBRARY = true;                        // = alle books.json
-
-// ------------------------------
-// DOM REFS
-// ------------------------------
+/* ------------------------------
+   DOM
+------------------------------ */
 const continueList = document.getElementById("continueList");
 const recentList   = document.getElementById("recentList");
 const libraryGrid  = document.getElementById("libraryGrid");
 
-// ------------------------------
-// CARD TEMPLATES
-// ------------------------------
+/* ------------------------------
+   CARD TEMPLATES
+------------------------------ */
 
 function cardHorizontal(book, progress = null) {
     return `
@@ -42,14 +44,13 @@ function cardHorizontal(book, progress = null) {
             ${
         progress !== null
             ? `
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:${progress}%"></div>
-                </div>
-            `
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:${progress}%"></div>
+                    </div>
+                  `
             : ""
     }
-        </div>
-    `;
+        </div>`;
 }
 
 function cardGrid(book) {
@@ -59,34 +60,54 @@ function cardGrid(book) {
             <div class="cover" style="background-image:url('../${book.cover}')"></div>
             <div class="title">${book.title}</div>
             <div class="author">${book.author}</div>
-        </div>
-    `;
+        </div>`;
 }
 
-// ------------------------------
-// INIT
-// ------------------------------
+/* ------------------------------
+   INIT
+------------------------------ */
 
 async function initMyBooks() {
-    const books = await loadBooks();
-    if (!books.length) return;
+    const allBooks = await loadBooks();
+    if (!allBooks.length) return;
 
-    // Continue reading
-    const continueBooks = books.filter(b => USER_READING.includes(b.id));
-    continueList.innerHTML = continueBooks.length
-        ? continueBooks
-            .map(b => cardHorizontal(b, b.progress || 0))
-            .join("")
-        : `<p class="empty-note">Nothing to show yet.</p>`;
+    const ownedIds = loadOwnedBooks();
+    const ownedBooks = allBooks.filter(b => ownedIds.includes(b.id) || b.owned === true);
 
-    // Recently added
-    const recentBooks = books.filter(b => USER_RECENT.includes(b.id));
-    recentList.innerHTML = recentBooks.length
-        ? recentBooks.map(cardHorizontal).join("")
-        : `<p class="empty-note">No recent additions.</p>`;
+    /* ------------------------------
+       CONTINUE READING
+       (owned + progress > 0)
+    ------------------------------ */
+    const continueBooks = ownedBooks.filter(b => (b.progress || 0) > 0);
 
-    // Library (Grid)
-    libraryGrid.innerHTML = books.map(cardGrid).join("");
+    continueList.innerHTML =
+        continueBooks.length
+            ? continueBooks
+                .map(b => cardHorizontal(b, b.progress || 0))
+                .join("")
+            : `<p class="empty-note">You haven’t started anything yet.</p>`;
+
+    /* ------------------------------
+       RECENTLY ADDED
+       (einfach die letzten 6 gekauften, newest last in ownedBooks)
+    ------------------------------ */
+
+    const recentBooks = ownedBooks
+        .slice(-6)        // letzte 6
+        .reverse();       // neuestes zuerst
+
+    recentList.innerHTML =
+        recentBooks.length
+            ? recentBooks.map(b => cardHorizontal(b, null)).join("")
+            : `<p class="empty-note">No recent additions.</p>`;
+
+    /* ------------------------------
+       FULL LIBRARY (GRID)
+    ------------------------------ */
+    libraryGrid.innerHTML =
+        ownedBooks.length
+            ? ownedBooks.map(cardGrid).join("")
+            : `<p class="empty-note">You don't own any books yet.</p>`;
 }
 
 document.addEventListener("DOMContentLoaded", initMyBooks);

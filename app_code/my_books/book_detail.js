@@ -2,6 +2,14 @@ console.log("book_detail.js using books.json");
 
 const BOOKS_URL = "../data/books.json";
 
+function loadOwnedBooks() {
+    return JSON.parse(localStorage.getItem("ownedBooks") || "[]");
+}
+
+function saveOwnedBooks(arr) {
+    localStorage.setItem("ownedBooks", JSON.stringify(arr));
+}
+
 async function loadBooks() {
     try {
         const res = await fetch(BOOKS_URL);
@@ -21,59 +29,80 @@ function getIdFromQuery() {
 async function initDetail() {
     const books = await loadBooks();
     const id = getIdFromQuery();
+    const ownedBooks = loadOwnedBooks();
 
     if (!id) {
-        console.warn("No ID in query.");
         document.getElementById("detailTitle").textContent = "No book selected";
         return;
     }
 
     const book = books.find(b => b.id === id);
-
     if (!book) {
-        console.warn("Book not found:", id);
         document.getElementById("detailTitle").textContent = "Book not found";
         return;
     }
+
+    const isOwned = ownedBooks.includes(book.id);
 
     // Titel + Autor
     document.getElementById("detailTitle").textContent = book.title;
     document.getElementById("detailAuthor").textContent = book.author;
 
-    // Meta: Genre, pages, price
+    // METADATA (nur wenn owned)
     const metaEl = document.getElementById("detailMeta");
-    const metaParts = [];
+    metaEl.textContent = isOwned
+        ? [book.genre, book.pages ? `${book.pages} pages` : null, book.price ? `${book.price} €` : null]
+            .filter(Boolean)
+            .join(" · ")
+        : book.genre || "";
 
-    if (book.genre) metaParts.push(book.genre);
-    if (book.pages) metaParts.push(`${book.pages} pages`);
-    if (book.price) metaParts.push(`${book.price.toFixed(2)} €`);
-
-    metaEl.textContent = metaParts.join(" · ");
-
-    // Cover
+    // Cover setzen
     const coverEl = document.getElementById("detailCover");
-    if (coverEl) {
-        coverEl.style.backgroundImage = `url('../${book.cover}')`;
+    coverEl.style.backgroundImage = `url('../${book.cover}')`;
+
+    // Progress nur anzeigen, wenn owned
+    const progressSection = document.querySelector(".detail-progress");
+    if (!isOwned) {
+        progressSection.style.display = "none";
+    } else {
+        const progress = typeof book.progress === "number" ? book.progress : 0;
+        document.getElementById("detailProgressLabel").textContent = `${progress}%`;
+        const fill = document.getElementById("detailProgressFill");
+        fill.style.width = "0%";
+        requestAnimationFrame(() => (fill.style.width = `${progress}%`));
     }
 
-    // Progress
-    const progress = typeof book.progress === "number" ? book.progress : 0;
+    // Aktion-Buttons
+    const actions = document.querySelector(".detail-actions");
 
-    document.getElementById("detailProgressLabel").textContent = `${progress}%`;
-    const fill = document.getElementById("detailProgressFill");
-    fill.style.width = "0%";
-    requestAnimationFrame(() => {
-        fill.style.width = `${progress}%`;
-    });
+    const continueBtn = document.getElementById("continueBtn");
 
-    // Description
+    if (isOwned) {
+        continueBtn.style.display = "inline-flex";
+    } else {
+        continueBtn.style.display = "none";
+
+        const buyBtn = document.createElement("button");
+        buyBtn.textContent = `Buy for ${book.price || "?"} €`;
+        buyBtn.className = "primary-btn";
+        buyBtn.id = "buyBtn";
+
+        buyBtn.addEventListener("click", () => {
+            if (!ownedBooks.includes(book.id)) {
+                ownedBooks.push(book.id);
+                saveOwnedBooks(ownedBooks);
+            }
+            window.location.reload();
+        });
+
+        actions.prepend(buyBtn);
+    }
+
     document.getElementById("detailDescription").textContent =
         book.description || "No description available.";
 
-    // Continue Reading Button
-    const contBtn = document.getElementById("continueBtn");
-    contBtn.addEventListener("click", () => {
-        window.location.href = "reader.html?id=" + book.id;
+    continueBtn.addEventListener("click", () => {
+        window.location.href = `reader.html?id=${book.id}`;
     });
 }
 

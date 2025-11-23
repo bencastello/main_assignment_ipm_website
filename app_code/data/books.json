@@ -8,9 +8,9 @@
       "format": "Hardcover",
       "price": 19.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/hp2.jpg",
-      "tags": ["magic", "school", "bestseller"]
+      "tags": ["magic", "school", "bestseller"],
+      "owned": false
     },
     {
       "id": "faust2",
@@ -20,9 +20,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/faust2.jpg",
-      "tags": ["german", "classic", "drama"]
+      "tags": ["german", "classic", "drama"],
+      "owned": false
     },
     {
       "id": "friends2",
@@ -32,9 +32,9 @@
       "format": "Paperback",
       "price": 13.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/normal_people.jpg",
-      "tags": ["relationships", "bestseller", "irish"]
+      "tags": ["relationships", "bestseller", "irish"],
+      "owned": false
     },
     {
       "id": "hitchhike",
@@ -44,9 +44,9 @@
       "format": "Paperback",
       "price": 10.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/hitchhiker_guide.jpg",
-      "tags": ["space", "absurd", "humor"]
+      "tags": ["space", "absurd", "humor"],
+      "owned": false
     },
     {
       "id": "long_way",
@@ -56,9 +56,9 @@
       "format": "Paperback",
       "price": 18.39,
       "featured": true,
-      "inStock": true,
       "cover": "covers/long_way.jpg",
-      "tags": ["cozy", "space", "found family"]
+      "tags": ["cozy", "space", "found family"],
+      "owned": false
     },
     {
       "id": "nonfiction1",
@@ -68,9 +68,9 @@
       "format": "Paperback",
       "price": 23.03,
       "featured": false,
-      "inStock": true,
       "cover": "covers/thinking_systems.jpg",
-      "tags": ["systems", "non-fiction", "theory"]
+      "tags": ["systems", "non-fiction", "theory"],
+      "owned": false
     },
     {
       "id": "sapiens",
@@ -80,9 +80,9 @@
       "format": "Paperback",
       "price": 14.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/sapiens.jpg",
-      "tags": ["history", "big picture", "bestseller"]
+      "tags": ["history", "big picture", "bestseller"],
+      "owned": false
     },
     {
       "id": "hp1",
@@ -92,9 +92,9 @@
       "format": "Paperback",
       "price": 11.2,
       "featured": true,
-      "inStock": true,
       "cover": "covers/hp1.jpg",
-      "tags": ["magic", "school", "bestseller"]
+      "tags": ["magic", "school", "bestseller"],
+      "owned": false
     },
     {
       "id": "hp3",
@@ -104,9 +104,9 @@
       "format": "Paperback",
       "price": 11.5,
       "featured": false,
-      "inStock": true,
       "cover": "covers/hp3.jpg",
-      "tags": ["magic", "school", "time travel"]
+      "tags": ["magic", "school", "time travel"],
+      "owned": false
     },
     {
       "id": "hobbit",
@@ -116,9 +116,9 @@
       "format": "Paperback",
       "price": 10.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/hobbit.jpg",
-      "tags": ["classic", "dragons", "adventure"]
+      "tags": ["classic", "dragons", "adventure"],
+      "owned": false
     },
     {
       "id": "lotr1",
@@ -128,9 +128,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/lotr1.jpg",
-      "tags": ["epic", "middle-earth", "classic"]
+      "tags": ["epic", "middle-earth", "classic"],
+      "owned": false
     },
     {
       "id": "lotr2",
@@ -140,9 +140,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/lotr2.jpg",
-      "tags": ["epic", "middle-earth"]
+      "tags": ["epic", "middle-earth"],
+      "owned": false
     },
     {
       "id": "lotr3",
@@ -152,9 +152,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/lotr3.jpg",
-      "tags": ["epic", "middle-earth", "finale"]
+      "tags": ["epic", "middle-earth", "finale"],
+      "owned": false
     },
     {
       "id": "got1",
@@ -164,9 +164,9 @@
       "format": "Paperback",
       "price": 15.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/got1.jpg",
-      "tags": ["epic", "politics", "dragons"]
+      "tags": ["epic", "politics", "dragons"],
+      "owned": false
     },
     {
       "id": "got2",
@@ -176,9 +176,9 @@
       "format": "Paperback",
       "price": 15.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/got2.jpg",
-      "tags": ["epic", "politics"]
+      "tags": ["epic", "politics"],
+      "owned": false
     },
     {
       "id": "got3",
@@ -188,9 +188,9 @@
       "format": "Paperback",
       "price": 16.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/got3.jpg",
-      "tags": ["epic", "war"]
+      "tags": ["epic", "war"],
+      "owned": false
     },
     {
       "id": "got4",
@@ -200,9 +200,9 @@
       "format": "Paperback",
       "price": 16.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/got4.jpg",
-      "tags": ["epic", "politics"]
+      "tags": ["epic", "politics"],
+      "owned": false
     },
     {
       "id": "got5",
@@ -212,9 +212,9 @@
       "format": "Paperback",
       "price": 17.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/got5.jpg",
-      "tags": ["epic", "dragons"]
+      "tags": ["epic", "dragons"],
+      "owned": false
     },
     {
       "id": "earthsea1",
@@ -224,9 +224,9 @@
       "format": "Paperback",
       "price": 9.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/earthsea1.jpg",
-      "tags": ["magic", "classic"]
+      "tags": ["magic", "classic"],
+      "owned": false
     },
     {
       "id": "earthsea2",
@@ -236,9 +236,9 @@
       "format": "Paperback",
       "price": 9.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/earthsea2.jpg",
-      "tags": ["magic", "classic"]
+      "tags": ["magic", "classic"],
+      "owned": false
     },
     {
       "id": "dune1",
@@ -248,9 +248,9 @@
       "format": "Paperback",
       "price": 13.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/dune.jpg",
-      "tags": ["desert", "politics", "classic"]
+      "tags": ["desert", "politics", "classic"],
+      "owned": false
     },
     {
       "id": "neuromancer",
@@ -260,9 +260,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/neuromancer.jpg",
-      "tags": ["cyberpunk", "classic"]
+      "tags": ["cyberpunk", "classic"],
+      "owned": false
     },
     {
       "id": "foundation1",
@@ -272,9 +272,9 @@
       "format": "Paperback",
       "price": 10.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/foundation1.jpg",
-      "tags": ["empire", "classic"]
+      "tags": ["empire", "classic"],
+      "owned": false
     },
     {
       "id": "1984",
@@ -284,9 +284,9 @@
       "format": "Paperback",
       "price": 9.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/1984.jpg",
-      "tags": ["dystopia", "politics"]
+      "tags": ["dystopia", "politics"],
+      "owned": false
     },
     {
       "id": "brave_new_world",
@@ -296,9 +296,9 @@
       "format": "Paperback",
       "price": 9.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/brave_new_world.jpg",
-      "tags": ["dystopia", "classic"]
+      "tags": ["dystopia", "classic"],
+      "owned": false
     },
     {
       "id": "catch22",
@@ -308,9 +308,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/catch22.jpg",
-      "tags": ["war", "satire"]
+      "tags": ["war", "satire"],
+      "owned": false
     },
     {
       "id": "gwtw",
@@ -320,9 +320,9 @@
       "format": "Paperback",
       "price": 14.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/gwtw.jpg",
-      "tags": ["historical", "romance"]
+      "tags": ["historical", "romance"],
+      "owned": false
     },
     {
       "id": "pride_prejudice",
@@ -332,9 +332,9 @@
       "format": "Paperback",
       "price": 7.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/pride_prejudice.jpg",
-      "tags": ["romance", "classic"]
+      "tags": ["romance", "classic"],
+      "owned": false
     },
     {
       "id": "jane_eyre",
@@ -344,9 +344,9 @@
       "format": "Paperback",
       "price": 8.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/jane_eyre.jpg",
-      "tags": ["gothic", "classic"]
+      "tags": ["gothic", "classic"],
+      "owned": false
     },
     {
       "id": "wuthering_heights",
@@ -356,9 +356,9 @@
       "format": "Paperback",
       "price": 8.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/wuthering_heights.jpg",
-      "tags": ["gothic", "romance"]
+      "tags": ["gothic", "romance"],
+      "owned": false
     },
     {
       "id": "kite_runner",
@@ -368,9 +368,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/kite_runner.jpg",
-      "tags": ["afghanistan", "drama"]
+      "tags": ["afghanistan", "drama"],
+      "owned": false
     },
     {
       "id": "little_life",
@@ -380,9 +380,9 @@
       "format": "Paperback",
       "price": 16.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/a_little_life.jpg",
-      "tags": ["trauma", "friendship"]
+      "tags": ["trauma", "friendship"],
+      "owned": false
     },
     {
       "id": "the_goldfinch",
@@ -392,9 +392,9 @@
       "format": "Paperback",
       "price": 15.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/goldfinch.jpg",
-      "tags": ["art", "drama"]
+      "tags": ["art", "drama"],
+      "owned": false
     },
     {
       "id": "secret_history",
@@ -404,9 +404,9 @@
       "format": "Paperback",
       "price": 13.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/secret_history.jpg",
-      "tags": ["dark academia", "mystery"]
+      "tags": ["dark academia", "mystery"],
+      "owned": false
     },
     {
       "id": "ninth_house",
@@ -416,9 +416,9 @@
       "format": "Paperback",
       "price": 14.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/ninth_house.jpg",
-      "tags": ["dark academia", "magic"]
+      "tags": ["dark academia", "magic"],
+      "owned": false
     },
     {
       "id": "shadow_bone",
@@ -428,9 +428,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/shadow_bone.jpg",
-      "tags": ["ya", "magic"]
+      "tags": ["ya", "magic"],
+      "owned": false
     },
     {
       "id": "six_of_crows",
@@ -440,9 +440,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/six_of_crows.jpg",
-      "tags": ["heist", "ya"]
+      "tags": ["heist", "ya"],
+      "owned": false
     },
     {
       "id": "song_achilles",
@@ -452,9 +452,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/song_achilles.jpg",
-      "tags": ["greek myth", "romance"]
+      "tags": ["greek myth", "romance"],
+      "owned": false
     },
     {
       "id": "circe",
@@ -464,9 +464,9 @@
       "format": "Paperback",
       "price": 13.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/circe.jpg",
-      "tags": ["greek myth", "retelling"]
+      "tags": ["greek myth", "retelling"],
+      "owned": false
     },
     {
       "id": "midnight_library",
@@ -476,9 +476,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/midnight_library.jpg",
-      "tags": ["speculative", "uplifting"]
+      "tags": ["speculative", "uplifting"],
+      "owned": false
     },
     {
       "id": "homo_deus",
@@ -488,9 +488,9 @@
       "format": "Paperback",
       "price": 15.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/homo_deus.jpg",
-      "tags": ["future", "history"]
+      "tags": ["future", "history"],
+      "owned": false
     },
     {
       "id": "21_lessons",
@@ -500,9 +500,9 @@
       "format": "Paperback",
       "price": 14.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/21_lessons.jpg",
-      "tags": ["essays", "politics"]
+      "tags": ["essays", "politics"],
+      "owned": false
     },
     {
       "id": "black_swan",
@@ -512,9 +512,9 @@
       "format": "Paperback",
       "price": 14.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/black_swan.jpg",
-      "tags": ["risk", "probability"]
+      "tags": ["risk", "probability"],
+      "owned": false
     },
     {
       "id": "antifragile",
@@ -524,9 +524,9 @@
       "format": "Paperback",
       "price": 16.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/antifragile.jpg",
-      "tags": ["systems", "philosophy"]
+      "tags": ["systems", "philosophy"],
+      "owned": false
     },
     {
       "id": "thinking_fast_slow",
@@ -536,9 +536,9 @@
       "format": "Paperback",
       "price": 13.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/thinking_fast_slow.jpg",
-      "tags": ["psychology", "behavioral"]
+      "tags": ["psychology", "behavioral"],
+      "owned": false
     },
     {
       "id": "nudge",
@@ -548,9 +548,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/nudge.jpg",
-      "tags": ["economics", "behavioral"]
+      "tags": ["economics", "behavioral"],
+      "owned": false
     },
     {
       "id": "atomic_habits",
@@ -560,9 +560,9 @@
       "format": "Paperback",
       "price": 16.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/atomic_habits.jpg",
-      "tags": ["self-help", "habits"]
+      "tags": ["self-help", "habits"],
+      "owned": false
     },
     {
       "id": "deep_work",
@@ -572,9 +572,9 @@
       "format": "Paperback",
       "price": 14.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/deep_work.jpg",
-      "tags": ["productivity", "focus"]
+      "tags": ["productivity", "focus"],
+      "owned": false
     },
     {
       "id": "so_good",
@@ -584,9 +584,9 @@
       "format": "Paperback",
       "price": 13.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/so_good.jpg",
-      "tags": ["career", "skills"]
+      "tags": ["career", "skills"],
+      "owned": false
     },
     {
       "id": "educated",
@@ -596,9 +596,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": true,
-      "inStock": true,
       "cover": "covers/educated.jpg",
-      "tags": ["memoir", "education"]
+      "tags": ["memoir", "education"],
+      "owned": false
     },
     {
       "id": "born_crime",
@@ -608,9 +608,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/born_a_crime.jpg",
-      "tags": ["memoir", "humor"]
+      "tags": ["memoir", "humor"],
+      "owned": false
     },
     {
       "id": "quiet",
@@ -620,9 +620,9 @@
       "format": "Paperback",
       "price": 13.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/quiet.jpg",
-      "tags": ["psychology", "introversion"]
+      "tags": ["psychology", "introversion"],
+      "owned": false
     },
     {
       "id": "sapiens_graphic1",
@@ -632,9 +632,9 @@
       "format": "Paperback",
       "price": 18.7,
       "featured": false,
-      "inStock": true,
       "cover": "covers/sapiens_graphic1.jpg",
-      "tags": ["history", "graphic"]
+      "tags": ["history", "graphic"],
+      "owned": false
     },
     {
       "id": "bad_blood",
@@ -644,9 +644,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/bad_blood.jpg",
-      "tags": ["true crime", "business"]
+      "tags": ["true crime", "business"],
+      "owned": false
     },
     {
       "id": "psychopath_test",
@@ -656,9 +656,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/psychopath_test.jpg",
-      "tags": ["psychology", "reportage"]
+      "tags": ["psychology", "reportage"],
+      "owned": true
     },
     {
       "id": "into_thin_air",
@@ -668,9 +668,9 @@
       "format": "Paperback",
       "price": 12.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/into_thin_air.jpg",
-      "tags": ["adventure", "mountaineering"]
+      "tags": ["adventure", "mountaineering"],
+      "owned": false
     },
     {
       "id": "into_wild",
@@ -680,9 +680,9 @@
       "format": "Paperback",
       "price": 11.99,
       "featured": false,
-      "inStock": true,
       "cover": "covers/into_the_wild.jpg",
-      "tags": ["travel", "adventure"]
+      "tags": ["travel", "adventure"],
+      "owned": false
     }
   ]
 }
