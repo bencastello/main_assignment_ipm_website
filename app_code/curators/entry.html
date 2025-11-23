@@ -12,19 +12,40 @@
 <body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="history.back()">←</button>
-    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">curator</h2>
 
-    <div class="search-wrapper">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="find…">
+    <!-- Left -->
+    <div class="top-left">
+        <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
+
+        <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+        <h2 class="section">curators</h2>
     </div>
 
-    <img src="../user_icon.png"
-         class="profile-mini"
-         onclick="window.location.href='../profile/profile.html'">
+    <!-- Center: global search trigger -->
+    <div class="search-wrapper" id="searchTrigger">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    </div>
+
+    <!-- Right -->
+    <div class="top-right">
+        <img src="../user_icon.png"
+             class="profile-mini"
+             onclick="window.location.href='../profile/profile.html'">
+    </div>
+
 </header>
+
+<!-- ⭐ GLOBAL SEARCH OVERLAY (identisch zu my_books/friends/curators) -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends, store…">
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
 
 <main class="entry-page">
 
@@ -44,6 +65,7 @@
 </main>
 
 <script src="entry.js"></script>
+<script src="../search/search.js"></script>
 
 </body>
 </html>

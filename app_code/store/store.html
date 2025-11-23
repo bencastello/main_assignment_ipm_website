@@ -17,11 +17,10 @@
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">store</h2>
 
-    <div class="search-wrapper">
+    <!-- ⭐ global search trigger -->
+    <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
-        <label>
-            <input id="globalSearch" type="text" placeholder="search books...">
-        </label>
+        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 
     <img onclick="window.location.href='../profile/profile.html'"
@@ -29,6 +28,17 @@
          class="profile-mini"
          alt="Profile">
 </header>
+
+<!-- ⭐ GLOBAL SEARCH OVERLAY -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends, store…">
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
 
 
 <main class="store-page">
@@ -117,7 +127,7 @@
 </main>
 
 
-<!-- CHECKOUT MODAL (FAKE PAYMENT) -->
+<!-- CHECKOUT MODAL -->
 
 <div id="modalOverlay" class="modal-overlay hidden"></div>
 
@@ -125,7 +135,6 @@
     <h2>Checkout</h2>
 
     <div class="checkout-layout">
-
         <section class="checkout-summary">
             <h3>Order summary</h3>
             <ul id="checkoutList"></ul>
@@ -172,7 +181,9 @@
 
     <div class="modal-actions">
         <button id="cancelCheckoutBtn" class="secondary-btn" type="button">Cancel</button>
-        <button id="confirmCheckoutBtn" class="primary-btn" type="button">Place order</button>
+        <button id="confirmCheckoutBtn" class="primary-btn" type="button">
+            Place order
+        </button>
     </div>
 
     <p id="checkoutSuccessMsg" class="checkout-success hidden">
@@ -180,7 +191,8 @@
     </p>
 </div>
 
-
+<script src="../search/search.js"></script>
 <script src="store.js"></script>
+
 </body>
 </html>

@@ -19,9 +19,10 @@
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">chat</h2>
 
-    <div class="search-wrapper">
+    <!-- ⭐ global search trigger -->
+    <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
-        <input type="text" placeholder="find…" readonly>
+        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 
     <img src="../user_icon.png"
@@ -30,8 +31,21 @@
          onclick="window.location.href='../profile/profile.html'">
 </header>
 
+<!-- ⭐ global search overlay (identisch zu my_books/friends/curators/entry) -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends, store…">
+
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
+
 <main class="chat-page" id="chatPageRoot">
     <div class="chat-layout">
+
         <!-- Sidebar -->
         <aside class="chat-sidebar" id="chatSidebar">
             <!-- JS renders chat list here -->
@@ -49,6 +63,7 @@
                 <button id="chatSend" type="submit">Send</button>
             </form>
         </section>
+
     </div>
 </main>
 

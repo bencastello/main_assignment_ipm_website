@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelf.</title>
+    <title>shelves. – for you</title>
 
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="filter.css">
@@ -18,20 +18,31 @@
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">for you</h2>
 
-    <div class="search-wrapper">
+    <!-- ⭐ global search trigger -->
+    <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
-        <label><input type="text" placeholder="find..."></label>
+        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 
-    <img src="../user_icon.png" class="profile-mini" alt="Profile"
+    <img src="../user_icon.png"
+         class="profile-mini"
+         alt="Profile"
          onclick="window.location.href='../profile/profile.html'">
 </header>
 
+<!-- ⭐ GLOBAL SEARCH OVERLAY -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends, store…">
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
 
 <main class="scene scene-foru">
-
     <div class="foru-center">
-
 
         <div class="coverflow-wrapper">
 
@@ -74,7 +85,7 @@
     </div>
 </main>
 
-
+<script src="../search/search.js"></script>
 <script src="coverflow.js"></script>
 <script src="../animations.js"></script>
 
