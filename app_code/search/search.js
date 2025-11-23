@@ -11,7 +11,8 @@ function root(path) {
     if (window.location.pathname.includes("/friends/")) return "../" + path;
     if (window.location.pathname.includes("/profile/")) return "../" + path;
     if (window.location.pathname.includes("/curators/")) return "../" + path;   // <-- THE FIX
-
+    if (window.location.pathname.includes("/chat/")) return "../" + path;
+    if (window.location.pathname.includes("/for_u/")) return "../" + path;
     // Homepage or top-level pages
     return path;
 }
