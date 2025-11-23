@@ -108,9 +108,15 @@
 .cf-cover {
     width: 100%;
     height: 320px;
-    background: linear-gradient(135deg,#333,#666);
+
+    border-radius: 14px; /* optional, passt optisch zu deiner Seite */
+    background-size: cover;      /* <<< fix */
+    background-position: center;  /* <<< fix */
+    background-repeat: no-repeat; /* <<< fix */
+
     box-shadow: 0 20px 40px rgba(0,0,0,0.18);
 }
+
 
 /* ======================================
    Text unter Covers
