@@ -1,9 +1,7 @@
 console.log("entry.js loaded");
 
-const CURATORS_URL = "../data/curators.json";
-
-async function loadAll() {
-    const res = await fetch(CURATORS_URL);
+async function loadCuratorData() {
+    const res = await fetch("../data/curators.json");
     return await res.json();
 }
 
@@ -12,49 +10,31 @@ function getEntryId() {
     return params.get("id");
 }
 
-function findEntry(data, id) {
-    for (const c of data.curators) {
-        const hit = c.entries.find(e => e.id === id);
-        if (hit) return { curator: c, entry: hit };
-    }
-    return null;
-}
-
-function renderEntry(curator, entry) {
-    const box = document.getElementById("entryContainer");
-
-    box.innerHTML = `
-        <div class="entry-header">
-            <h2>${entry.title}</h2>
-            <p class="entry-by">by ${curator.name}</p>
-        </div>
-
-        <div class="entry-cover-large" style="background:${entry.coverFallback}"></div>
-
-        <p class="entry-teaser">${entry.teaser}</p>
-
-        <p class="entry-body">
-            This is a placeholder for long-form curator content.  
-            You can replace this with real text later, but at least  
-            it won’t break your page now.
-        </p>
-    `;
-}
-
 async function initEntry() {
-    const id = getEntryId();
-    if (!id) return;
+    const data = await loadCuratorData();
+    const entryId = getEntryId();
 
-    const data = await loadAll();
-    const match = findEntry(data, id);
-
-    if (!match) {
-        document.getElementById("entryContainer").innerHTML = `
-            <p>Entry not found.</p>`;
+    if (!entryId) {
+        console.error("No entry id provided");
         return;
     }
 
-    renderEntry(match.curator, match.entry);
+    const entry = data.entries.find(e => e.id === entryId);
+    if (!entry) {
+        console.error("Entry not found:", entryId);
+        return;
+    }
+
+    // Fill DOM
+    document.getElementById("entryTitle").textContent = entry.title;
+    document.getElementById("entryCurator").textContent = entry.curator;
+    document.getElementById("entryDescription").innerHTML = entry.fullText;
+
+    const coverEl = document.getElementById("entryCover");
+    coverEl.style.backgroundImage = `url('../${entry.cover}')`;
+
+    const openBtn = document.getElementById("openBookBtn");
+    openBtn.onclick = () => window.location.href = entry.bookLink;
 }
 
 document.addEventListener("DOMContentLoaded", initEntry);

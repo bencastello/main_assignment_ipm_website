@@ -1,8 +1,8 @@
 {
   "bookOfWeek": {
-    "bookId": "faust2",
+    "id": "faust2",
     "title": "Book of the Week: Faust II",
-    "curator": "Sonja",
+    "author": "Johann Wolfgang von Goethe",
     "teaser": "Chosen for its surreal depth, philosophical weight and its timeless ability to haunt readers long after the final page.",
     "cover": "covers/faust2.jpg",
     "detailPage": "my_books/book_detail.html?id=faust2"
@@ -12,19 +12,16 @@
     {
       "id": "sonja",
       "name": "Sonja",
+      "image": "curators/placeholder.jpg",
       "bio": "Loves myth-heavy fantasy, lyrical writing and unexpectedly weird books.",
       "entries": [
         {
-          "id": "sonja_hp2",
           "title": "Harry Potter II – Why the sequel hits harder than you remember",
-          "teaser": "Sonja revisits a childhood classic and explores why Chamber of Secrets still feels unsettling and emotional.",
-          "coverFallback": "linear-gradient(135deg, #182848, #4b6cb7)"
+          "text": "Sonja revisits a childhood classic and explores why Chamber of Secrets still feels unsettling and emotional."
         },
         {
-          "id": "sonja_darkfantasy",
           "title": "Dark fantasy and the beauty of flawed heroes",
-          "teaser": "An essay on why morally ambiguous characters are more comforting than perfect ones.",
-          "coverFallback": "linear-gradient(135deg, #2b1055, #7597de)"
+          "text": "An essay on why morally ambiguous characters are more comforting than perfect ones."
         }
       ]
     },
@@ -32,19 +29,16 @@
     {
       "id": "lara",
       "name": "Lara",
+      "image": "curators/placeholder.jpg",
       "bio": "YA addict, soft romance enjoyer, collector of cozy tropes.",
       "entries": [
         {
-          "id": "lara_friends",
           "title": "FRIENDS II – The perfectly chaotic comfort read",
-          "teaser": "Lara explains why FRIENDS II became her emotional support book this year.",
-          "coverFallback": "linear-gradient(135deg, #f7971e, #ffd200)"
+          "text": "Lara explains why FRIENDS II became her emotional support book this year."
         },
         {
-          "id": "lara_romanceguide",
-          "title": "A guide to romance books that won’t make you cringe",
-          "teaser": "Wholesome, charming and emotionally grounded picks.",
-          "coverFallback": "linear-gradient(135deg, #ff9a9e, #fecfef)"
+          "title": "A guide to romance books that won't make you cringe",
+          "text": "Wholesome, charming and emotionally grounded picks."
         }
       ]
     },
@@ -52,19 +46,16 @@
     {
       "id": "petra",
       "name": "Petra",
+      "image": "curators/placeholder.jpg",
       "bio": "Non-fiction enthusiast with a weakness for philosophy and space science.",
       "entries": [
         {
-          "id": "petra_hitchhike",
           "title": "Hitchhike through the Galaxy – Why absurd sci-fi matters",
-          "teaser": "Petra argues why humor belongs in space epics.",
-          "coverFallback": "linear-gradient(135deg, #11998e, #38ef7d)"
+          "text": "Petra argues why humor belongs in space science."
         },
         {
-          "id": "petra_nonfiction2024",
           "title": "The non-fiction books that changed my worldview in 2024",
-          "teaser": "A look at bold ideas, quiet revolutions, and unexpected insights.",
-          "coverFallback": "linear-gradient(135deg, #636363, #a2ab58)"
+          "text": "A look at bold ideas, quiet revolutions, and unexpected insights."
         }
       ]
     },
@@ -72,13 +63,12 @@
     {
       "id": "peter",
       "name": "Peter",
+      "image": "curators/placeholder.jpg",
       "bio": "Thriller reader. Obsessed with tension, pacing, and clever twists.",
       "entries": [
         {
-          "id": "peter_twistguide",
           "title": "How to spot a good plot twist",
-          "teaser": "Peter breaks down what makes a thriller twist feel earned.",
-          "coverFallback": "linear-gradient(135deg, #000000, #434343)"
+          "text": "Peter breaks down what makes a thriller 'twist' feel earned."
         }
       ]
     },
@@ -86,13 +76,12 @@
     {
       "id": "geri",
       "name": "Geri",
+      "image": "curators/placeholder.jpg",
       "bio": "Classic literature defender. Will die for Goethe.",
       "entries": [
         {
-          "id": "geri_faust",
           "title": "Why Faust II is still painfully relevant",
-          "teaser": "Geri explains Goethe’s prophecy-like relevance to modern society.",
-          "coverFallback": "linear-gradient(135deg, #4b0000, #c31432)"
+          "text": "Geri explains Goethe's prophecy-like relevance to modern society."
         }
       ]
     },
@@ -100,19 +89,12 @@
     {
       "id": "armin",
       "name": "Armin",
-      "bio": "Sci-fi architect. Enjoys worldbuilding, speculative tech and alien weirdness.",
+      "image": "curators/placeholder.jpg",
+      "bio": "Sci-fi historian. Enjoyer of big concepts and quiet tragedies.",
       "entries": [
         {
-          "id": "armin_spaceships",
-          "title": "Spaceship design – The underrated heart of sci-fi",
-          "teaser": "Armin dives into how spaceship aesthetics shape entire genres.",
-          "coverFallback": "linear-gradient(135deg, #1a2980, #26d0ce)"
-        },
-        {
-          "id": "armin_firstcontact",
-          "title": "First contact stories and why they make us human",
-          "teaser": "What alien stories can teach us about ourselves.",
-          "coverFallback": "linear-gradient(135deg, #457fca, #5691c8)"
+          "title": "The evolution of sci-fi worldbuilding",
+          "text": "Armin tracks how the genre redefined imagination across decades."
         }
       ]
     }
