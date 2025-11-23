@@ -113,9 +113,13 @@
     width: 100%;
     aspect-ratio: 2 / 3;
     border-radius: 12px;
-    background: linear-gradient(135deg,#444,#666);
+    background: #ccc;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     box-shadow: 0 10px 24px rgba(0,0,0,0.2);
 }
+
 
 .product-title {
     font-size: 14px;
