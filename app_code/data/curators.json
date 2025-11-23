@@ -1,0 +1,102 @@
+{
+  "bookOfWeek": {
+    "id": "faust2",
+    "title": "Book of the Week: Faust II",
+    "author": "Johann Wolfgang von Goethe",
+    "teaser": "Chosen for its surreal depth, philosophical weight and its timeless ability to haunt readers long after the final page.",
+    "cover": "covers/faust2.jpg",
+    "detailPage": "my_books/book_detail.html?id=faust2"
+  },
+
+  "curators": [
+    {
+      "id": "sonja",
+      "name": "Sonja",
+      "image": "curators/placeholder.jpg",
+      "bio": "Loves myth-heavy fantasy, lyrical writing and unexpectedly weird books.",
+      "entries": [
+        {
+          "title": "Harry Potter II – Why the sequel hits harder than you remember",
+          "text": "Sonja revisits a childhood classic and explores why Chamber of Secrets still feels unsettling and emotional."
+        },
+        {
+          "title": "Dark fantasy and the beauty of flawed heroes",
+          "text": "An essay on why morally ambiguous characters are more comforting than perfect ones."
+        }
+      ]
+    },
+
+    {
+      "id": "lara",
+      "name": "Lara",
+      "image": "curators/placeholder.jpg",
+      "bio": "YA addict, soft romance enjoyer, collector of cozy tropes.",
+      "entries": [
+        {
+          "title": "FRIENDS II – The perfectly chaotic comfort read",
+          "text": "Lara explains why FRIENDS II became her emotional support book this year."
+        },
+        {
+          "title": "A guide to romance books that won't make you cringe",
+          "text": "Wholesome, charming and emotionally grounded picks."
+        }
+      ]
+    },
+
+    {
+      "id": "petra",
+      "name": "Petra",
+      "image": "curators/placeholder.jpg",
+      "bio": "Non-fiction enthusiast with a weakness for philosophy and space science.",
+      "entries": [
+        {
+          "title": "Hitchhike through the Galaxy – Why absurd sci-fi matters",
+          "text": "Petra argues why humor belongs in space science."
+        },
+        {
+          "title": "The non-fiction books that changed my worldview in 2024",
+          "text": "A look at bold ideas, quiet revolutions, and unexpected insights."
+        }
+      ]
+    },
+
+    {
+      "id": "peter",
+      "name": "Peter",
+      "image": "curators/placeholder.jpg",
+      "bio": "Thriller reader. Obsessed with tension, pacing, and clever twists.",
+      "entries": [
+        {
+          "title": "How to spot a good plot twist",
+          "text": "Peter breaks down what makes a thriller 'twist' feel earned."
+        }
+      ]
+    },
+
+    {
+      "id": "geri",
+      "name": "Geri",
+      "image": "curators/placeholder.jpg",
+      "bio": "Classic literature defender. Will die for Goethe.",
+      "entries": [
+        {
+          "title": "Why Faust II is still painfully relevant",
+          "text": "Geri explains Goethe's prophecy-like relevance to modern society."
+        }
+      ]
+    },
+
+    {
+      "id": "armin",
+      "name": "Armin",
+      "image": "curators/placeholder.jpg",
+      "bio": "Sci-fi historian. Enjoyer of big concepts and quiet tragedies.",
+      "entries": [
+        {
+          "title": "The evolution of sci-fi worldbuilding",
+          "text": "Armin tracks how the genre redefined imagination across decades."
+        }
+      ]
+    }
+  ]
+}

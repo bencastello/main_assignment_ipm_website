@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": "me",
+      "username": "@exampleuser",
+      "realname": "Petra Example",
+      "avatar": "user_icon.png",
+      "bio": "Book lover. Avid reader of fantasy and mystery.",
+      "stats": {
+        "booksThisYear": 34,
+        "pagesRead": 11240,
+        "avgRating": 4.2,
+        "streakDays": 28
+      },
+      "preferences": {
+        "genres": ["Fantasy", "Sci-Fi", "Classics"],
+        "tone": ["cozy", "wholesome"],
+        "formats": ["Paperback", "Hardcover"],
+        "pace": "steady"
+      },
+      "currentReading": "long_way",
+      "currentProgress": 0.64,
+      "favorites": ["hp2", "faust2", "friends2", "hitchhike"]
+    }
+  ]
+}

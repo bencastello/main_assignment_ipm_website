@@ -7,93 +7,37 @@
 
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="curators.css">
-
 </head>
+
 <body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="history.back()">←</button>
+    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
 
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">curators</h2>
 
     <div class="search-wrapper">
         <span class="search-icon">⌕</span>
-        <label><input type="text" placeholder="find..."></label>
+        <input type="text" placeholder="find..." id="searchCurators">
     </div>
 
-    <img src="../user_icon.png" class="profile-mini" alt="Profile">
+    <img src="../user_icon.png" class="profile-mini"
+         onclick="window.location.href='../profile/profile.html'">
 </header>
-
 
 <main class="curators-page">
 
-    <!-- ===========================
-         Book of the Week
-    ============================ -->
-    <section class="book-of-week">
+    <section id="bookOfWeekSection"></section>
 
-        <div class="bow-cover"></div>
+    <h2 style="margin: 40px 0 20px;">Our Curators</h2>
 
-        <div class="bow-info">
-            <h2 class="bow-title">Book of the Week: Faust II</h2>
-            <p class="bow-author">by Goethe</p>
-            <p class="bow-teaser">
-                Our curators picked this masterpiece for its razor-sharp wit,
-                surreal imagery and philosophical depth.
-            </p>
-            <button class="bow-button"
-                    onclick="window.location.href='faust_detail.html'">
-                read more →
-            </button>
-        </div>
-
-    </section>
-
-
-
-    <!-- ===========================
-         CURATORS BLOG FEED
-    ============================ -->
-    <section class="curator-feed">
-
-        <!-- Entry #1 -->
-        <article class="curator-entry" onclick="window.location.href='entry_1.html'">
-
-            <div class="entry-cover entry-hp2"></div>
-
-            <div class="entry-content">
-                <h3 class="entry-title">Why We Still Love Harry Potter II</h3>
-                <p class="entry-curator">by curator: Anna</p>
-                <p class="entry-teaser">
-                    A journey through nostalgia, magical worldbuilding and
-                    what makes this sequel emotionally brilliant.
-                </p>
-                <p class="entry-link">read more →</p>
-            </div>
-        </article>
-
-        <!-- Entry #2 -->
-        <article class="curator-entry" onclick="window.location.href='entry_2.html'">
-
-            <div class="entry-cover entry-friends"></div>
-
-            <div class="entry-content">
-                <h3 class="entry-title">FRIENDS II – The chaos we needed</h3>
-                <p class="entry-curator">curator: Ben</p>
-                <p class="entry-teaser">
-                    A warm dive into messy characters, silly drama and
-                    why comfort reads matter.
-                </p>
-                <p class="entry-link">read more →</p>
-            </div>
-        </article>
-
-    </section>
+    <div id="curatorsGrid" class="curators-grid">
+        <!-- JS injected cards -->
+    </div>
 
 </main>
 
-<script src="../animations.js"></script>
-
+<script src="curators.js"></script>
 </body>
 </html>
