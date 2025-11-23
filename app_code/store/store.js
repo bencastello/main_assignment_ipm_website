@@ -1,5 +1,5 @@
-// shelves – store powered by data/books.json (optimized)
-console.log("store.js loaded (optimized)");
+// shelves – store powered by data/books.json (optimized + global search)
+console.log("store.js loaded (optimized + search)");
 
 document.addEventListener("DOMContentLoaded", () => {
     // === DOM REFS ===
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function applyFilters() {
         let list = [...allBooks];
 
-        // search
+        // global + local search
         const q = (globalSearch?.value || "").trim().toLowerCase();
         if (q) {
             list = list.filter(b => {
@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sort === "price-desc") return b.price - a.price;
             if (sort === "title-asc") return a.title.localeCompare(b.title, "en");
             if (sort === "featured") {
-                // featured first, Rest danach
                 const af = a.featured ? 1 : 0;
                 const bf = b.featured ? 1 : 0;
                 if (af !== bf) return bf - af;
@@ -174,6 +173,12 @@ document.addEventListener("DOMContentLoaded", () => {
         filteredBooks = list;
         renderProducts();
         updateResultsInfo();
+
+        // URL sync
+        const url = new URL(window.location.href);
+        if (q) url.searchParams.set("search", q);
+        else url.searchParams.delete("search");
+        window.history.replaceState({}, "", url.toString());
     }
 
     function updateResultsInfo() {
@@ -268,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else cart.push({ id: book.id, title: book.title, price: Number(book.price), qty: 1 });
         saveCart();
         renderCart();
-        renderProducts(); // damit Button-Text & Menge updaten
+        renderProducts();
     }
 
     function changeCartQty(id, delta) {
@@ -281,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderProducts();
     }
 
-    // === CHECKOUT / MODAL ===
+    // === CHECKOUT ===
 
     function openCheckout() {
         if (!cart.length) return;
@@ -313,7 +318,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Mark all cart items as owned
         const ownedSet = new Set(ownedIds);
         cart.forEach(item => ownedSet.add(item.id));
         ownedIds = Array.from(ownedSet);
@@ -321,14 +325,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         checkoutSuccessMsg.classList.remove("hidden");
 
-        // Clear cart & refresh UI
         cart = [];
         saveCart();
         renderCart();
-        applyFilters(); // damit „Owned“ im Store sichtbar wird
+        applyFilters();
     }
 
-    // === EVENTS: FILTERS ===
+    // === EVENTS ===
 
     if (globalSearch) globalSearch.addEventListener("input", debounce(applyFilters, 150));
     genreChecks.forEach(cb => cb.addEventListener("change", applyFilters));
@@ -349,8 +352,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // === EVENTS: PRODUCT GRID ===
-
     if (productGrid) {
         productGrid.addEventListener("click", ev => {
             const addBtn = ev.target.closest(".add-cart-btn");
@@ -361,7 +362,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Klick im Footer nicht als "open detail" werten
             if (ev.target.closest(".product-footer")) return;
 
             const card = ev.target.closest(".product-card");
@@ -374,8 +374,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // === EVENTS: CART ===
-
     if (cartItemsEl) {
         cartItemsEl.addEventListener("click", ev => {
             const minus = ev.target.closest(".cart-minus");
@@ -384,8 +382,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (plus)  changeCartQty(plus.dataset.id, +1);
         });
     }
-
-    // === EVENTS: CHECKOUT ===
 
     if (checkoutBtn)        checkoutBtn.addEventListener("click", openCheckout);
     if (cancelCheckoutBtn)  cancelCheckoutBtn.addEventListener("click", closeCheckout);
@@ -401,6 +397,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", ev => {
         if (ev.key === "Escape") closeCheckout();
     });
+
+    // === GLOBAL SEARCH FROM URL ===
+    const params = new URLSearchParams(window.location.search);
+    const globalSearchTerm = params.get("search");
+
+    if (globalSearchTerm && globalSearch) {
+        globalSearch.value = globalSearchTerm;
+        setTimeout(() => applyFilters(), 10);
+    }
 
     // === INIT ===
     loadCart();
