@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelves — chat</title>
+    <title>shelves. – chat</title>
 
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="chat.css">
@@ -12,30 +12,47 @@
 <body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="history.back()">←</button>
+    <button class="back-button" onclick="window.location.href='../homepage.html'">
+        ←
+    </button>
+
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">chat</h2>
 
+    <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="find…" readonly>
+    </div>
+
     <img src="../user_icon.png"
          class="profile-mini"
-         onclick="window.location.href='../profile/profile.html?id=me'">
+         alt="Profile"
+         onclick="window.location.href='../profile/profile.html'">
 </header>
 
-<div class="chat-layout">
+<main class="chat-page" id="chatPageRoot">
+    <div class="chat-layout">
+        <!-- Sidebar -->
+        <aside class="chat-sidebar" id="chatSidebar">
+            <!-- JS renders chat list here -->
+        </aside>
 
-    <aside class="chat-sidebar" id="chatSidebar"></aside>
+        <!-- Main chat area -->
+        <section class="chat-main">
+            <div id="chatMessages" class="chat-messages"></div>
 
-    <main class="chat-main">
-        <div id="chatMessages" class="chat-messages"></div>
+            <form class="chat-input-row" id="chatForm">
+                <input id="chatInput"
+                       type="text"
+                       autocomplete="off"
+                       placeholder="Type a message…">
+                <button id="chatSend" type="submit">Send</button>
+            </form>
+        </section>
+    </div>
+</main>
 
-        <div class="chat-input-row">
-            <input id="chatInput" type="text" placeholder="Type a message…">
-            <button id="chatSend">Send</button>
-        </div>
-    </main>
-
-</div>
-
+<script src="../search/search.js"></script>
 <script src="chat.js"></script>
 
 </body>

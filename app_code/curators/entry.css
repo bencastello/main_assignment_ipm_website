@@ -1,0 +1,39 @@
+.entry-page {
+    max-width: 900px;
+    margin: 140px auto 60px;
+    padding: 0 20px;
+}
+
+.entry-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.entry-cover {
+    width: 240px;
+    height: 360px;
+    margin: 0 auto 20px;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.2);
+}
+
+.entry-description {
+    line-height: 1.6;
+    margin-top: 20px;
+    color: #333;
+}
+
+.book-btn {
+    margin-top: 24px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+}

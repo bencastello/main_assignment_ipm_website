@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelves. – curators</title>
+    <title>shelves. – Curator Entry</title>
 
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="curators.css">
@@ -12,32 +12,30 @@
 <body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
+    <button class="back-button" onclick="window.location.href='curators.html'">←</button>
 
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">curators</h2>
+    <h2 class="section">curator entry</h2>
 
-    <div class="search-wrapper">
+    <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
-        <input type="text" placeholder="find..." id="searchCurators">
+        <input type="text" placeholder="search…" readonly>
     </div>
 
     <img src="../user_icon.png" class="profile-mini"
          onclick="window.location.href='../profile/profile.html'">
 </header>
 
-<main class="curators-page">
 
-    <section id="bookOfWeekSection"></section>
-
-    <h2 style="margin: 40px 0 20px;">Our Curators</h2>
-
-    <div id="curatorsGrid" class="curators-grid">
-        <!-- JS injected cards -->
-    </div>
-
+<main class="entry-page">
+    <section id="entryContainer" class="entry-container">
+        <!-- JS renders -->
+    </section>
 </main>
 
-<script src="curators.js"></script>
+
+<script src="../search/search.js"></script>
+<script src="entry.js"></script>
+
 </body>
 </html>
