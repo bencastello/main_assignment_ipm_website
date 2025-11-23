@@ -15,7 +15,6 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-
 /* =========================
    HERO
 ========================= */
@@ -38,17 +37,13 @@
     background: #eee;
 }
 
-.profile-avatar:hover {
-    transform: scale(1.03);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.23);
-}
-
 .profile-avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* hover overlay */
 .avatar-overlay {
     position: absolute;
     inset: 0;
@@ -56,18 +51,24 @@
     align-items: flex-end;
     justify-content: center;
     padding-bottom: 10px;
-
     font-size: 12px;
     font-weight: 600;
     color: #222;
-
     background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
     opacity: 0;
-    transition: opacity .2s ease;
+    transition: opacity .25s ease;
 }
 
 .profile-avatar:hover .avatar-overlay {
     opacity: 1;
+}
+
+.profile-avatar.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+.profile-avatar.disabled .avatar-overlay {
+    display: none;
 }
 
 .profile-username {
@@ -78,32 +79,35 @@
 
 .profile-realname {
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .profile-bio {
     max-width: 520px;
-    margin: 0 auto 18px;
+    margin: 0 auto 16px;
     color: #444;
     font-size: 15px;
     line-height: 1.4;
-    cursor: default;
 }
+
+/* badges */
 
 .badge-row {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 18px;
-    flex-wrap: wrap;
 }
 
 .badge {
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 999px;
     background: #f1f1f1;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 999px;
 }
+
+/* reading progress */
 
 .reading-progress {
     max-width: 320px;
@@ -111,15 +115,15 @@
 }
 
 .progress-label {
-    font-size: 13px;
     color: #555;
+    font-size: 13px;
     margin-bottom: 6px;
 }
 
 .progress-bar {
     height: 6px;
     border-radius: 999px;
-    background: #eee;
+    background: #ececec;
     overflow: hidden;
 }
 
@@ -128,19 +132,35 @@
     width: 0;
     background: #111;
     border-radius: 999px;
-    transition: width .5s ease-out;
+    transition: width .4s ease-out;
+}
+
+/* buttons */
+
+.edit-profile-btn,
+.profile-message-btn {
+    margin-top: 10px;
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .edit-profile-btn {
-    padding: 8px 20px;
-    border-radius: 999px;
-    border: none;
     background: #fff;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    font-weight: 600;
-    cursor: pointer;
 }
 
+.profile-message-btn {
+    background: #111;
+    color: #fff;
+}
+
+.profile-message-btn.hidden {
+    display: none;
+}
 
 /* =========================
    GRID
@@ -148,26 +168,24 @@
 
 .profile-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: 30px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 28px;
 }
 
 .profile-card {
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
     padding: 22px 22px 24px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
 }
 
 .profile-card h3 {
-    margin-top: 0;
+    margin: 0 0 12px;
     font-size: 18px;
-    margin-bottom: 12px;
 }
 
-
 /* =========================
-   PREFERENCES
+   PREFERENCES (ME)
 ========================= */
 
 .pref-group + .pref-group {
@@ -187,17 +205,17 @@
 }
 
 .pill {
-    padding: 5px 12px;
+    padding: 4px 12px;
     border-radius: 999px;
     border: none;
     background: #f1f1f1;
     font-size: 13px;
     cursor: pointer;
-    transition: background .18s ease, transform .12s ease, color .18s ease;
+    transition: background .2s ease, transform .15s ease;
 }
 
 .pill:hover {
-    background: #e2e2e2;
+    background: #e4e4e4;
     transform: translateY(-1px);
 }
 
@@ -207,6 +225,12 @@
     transform: translateY(-1px) scale(1.03);
 }
 
+/* FRIEND MODE – read-only prefs */
+
+.friend-prefs {
+    font-size: 14px;
+    color: #444;
+}
 
 /* =========================
    STATS
@@ -214,20 +238,19 @@
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 18px;
 }
 
 .stat-item {
-    padding: 8px 10px;
-    border-radius: 14px;
     background: #f7f7f7;
+    padding: 10px 12px;
+    border-radius: 14px;
 }
 
 .stat-label {
     font-size: 12px;
     color: #777;
-    margin-bottom: 2px;
 }
 
 .stat-value {
@@ -235,14 +258,13 @@
     font-weight: 600;
 }
 
-
 /* =========================
    FAVORITES
 ========================= */
 
 .favorites-row {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
@@ -252,30 +274,16 @@
 
 .fav-cover {
     width: 100%;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 2/3;
+    background: #333;
     border-radius: 12px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
     margin-bottom: 6px;
-    background: linear-gradient(135deg, #555, #333);
-}
-
-.fav-hp2 {
-    background: linear-gradient(135deg, #182848, #4b6cb7);
-}
-.fav-faust {
-    background: linear-gradient(135deg, #4b0000, #c31432);
-}
-.fav-friends {
-    background: linear-gradient(135deg, #f7971e, #ffd200);
-}
-.fav-hitchhike {
-    background: linear-gradient(135deg, #11998e, #38ef7d);
 }
 
 .fav-title {
     font-size: 12px;
 }
-
 
 /* =========================
    CURRENTLY READING
@@ -300,25 +308,20 @@
 }
 
 .current-title {
-    margin: 0 0 4px;
+    margin: 0;
     font-weight: 600;
 }
 
 .current-meta {
-    margin: 0 0 10px;
     font-size: 13px;
     color: #666;
+    margin-bottom: 10px;
 }
 
 .current-progress {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
-}
-
-.current-progress .progress-bar {
-    flex: 1;
 }
 
 .current-percent {
@@ -331,18 +334,16 @@
     border-radius: 999px;
     border: none;
     background: #111;
-    color: #fff;
-    font-size: 13px;
+    color: white;
     cursor: pointer;
+    font-size: 13px;
 }
-
 
 /* =========================
    ACTIVITY
 ========================= */
 
 .activity-list {
-    margin: 0;
     padding-left: 18px;
     font-size: 14px;
     color: #444;
@@ -352,19 +353,21 @@
     margin-top: 4px;
 }
 
-
 /* =========================
-   PRIVACY
+   PRIVACY (only me)
 ========================= */
+
+.privacy-card.hidden {
+    display: none;
+}
 
 .privacy-option {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    margin-top: 4px;
+    margin-bottom: 6px;
 }
-
 
 /* =========================
    MODALS
@@ -374,25 +377,25 @@
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(4px);
-    z-index: 30;
+    backdrop-filter: blur(3px);
+    z-index: 50;
 }
 
 .modal {
     position: fixed;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -40%);
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 24px 50px rgba(0,0,0,0.3);
-    padding: 24px 22px 20px;
     width: 90%;
     max-width: 420px;
-    z-index: 40;
+    background: #fff;
+    padding: 24px 22px 20px;
+    border-radius: 20px;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.3);
+    transform: translate(-50%, -40%);
     opacity: 0;
     pointer-events: none;
     transition: opacity .2s ease, transform .2s ease;
+    z-index: 60;
 }
 
 .modal.visible {
@@ -401,16 +404,10 @@
     transform: translate(-50%, -50%);
 }
 
-.modal h2,
-.modal h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-}
-
 .input-block {
     display: block;
-    margin-top: 12px;
     font-size: 13px;
+    margin: 12px 0;
 }
 
 .input-block input,
@@ -433,11 +430,10 @@
 
 .primary-btn,
 .secondary-btn {
-    padding: 7px 16px;
+    padding: 8px 16px;
     border-radius: 999px;
     border: none;
     cursor: pointer;
-    font-size: 14px;
 }
 
 .primary-btn {
@@ -449,37 +445,6 @@
     background: #eee;
 }
 
-.upload-btn {
-    display: block;
-    margin: 10px 0 14px;
-    padding: 10px 14px;
-    border-radius: 12px;
-    background: #f1f1f1;
-    text-align: center;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.upload-btn input {
-    display: none;
-}
-
-.random-avatar {
-    width: 100%;
-    padding: 10px;
-    border-radius: 12px;
-    border: none;
-    background: #111;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.hidden {
-    display: none;
-}
-
-
 /* =========================
    RESPONSIVE
 ========================= */
@@ -488,28 +453,22 @@
     .profile-grid {
         grid-template-columns: 1fr;
     }
-
-    .favorites-row {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .current-layout {
-        flex-direction: row;
-    }
 }
 
 @media (max-width: 600px) {
     .favorites-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .current-layout {
         flex-direction: column;
         align-items: flex-start;
     }
+}
 
-    .current-cover {
-        width: 100%;
-        max-width: 140px;
-    }
+/* failsafe kill-switch for overlay insanity */
+.modal-overlay.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shelves. – curator entry</title>
+
+    <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="entry.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <button class="back-button" onclick="history.back()">←</button>
+    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+    <h2 class="section">curator</h2>
+
+    <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="find…">
+    </div>
+
+    <img src="../user_icon.png"
+         class="profile-mini"
+         onclick="window.location.href='../profile/profile.html'">
+</header>
+
+<main class="entry-page">
+
+    <section id="entryCard" class="entry-card">
+
+        <div id="entryCover" class="entry-cover"></div>
+
+        <h2 id="entryTitle"></h2>
+        <h4 id="entryCurator"></h4>
+
+        <p id="entryDescription" class="entry-description"></p>
+
+        <button id="openBookBtn" class="book-btn">Open book →</button>
+
+    </section>
+
+</main>
+
+<script src="entry.js"></script>
+
+</body>
+</html>

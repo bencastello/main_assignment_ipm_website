@@ -1,15 +1,45 @@
-/* Friends Icons */
-.friends_icons {
-    position: absolute;
-    left: 14.5%;      /* exakt da, wo vorher die Bücher standen */
-    bottom: 32px;     /* gleiche Höhe wie books-vertical */
-    display: flex;
-    gap: 20px;        /* Abstand zwischen Icons */
-    align-items: flex-end;
+.friends-wrapper {
+    max-width: 1100px;
+    margin: 160px auto 80px;
+    padding: 0 32px;
 }
 
-.friend-icon {
+.friends-grid {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.friend-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 20px 18px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.05);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.friend-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 50px rgba(0,0,0,0.08);
+}
+
+.friend-avatar {
     width: 120px;
-    height: 150px;
+    height: 120px;
+    border-radius: 20px;
     object-fit: cover;
+    margin-bottom: 14px;
+}
+
+.friend-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.friend-sub {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #888;
 }

@@ -1,0 +1,96 @@
+{
+  "books": [
+    {
+      "id": "hp2",
+      "title": "Harry Potter II",
+      "author": "J.K. Rowling",
+      "genre": "Fantasy",
+      "cover": "covers/hp2.jpg"
+    },
+    {
+      "id": "faust2",
+      "title": "Faust II",
+      "author": "J. W. von Goethe",
+      "genre": "Classics",
+      "cover": "covers/faust2.jpg"
+    },
+    {
+      "id": "friends2",
+      "title": "FRIENDS II",
+      "author": "Lena Hart",
+      "genre": "Contemporary",
+      "cover": "covers/friends2.jpg"
+    },
+    {
+      "id": "hitchhike",
+      "title": "Hitchhike through the Galaxy",
+      "author": "Douglas Adams",
+      "genre": "Sci-Fi",
+      "cover": "covers/hitch.jpg"
+    },
+    {
+      "id": "long_way",
+      "title": "The Long Way to a Small, Angry Planet",
+      "author": "Becky Chambers",
+      "genre": "Sci-Fi",
+      "cover": "covers/long_way.jpg"
+    },
+    {
+      "id": "nonfiction1",
+      "title": "Thinking in Systems",
+      "author": "Donella Meadows",
+      "genre": "Non-Fiction",
+      "cover": "covers/thinking_systems.jpg"
+    },
+    {
+      "id": "sapiens",
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "genre": "Non-Fiction",
+      "cover": "covers/sapiens.jpg"
+    }
+  ],
+
+  "users": [
+    {
+      "id": "me",
+      "name": "@exampleuser",
+      "realname": "Petra Example",
+      "bio": "Book lover. Avid reader of fantasy and mystery.",
+      "avatar": "user_icon.png"
+    }
+  ],
+
+  "friends": [
+    {
+      "id": "anna",
+      "name": "Anna",
+      "avatar": "friends/anna.png"
+    },
+    {
+      "id": "fiio",
+      "name": "Fiio",
+      "avatar": "friends/fiio.png"
+    },
+    {
+      "id": "lara",
+      "name": "Lara",
+      "avatar": "friends/lara.png"
+    },
+    {
+      "id": "geri",
+      "name": "Geri",
+      "avatar": "friends/geri.png"
+    },
+    {
+      "id": "sonja",
+      "name": "Sonja",
+      "avatar": "friends/sonja.png"
+    },
+    {
+      "id": "sarah",
+      "name": "Sarah",
+      "avatar": "friends/sarah.png"
+    }
+  ]
+}

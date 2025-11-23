@@ -1,0 +1,15 @@
+{
+  "chats": [
+    {
+      "id": "bookclub",
+      "name": "Book Club",
+      "messages": [
+        {
+          "from": "system",
+          "text": "Welcome to the Book Club 📚",
+          "time": "14:30"
+        }
+      ]
+    }
+  ]
+}

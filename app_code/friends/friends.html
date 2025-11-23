@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shelves — friends</title>
+
+    <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="friends.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+
+    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
+
+    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+    <h2 class="section">friends</h2>
+
+    <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <input id="friendSearch" type="text" placeholder="search friends…">
+    </div>
+
+    <img src="../user_icon.png"
+         class="profile-mini"
+         onclick="window.location.href='../profile/profile.html?id=me'">
+</header>
+
+
+<main class="friends-wrapper">
+
+    <div id="friendsGrid" class="friends-grid"></div>
+
+</main>
+
+<script src="friends.js"></script>
+
+</body>
+</html>
