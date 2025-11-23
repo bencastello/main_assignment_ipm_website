@@ -1,4 +1,54 @@
-document.addEventListener("DOMContentLoaded", function () {
+// app_code/for_u/coverflow.js
+console.log("coverflow.js (JSON mode) loaded.");
+
+const BOOKS_URL = "../data/books.json";
+
+async function loadBooks() {
+    try {
+        const res = await fetch(BOOKS_URL);
+        const data = await res.json();
+        return data.books || [];
+    } catch (e) {
+        console.error("Failed loading books.json", e);
+        return [];
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const books = await loadBooks();
+    if (!books.length) {
+        console.warn("No books found in books.json");
+        return;
+    }
+
+    // -----------------------------
+    // Dynamisch DOM erzeugen
+    // -----------------------------
+
+    const track = document.querySelector(".cf-track");
+    track.innerHTML = ""; // clear placeholder items
+
+    books.forEach((b, i) => {
+        const item = document.createElement("div");
+        item.classList.add("cf-item");
+
+        item.innerHTML = `
+            <div class="cf-cover" style="background-image:url('../${b.cover}')"></div>
+            <div class="cf-title">${b.title}</div>
+            <div class="cf-meta">${b.author}</div>
+        `;
+
+        item.addEventListener("click", () => {
+            if (i === current) {
+                window.location.href = `../my_books/book_detail.html?id=${b.id}`;
+            } else {
+                go(i);
+            }
+        });
+
+        track.appendChild(item);
+    });
 
     const items = Array.from(document.querySelectorAll(".cf-item"));
     const left = document.querySelector(".cf-arrow-left");
@@ -8,33 +58,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function update() {
         items.forEach((item, i) => {
-
             const offset = i - current;
             const abs = Math.abs(offset);
 
-            /* Abstand horizontal */
             const baseX = 260;
             const x = offset * baseX;
 
-            /* Größe */
             const scale = (i === current)
-                ? 1.7               // Fokusbuch groß
-                : 1.0 - abs * 0.15; // Nebenbücher kleiner
+                ? 1.7
+                : 1.0 - abs * 0.15;
 
-            /* Tiefe */
             const z = (i === current)
                 ? 350
                 : 200 - abs * 120;
 
-            /* leichte Rotation */
             const rot = offset * -35;
 
-            /* Sichtbarkeit */
             const opacity = Math.max(0, 1 - abs * 0.3);
-
             item.style.opacity = opacity;
 
-            /* FINAL TRANSFORM – zentriert */
             item.style.transform = `
                 translate(-50%, -50%)
                 translateX(${x}px)
@@ -43,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 scale(${scale})
             `;
 
-            /* Aktivstate */
             if (i === current) {
                 item.classList.add("is-active");
             } else {
@@ -57,22 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
         update();
     }
 
-    /* Pfeile */
     left.addEventListener("click", () => go(current - 1));
     right.addEventListener("click", () => go(current + 1));
 
-    /* Klick auf Buch */
-    items.forEach((item, index) => {
-        item.addEventListener("click", () => {
-            if (index === current) {
-                console.log("Open book:", item.querySelector(".cf-title")?.textContent);
-            } else {
-                go(index);
-            }
-        });
-    });
-
-    /* Keyboard */
     document.addEventListener("keydown", e => {
         if (e.key === "ArrowLeft") go(current - 1);
         if (e.key === "ArrowRight") go(current + 1);
