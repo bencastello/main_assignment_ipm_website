@@ -11,7 +11,7 @@
       "cover": "covers/hp2.jpg",
       "tags": ["magic", "school", "bestseller"],
       "owned": false,
-      "textFile": "books/hp2.txt"
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "faust2",
@@ -23,7 +23,8 @@
       "featured": false,
       "cover": "covers/faust2.jpg",
       "tags": ["german", "classic", "drama"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "friends2",
@@ -35,7 +36,8 @@
       "featured": false,
       "cover": "covers/normal_people.jpg",
       "tags": ["relationships", "bestseller", "irish"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "hitchhike",
@@ -47,7 +49,8 @@
       "featured": true,
       "cover": "covers/hitchhiker_guide.jpg",
       "tags": ["space", "absurd", "humor"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "long_way",
@@ -59,7 +62,8 @@
       "featured": true,
       "cover": "covers/long_way.jpg",
       "tags": ["cozy", "space", "found family"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "nonfiction1",
@@ -71,7 +75,8 @@
       "featured": false,
       "cover": "covers/thinking_systems.jpg",
       "tags": ["systems", "non-fiction", "theory"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "sapiens",
@@ -83,7 +88,8 @@
       "featured": true,
       "cover": "covers/sapiens.jpg",
       "tags": ["history", "big picture", "bestseller"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "hp1",
@@ -95,7 +101,8 @@
       "featured": true,
       "cover": "covers/hp1.jpg",
       "tags": ["magic", "school", "bestseller"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "hp3",
@@ -107,7 +114,8 @@
       "featured": false,
       "cover": "covers/hp3.jpg",
       "tags": ["magic", "school", "time travel"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "hobbit",
@@ -119,7 +127,8 @@
       "featured": true,
       "cover": "covers/hobbit.jpg",
       "tags": ["classic", "dragons", "adventure"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "lotr1",
@@ -131,7 +140,8 @@
       "featured": true,
       "cover": "covers/lotr1.jpg",
       "tags": ["epic", "middle-earth", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "lotr2",
@@ -143,7 +153,8 @@
       "featured": false,
       "cover": "covers/lotr2.jpg",
       "tags": ["epic", "middle-earth"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "lotr3",
@@ -155,7 +166,8 @@
       "featured": false,
       "cover": "covers/lotr3.jpg",
       "tags": ["epic", "middle-earth", "finale"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "got1",
@@ -167,7 +179,8 @@
       "featured": true,
       "cover": "covers/got1.jpg",
       "tags": ["epic", "politics", "dragons"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "got2",
@@ -179,7 +192,8 @@
       "featured": false,
       "cover": "covers/got2.jpg",
       "tags": ["epic", "politics"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "got3",
@@ -191,7 +205,8 @@
       "featured": false,
       "cover": "covers/got3.jpg",
       "tags": ["epic", "war"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "got4",
@@ -203,7 +218,8 @@
       "featured": false,
       "cover": "covers/got4.jpg",
       "tags": ["epic", "politics"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "got5",
@@ -215,7 +231,8 @@
       "featured": false,
       "cover": "covers/got5.jpg",
       "tags": ["epic", "dragons"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "earthsea1",
@@ -227,7 +244,8 @@
       "featured": true,
       "cover": "covers/earthsea1.jpg",
       "tags": ["magic", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "earthsea2",
@@ -239,7 +257,8 @@
       "featured": false,
       "cover": "covers/earthsea2.jpg",
       "tags": ["magic", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "dune1",
@@ -251,7 +270,8 @@
       "featured": true,
       "cover": "covers/dune.jpg",
       "tags": ["desert", "politics", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "neuromancer",
@@ -263,7 +283,8 @@
       "featured": false,
       "cover": "covers/neuromancer.jpg",
       "tags": ["cyberpunk", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "foundation1",
@@ -275,7 +296,8 @@
       "featured": false,
       "cover": "covers/foundation1.jpg",
       "tags": ["empire", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "1984",
@@ -287,7 +309,8 @@
       "featured": true,
       "cover": "covers/1984.jpg",
       "tags": ["dystopia", "politics"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "brave_new_world",
@@ -299,7 +322,8 @@
       "featured": false,
       "cover": "covers/brave_new_world.jpg",
       "tags": ["dystopia", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "catch22",
@@ -311,7 +335,8 @@
       "featured": false,
       "cover": "covers/catch22.jpg",
       "tags": ["war", "satire"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "gwtw",
@@ -323,7 +348,8 @@
       "featured": false,
       "cover": "covers/gwtw.jpg",
       "tags": ["historical", "romance"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "pride_prejudice",
@@ -335,7 +361,8 @@
       "featured": true,
       "cover": "covers/pride_prejudice.jpg",
       "tags": ["romance", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "jane_eyre",
@@ -347,7 +374,8 @@
       "featured": false,
       "cover": "covers/jane_eyre.jpg",
       "tags": ["gothic", "classic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "wuthering_heights",
@@ -359,7 +387,8 @@
       "featured": false,
       "cover": "covers/wuthering_heights.jpg",
       "tags": ["gothic", "romance"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "kite_runner",
@@ -371,7 +400,8 @@
       "featured": true,
       "cover": "covers/kite_runner.jpg",
       "tags": ["afghanistan", "drama"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "little_life",
@@ -383,7 +413,8 @@
       "featured": false,
       "cover": "covers/a_little_life.jpg",
       "tags": ["trauma", "friendship"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "the_goldfinch",
@@ -395,7 +426,8 @@
       "featured": false,
       "cover": "covers/goldfinch.jpg",
       "tags": ["art", "drama"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "secret_history",
@@ -407,7 +439,8 @@
       "featured": true,
       "cover": "covers/secret_history.jpg",
       "tags": ["dark academia", "mystery"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "ninth_house",
@@ -419,7 +452,8 @@
       "featured": false,
       "cover": "covers/ninth_house.jpg",
       "tags": ["dark academia", "magic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "shadow_bone",
@@ -431,7 +465,8 @@
       "featured": false,
       "cover": "covers/shadow_bone.jpg",
       "tags": ["ya", "magic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "six_of_crows",
@@ -443,7 +478,8 @@
       "featured": true,
       "cover": "covers/six_of_crows.jpg",
       "tags": ["heist", "ya"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "song_achilles",
@@ -455,7 +491,8 @@
       "featured": true,
       "cover": "covers/song_achilles.jpg",
       "tags": ["greek myth", "romance"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "circe",
@@ -467,7 +504,8 @@
       "featured": false,
       "cover": "covers/circe.jpg",
       "tags": ["greek myth", "retelling"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "midnight_library",
@@ -479,7 +517,8 @@
       "featured": false,
       "cover": "covers/midnight_library.jpg",
       "tags": ["speculative", "uplifting"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "homo_deus",
@@ -491,7 +530,8 @@
       "featured": false,
       "cover": "covers/homo_deus.jpg",
       "tags": ["future", "history"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "21_lessons",
@@ -503,7 +543,8 @@
       "featured": false,
       "cover": "covers/21_lessons.jpg",
       "tags": ["essays", "politics"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "black_swan",
@@ -515,7 +556,8 @@
       "featured": false,
       "cover": "covers/black_swan.jpg",
       "tags": ["risk", "probability"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "antifragile",
@@ -527,7 +569,8 @@
       "featured": false,
       "cover": "covers/antifragile.jpg",
       "tags": ["systems", "philosophy"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "thinking_fast_slow",
@@ -539,7 +582,8 @@
       "featured": true,
       "cover": "covers/thinking_fast_slow.jpg",
       "tags": ["psychology", "behavioral"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "nudge",
@@ -551,7 +595,8 @@
       "featured": false,
       "cover": "covers/nudge.jpg",
       "tags": ["economics", "behavioral"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "atomic_habits",
@@ -563,7 +608,8 @@
       "featured": true,
       "cover": "covers/atomic_habits.jpg",
       "tags": ["self-help", "habits"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "deep_work",
@@ -575,7 +621,8 @@
       "featured": false,
       "cover": "covers/deep_work.jpg",
       "tags": ["productivity", "focus"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "so_good",
@@ -587,7 +634,8 @@
       "featured": false,
       "cover": "covers/so_good.jpg",
       "tags": ["career", "skills"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "educated",
@@ -599,7 +647,8 @@
       "featured": true,
       "cover": "covers/educated.jpg",
       "tags": ["memoir", "education"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "born_crime",
@@ -611,7 +660,8 @@
       "featured": false,
       "cover": "covers/born_a_crime.jpg",
       "tags": ["memoir", "humor"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "quiet",
@@ -623,7 +673,8 @@
       "featured": false,
       "cover": "covers/quiet.jpg",
       "tags": ["psychology", "introversion"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "sapiens_graphic1",
@@ -635,7 +686,8 @@
       "featured": false,
       "cover": "covers/sapiens_graphic1.jpg",
       "tags": ["history", "graphic"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "bad_blood",
@@ -647,7 +699,8 @@
       "featured": false,
       "cover": "covers/bad_blood.jpg",
       "tags": ["true crime", "business"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "psychopath_test",
@@ -659,7 +712,8 @@
       "featured": false,
       "cover": "covers/psychopath_test.jpg",
       "tags": ["psychology", "reportage"],
-      "owned": true
+      "owned": true,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "into_thin_air",
@@ -671,7 +725,8 @@
       "featured": false,
       "cover": "covers/into_thin_air.jpg",
       "tags": ["adventure", "mountaineering"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
     {
       "id": "dead_poets",
@@ -683,7 +738,8 @@
       "featured": false,
       "cover": "covers/dead_poets.jpg",
       "tags": ["coming of age", "school", "literature", "emotion"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     },
 
     {
@@ -696,7 +752,8 @@
       "featured": false,
       "cover": "covers/into_the_wild.jpg",
       "tags": ["travel", "adventure"],
-      "owned": false
+      "owned": false,
+      "textFile": "books/lorem_ipsum.txt"
     }
   ]
 }

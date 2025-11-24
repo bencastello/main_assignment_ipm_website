@@ -1,5 +1,3 @@
-console.log("profile.js – clean rebuild");
-
 async function loadJSON(path) {
     return (await fetch(path)).json();
 }
