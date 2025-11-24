@@ -1,5 +1,5 @@
 // app_code/for_u/coverflow.js
-console.log("coverflow.js (JSON mode) loaded.");
+console.log("coverflow.js (JSON mode, random 5) loaded.");
 
 const BOOKS_URL = "../data/books.json";
 
@@ -22,14 +22,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    // -----------------------------
-    // Dynamisch DOM erzeugen
-    // -----------------------------
+    // 🎲 pick 5 random books
+    const randomBooks = books
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5);
 
+    // -----------------------------
+    // DOM dynamisch erzeugen
+    // -----------------------------
     const track = document.querySelector(".cf-track");
     track.innerHTML = ""; // clear placeholder items
 
-    books.forEach((b, i) => {
+    randomBooks.forEach((b, i) => {
         const item = document.createElement("div");
         item.classList.add("cf-item");
 
