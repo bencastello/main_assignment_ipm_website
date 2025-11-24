@@ -1,15 +1,12 @@
-// shelves – store (optimized, format removed)
-console.log("store.js loaded (format filter removed)");
+// shelves – store (optimized, format removed + pagination)
+console.log("store.js loaded (format filter removed + pagination)");
 
 document.addEventListener("DOMContentLoaded", () => {
     const productGrid   = document.getElementById("productGrid");
     const resultsInfo   = document.getElementById("resultsInfo");
 
-    const globalSearch  = document.getElementById("globalSearch");
+    const globalSearch  = document.getElementById("globalSearch"); // optional / meist null
     const genreChecks   = Array.from(document.querySelectorAll("input[name='genre']"));
-
-    // FORMAT FILTER → entfernt
-    // const formatChecks  = Array.from(document.querySelectorAll("input[name='format']"));
 
     const priceMinInput = document.getElementById("priceMin");
     const priceMaxInput = document.getElementById("priceMax");
@@ -36,12 +33,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let allBooks = [];
     let filteredBooks = [];
+
+    // ⭐ Pagination
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 10;
+
     let cart = [];
     let ownedIds = [];
 
     const CART_KEY  = "shelves_store_cart";
     const OWNED_KEY = "ownedBooks";
 
+    /* ---------- utils ---------- */
 
     function debounce(fn, delay = 150) {
         let t;
@@ -113,8 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    /* ---------- filtering ---------- */
 
-    // === FILTERING (format removed) ===
     function applyFilters() {
         let list = [...allBooks];
 
@@ -122,18 +125,22 @@ document.addEventListener("DOMContentLoaded", () => {
         if (q) {
             list = list.filter(b => {
                 const hay = [
-                    b.title, b.author, b.genre, (b.tags || []).join(" ")
+                    b.title,
+                    b.author,
+                    b.genre,
+                    (b.tags || []).join(" ")
                 ].join(" ").toLowerCase();
                 return hay.includes(q);
             });
         }
 
-        const selectedGenres = genreChecks.filter(cb => cb.checked).map(cb => cb.value);
+        const selectedGenres = genreChecks
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+
         if (selectedGenres.length) {
             list = list.filter(b => selectedGenres.includes(b.genre));
         }
-
-        // FORMAT → komplett raus
 
         const min = parseFloat(priceMinInput.value || "");
         const max = parseFloat(priceMaxInput.value || "");
@@ -145,10 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sort === "price-asc") return a.price - b.price;
             if (sort === "price-desc") return b.price - a.price;
             if (sort === "title-asc") return a.title.localeCompare(b.title);
+            // default: featured
             return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
         });
 
         filteredBooks = list;
+        currentPage = 1;           // ⭐ immer auf Seite 1 springen nach Filteränderung
         renderProducts();
         updateResultsInfo();
     }
@@ -157,13 +166,25 @@ document.addEventListener("DOMContentLoaded", () => {
         resultsInfo.textContent = `${filteredBooks.length} of ${allBooks.length} books`;
     }
 
+    /* ---------- products + pagination ---------- */
+
     function renderProducts() {
         if (!filteredBooks.length) {
             productGrid.innerHTML = `<p class="no-results">No books match these filters.</p>`;
+            renderPagination();
             return;
         }
 
-        productGrid.innerHTML = filteredBooks.map(b => {
+        const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE) || 1;
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end   = start + ITEMS_PER_PAGE;
+        const pageBooks = filteredBooks.slice(start, end);
+
+        productGrid.innerHTML = pageBooks.map(b => {
             const qty = inCart(b.id);
             const owned = ownedIds.includes(b.id);
 
@@ -180,17 +201,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="product-footer">
                     <span class="product-price">€${Number(b.price).toFixed(2)}</span>
-
                     ${
                 owned
                     ? `<button class="add-cart-btn" disabled>Already owned</button>`
-                    : `<button class="add-cart-btn" data-id="${b.id}">${qty ? `In cart (${qty})` : "Add to cart"}</button>`
+                    : `<button class="add-cart-btn" data-id="${b.id}">
+                                   ${qty ? `In cart (${qty})` : "Add to cart"}
+                               </button>`
             }
                 </div>
             </article>`;
         }).join("");
+
+        renderPagination();
     }
 
+    function renderPagination() {
+        const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE);
+        const containerId = "paginationControls";
+
+        let container = document.getElementById(containerId);
+        if (!container) {
+            container = document.createElement("div");
+            container.id = containerId;
+            container.className = "pagination";
+            productGrid.insertAdjacentElement("afterend", container);
+        }
+
+        if (totalPages <= 1) {
+            container.innerHTML = "";
+            return;
+        }
+
+        let html = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            html += `<button class="page-btn ${i === currentPage ? "active" : ""}" data-page="${i}">${i}</button>`;
+        }
+
+        container.innerHTML = html;
+
+        container.querySelectorAll(".page-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const page = Number(btn.dataset.page);
+                if (!Number.isNaN(page)) {
+                    currentPage = page;
+                    renderProducts();
+                }
+            });
+        });
+    }
+
+    /* ---------- cart ---------- */
 
     function renderCart() {
         if (!cart.length) {
@@ -220,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
         cartTotalEl.textContent   = `€${cartTotal().toFixed(2)}`;
     }
 
-
     function addToCart(book) {
         const existing = cart.find(c => c.id === book.id);
         if (existing) existing.qty++;
@@ -228,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         saveCart();
         renderCart();
-        renderProducts();
+        renderProducts(); // aktualisiert auch Pagination-Buttons
     }
 
     function changeCartQty(id, delta) {
@@ -243,6 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderProducts();
     }
 
+    /* ---------- checkout ---------- */
 
     function openCheckout() {
         if (!cart.length) return;
@@ -253,7 +314,10 @@ document.addEventListener("DOMContentLoaded", () => {
         checkoutSuccessMsg.classList.add("hidden");
 
         checkoutList.innerHTML = cart.map(item => `
-            <li><span>${escapeHtml(item.title)} × ${item.qty}</span><span>€${(item.price * item.qty).toFixed(2)}</span></li>
+            <li>
+                <span>${escapeHtml(item.title)} × ${item.qty}</span>
+                <span>€${(item.price * item.qty).toFixed(2)}</span>
+            </li>
         `).join("");
 
         checkoutTotal.textContent = `€${cartTotal().toFixed(2)}`;
@@ -284,15 +348,13 @@ document.addEventListener("DOMContentLoaded", () => {
         applyFilters();
     }
 
+    /* ---------- events ---------- */
 
-    /* EVENTS ----------------------------------- */
-
-    if (globalSearch) globalSearch.addEventListener("input", debounce(applyFilters, 150));
+    if (globalSearch) {
+        globalSearch.addEventListener("input", debounce(applyFilters, 150));
+    }
 
     genreChecks.forEach(cb => cb.addEventListener("change", applyFilters));
-
-    // FORMAT → entfernt
-    // formatChecks.forEach(cb => cb.addEventListener("change", applyFilters));
 
     if (priceMinInput) priceMinInput.addEventListener("input", applyFilters);
     if (priceMaxInput) priceMaxInput.addEventListener("input", applyFilters);
@@ -301,9 +363,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (clearFilters) {
         clearFilters.addEventListener("click", () => {
             genreChecks.forEach(cb => cb.checked = false);
-
-            // FORMAT → entfernt
-            // formatChecks.forEach(cb => cb.checked = false);
 
             if (priceMinInput) priceMinInput.value = "";
             if (priceMaxInput) priceMaxInput.value = "";
@@ -323,7 +382,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!ev.target.closest(".product-footer")) {
             const card = ev.target.closest(".product-card");
-            if (card) window.location.href = `../my_books/book_detail.html?id=${card.dataset.id}`;
+            if (card) {
+                window.location.href = `../my_books/book_detail.html?id=${card.dataset.id}`;
+            }
         }
     });
 
@@ -348,7 +409,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (ev.key === "Escape") closeCheckout();
     });
 
-    /* INIT */
+    /* ---------- init ---------- */
+
     loadCart();
     loadOwnedBooks();
     renderCart();
