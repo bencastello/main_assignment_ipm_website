@@ -1,6 +1,6 @@
 console.log("chat.js loaded");
 
-const STORAGE_KEY = "shelves_chat_threads_v4";
+const STORAGE_KEY = "shelves_chat_threads_v5";
 
 const THREADS_CONFIG = [
     { id: "bookclub", label: "Book Club", description: "Shared notes & chaos." },
