@@ -1,6 +1,6 @@
 console.log("chat.js loaded");
 
-const STORAGE_KEY = "shelves_chat_threads_v2";
+const STORAGE_KEY = "shelves_chat_threads_v4";
 
 const THREADS_CONFIG = [
     { id: "bookclub", label: "Book Club", description: "Shared notes & chaos." },
@@ -26,14 +26,14 @@ function loadThreads() {
                     {
                         id: "m1",
                         from: "other",
-                        text: "Welcome to the shelves chat 👋",
+                        text: "Hello fellow reader, this is where the Reading Group Chat would be",
                         ts: nowISO(),
                         read: false
                     },
                     {
                         id: "m2",
                         from: "other",
-                        text: "Use this to dump project chaos and book recs.",
+                        text: "See you on Sunday?",
                         ts: nowISO(),
                         read: false
                     }
