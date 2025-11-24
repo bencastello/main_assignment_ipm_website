@@ -11,37 +11,36 @@ async function initProfile() {
     const me = users.users.find(u => u.id === "me");
     const bookList = books.books;
 
-    // -------- Profil-Basics --------
+
     const usernameEl = document.getElementById("displayUsername");
     const realnameEl = document.getElementById("displayRealname");
     const bioEl = document.getElementById("displayBio");
     const avatarImg = document.getElementById("profileImg");
 
-    // username: falls JSON schon mit @ beginnt, nicht doppeln
+
     const rawUsername = me.username || "";
     const displayUsername = rawUsername.startsWith("@") ? rawUsername : "@" + rawUsername;
     usernameEl.textContent = displayUsername;
     realnameEl.textContent = me.realname || "";
     bioEl.textContent = me.bio || "";
 
-    // Avatar standard aus JSON
     const defaultAvatar = "../data/" + me.avatar;
 
-    // gespeicherten Avatar aus localStorage nehmen, falls vorhanden
+
     const savedAvatar = localStorage.getItem("profileAvatar");
     avatarImg.src = savedAvatar || defaultAvatar;
 
-    // Badges komplett raus
+
     document.getElementById("badgeRow").innerHTML = "";
 
-    // Reading goal
+
     const maxGoal = 50;
     const pct = Math.min(100, Math.round((me.stats.booksThisYear / maxGoal) * 100));
     document.querySelector(".progress-fill").style.width = pct + "%";
     document.getElementById("goalCount").textContent =
         `${me.stats.booksThisYear} / ${maxGoal}`;
 
-    // -------- Preferences (Pills klickbar) --------
+
     buildPills("prefGenres", me.preferences.genres || []);
     buildPills("prefTone", me.preferences.tone || []);
     buildPills("prefFormats", me.preferences.formats || []);
@@ -61,12 +60,11 @@ async function initProfile() {
         });
     }
 
-    // -------- Stats (ohne avg rating) --------
+
     document.getElementById("statBooks").textContent = me.stats.booksThisYear;
     document.getElementById("statPages").textContent = me.stats.pagesRead.toLocaleString();
     document.getElementById("statStreak").textContent = me.stats.streakDays + " d";
 
-    // -------- Random Favorites (4 Stück) --------
     const favWrap = document.getElementById("favoritesRow");
     favWrap.innerHTML = "";
 
@@ -86,7 +84,6 @@ async function initProfile() {
         favWrap.appendChild(el);
     });
 
-    // -------- Currently reading --------
     const current = bookList.find(b => b.id === me.currentReading);
     const block = document.getElementById("currentReadingBlock");
 
@@ -112,7 +109,7 @@ async function initProfile() {
         });
     }
 
-    // -------- Avatar ändern (File Upload + localStorage) --------
+
     const avatarClickable = document.getElementById("avatarClickable");
     const avatarInput = document.getElementById("avatarInput");
 
