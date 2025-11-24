@@ -12,9 +12,21 @@ function getFriendId() {
 
 function coverUrl(book) {
     if (!book || !book.cover) return "";
-    const c = book.cover;
-    if (c.startsWith("http") || c.startsWith("/")) return c;
-    return "../data/" + c;
+
+    let c = book.cover;
+
+    // absolute URLs? durchlassen
+    if (c.startsWith("http")) return c;
+
+    // falls jemand "data/covers/..." reinschreibt: fixen
+    c = c.replace(/^data\//, "");
+
+    // normalisieren
+    if (!c.startsWith("covers/")) {
+        console.warn("⚠️ Unexpected cover path:", c);
+    }
+
+    return "../" + c;
 }
 
 function avatarUrl(friend) {
