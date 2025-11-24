@@ -16,11 +16,23 @@
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">profile</h2>
 
-    <div class="search-wrapper">
+    <!-- ⭐ GLOBAL SEARCH TRIGGER (wie im Store) -->
+    <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
-        <label><input type="text" placeholder="find..."></label>
+        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 </header>
+
+<!-- ⭐ GLOBAL SEARCH OVERLAY (komplett aus store.html übernommen) -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends, store…">
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
 
 <main class="profile-page">
 
@@ -212,7 +224,6 @@
     </section>
 </main>
 
-
 <!-- =========================
      MODAL: EDIT PROFILE
 ========================== -->
@@ -261,7 +272,8 @@
     </button>
 </div>
 
-
+<!-- ⭐ Globale Suche JS -->
+<script src="../search/search.js"></script>
 <script src="profile.js"></script>
 <script src="../animations.js"></script>
 
