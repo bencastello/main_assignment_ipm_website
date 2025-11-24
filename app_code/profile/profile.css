@@ -243,10 +243,13 @@
 .fav-cover {
     width: 100%;
     aspect-ratio: 2/3;
-    background: #333;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.18);
     margin-bottom: 6px;
+    background-color: #333; /* Fallback, falls Bild fehlt */
 }
 
 .fav-title {
@@ -265,6 +268,8 @@
     border-radius: 12px;
     background: linear-gradient(135deg, #283048, #859398);
     box-shadow: 0 12px 26px rgba(0,0,0,0.2);
+    background-size: cover;
+    background-position: center;
 }
 
 .current-info {
@@ -420,6 +425,7 @@
     }
 }
 
+/* search overlay (für global search) */
 .modal-overlay.hidden {
     display: none !important;
     opacity: 0 !important;

@@ -19,6 +19,7 @@
     </div>
 </header>
 
+<!-- global search overlay, falls dein search.js das nutzt -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput" type="text" class="search-input" placeholder="Search shelves…">
@@ -32,10 +33,15 @@
             <img id="profileImg" src="" alt="Profile picture">
             <div class="avatar-overlay">change</div>
         </div>
+        <input type="file" id="avatarInput" accept="image/*" style="display:none">
+
         <h2 class="profile-username" id="displayUsername"></h2>
         <p class="profile-realname" id="displayRealname"></p>
         <p class="profile-bio" id="displayBio"></p>
+
+        <!-- Badges entfernt: leerer Container bleibt für Layout, falls du später wieder was willst -->
         <div class="badge-row" id="badgeRow"></div>
+
         <div class="reading-progress">
             <div class="progress-label">
                 Reading goal: <span id="goalCount"></span>
@@ -44,6 +50,7 @@
                 <div class="progress-fill"></div>
             </div>
         </div>
+
         <button class="edit-profile-btn" id="openEditBtn" type="button">Edit profile</button>
     </section>
 
@@ -78,10 +85,6 @@
                 <div class="stat-item">
                     <div class="stat-label">Pages read</div>
                     <div class="stat-value" id="statPages"></div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Avg. rating</div>
-                    <div class="stat-value" id="statRating"></div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Longest streak</div>
