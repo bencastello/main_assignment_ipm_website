@@ -41,12 +41,8 @@ async function initEntry() {
         const openBtn = document.getElementById("openBookBtn");
         openBtn.textContent = "Buy / view details →";
         openBtn.onclick = () => {
-            // von /curators/entry.html aus eine Ebene hoch,
-            // dann in /my_books/book_detail.html
             window.location.href = `../my_books/book_detail.html?id=${book.id}`;
         };
-
-
     } catch (err) {
         console.error("Entry page error:", err);
     }

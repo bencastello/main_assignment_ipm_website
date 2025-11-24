@@ -4,48 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – curator pick</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="entry.css">
 </head>
-
 <body>
-
 <header class="top-bar">
     <button class="back-button" onclick="window.location.href='curators.html'">←</button>
-
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">curator pick</h2>
-
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves…" readonly>
     </div>
-
-    <img src="../user_icon.png" class="profile-mini"
-         onclick="window.location.href='../profile/profile.html'">
+    <img src="../user_icon.png" class="profile-mini" onclick="window.location.href='../profile/profile.html'">
 </header>
-
 <main id="entryPage" class="entry-page">
-
     <div class="entry-container">
-
         <div id="entryCover" class="entry-cover"></div>
-
         <div class="entry-details">
             <h1 id="entryTitle"></h1>
             <p id="entryCurator" class="entry-curator"></p>
             <div id="entryDescription" class="entry-text"></div>
-
-            <button id="openBookBtn" class="entry-button">
-                Open book →
-            </button>
+            <button id="openBookBtn" class="entry-button">Open book →</button>
         </div>
-
     </div>
-
 </main>
-
 <script src="../search/search.js"></script>
 <script src="entry.js"></script>
 </body>

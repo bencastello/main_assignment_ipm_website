@@ -4,47 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – curators</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="curators.css">
 </head>
-
 <body>
-
 <header class="top-bar">
     <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">curators</h2>
-
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
-
-    <img src="../user_icon.png"
-         class="profile-mini"
-         onclick="window.location.href='../profile/profile.html'">
+    <img src="../user_icon.png" class="profile-mini" onclick="window.location.href='../profile/profile.html'">
 </header>
-
-<!-- GLOBAL SEARCH OVERLAY -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
-        <input id="globalSearchInput" class="search-input"
-               type="text" placeholder="Search books, curators, friends…">
+        <input id="globalSearchInput" class="search-input" type="text" placeholder="Search books, curators, friends…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
-
 <main class="curators-page">
-
     <section id="bowSection" class="bow-section"></section>
-
     <h3 class="curator-picks-title">Curator picks</h3>
     <section id="pickGrid" class="pick-grid"></section>
-
 </main>
-
 <script src="../search/search.js"></script>
 <script src="curators.js"></script>
 </body>

@@ -4,8 +4,6 @@
     padding: 0 24px;
 }
 
-/* BOOK OF THE WEEK */
-
 .bow-section {
     margin-bottom: 40px;
 }
@@ -50,8 +48,6 @@
     font-size: 13px;
     cursor: pointer;
 }
-
-/* CURATOR PICKS */
 
 .curator-picks-title {
     font-size: 18px;
