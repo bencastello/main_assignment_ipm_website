@@ -106,3 +106,19 @@
 .friend-chat-btn {
     background: #eee;
 }
+
+/* wrapper closer to homepage look */
+.friends-wrapper {
+    max-width: 1100px;
+    margin: 140px auto 80px;
+    padding: 0 24px;
+}
+
+/* Damit Search-Overlay NICHT hinter dem Grid ist */
+.search-overlay {
+    z-index: 2000;
+}
+
+.top-bar * {
+    pointer-events: auto;
+}

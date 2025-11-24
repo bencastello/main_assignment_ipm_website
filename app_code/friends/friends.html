@@ -6,6 +6,7 @@
     <title>shelves. – friends</title>
 
     <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="../homepage.css"> <!-- WICHTIG für Search-Styling -->
     <link rel="stylesheet" href="friends.css">
 </head>
 
@@ -13,37 +14,33 @@
 
 <header class="top-bar">
 
-    <!-- Left -->
     <div class="top-left">
         <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-
         <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
         <h2 class="section">friends</h2>
     </div>
 
-    <!-- Center: global search trigger -->
+    <!-- IDENTISCHER SEARCH TRIGGER -->
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 
-    <!-- Right -->
     <div class="top-right">
         <img src="../user_icon.png"
              class="profile-mini"
-             alt="Profile"
              onclick="window.location.href='../profile/profile.html'">
     </div>
 
 </header>
 
-<!-- Global search overlay (needed by search.js) -->
+<!-- GLOBAL SEARCH OVERLAY (1:1 von homepage) -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput"
                type="text"
                class="search-input"
-               placeholder="Search books, curators, friends…">
+               placeholder="Search books, curators, friends, store…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
@@ -54,13 +51,11 @@
         <p>People whose shelves you probably stalk anyway.</p>
     </section>
 
-    <section id="friendsGrid" class="friends-grid">
-        <!-- friends.js renders cards here -->
-    </section>
+    <section id="friendsGrid" class="friends-grid"></section>
 </main>
 
-<script src="friends.js"></script>
 <script src="../search/search.js"></script>
+<script src="friends.js"></script>
 
 </body>
 </html>

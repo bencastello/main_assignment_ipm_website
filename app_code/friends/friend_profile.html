@@ -6,42 +6,51 @@
     <title>shelves – friend</title>
 
     <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="../homepage.css"> <!-- wichtig für Search-Styles -->
     <link rel="stylesheet" href="friend_profile.css">
 </head>
 
 <body>
 
 <header class="top-bar">
-    <button class="back-button" onclick="history.back()">←</button>
 
-    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">friend</h2>
-
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    <div class="top-left">
+        <button class="back-button" onclick="history.back()">←</button>
+        <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+        <h2 class="section">friend</h2>
     </div>
 
-    <img src="../user_icon.png"
-         class="profile-mini"
-         alt="Profile"
-         onclick="window.location.href='../profile/profile.html'">
+    <!-- Identischer Search Trigger wie Homepage -->
+    <div class="search-wrapper" id="searchTrigger">
+        <span class="search-icon">⌕</span>
+        <input type="text"
+               placeholder="Search shelves… (⌘K / Ctrl+K)"
+               readonly>
+    </div>
+
+    <div class="top-right">
+        <img src="../user_icon.png"
+             class="profile-mini"
+             alt="Profile"
+             onclick="window.location.href='../profile/profile.html'">
+    </div>
+
 </header>
 
-<!-- Global search overlay (für search.js notwendig) -->
+<!-- Globale Suche – 1:1 wie Homepage -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput"
                type="text"
                class="search-input"
-               placeholder="Search books, curators, friends…">
+               placeholder="Search books, curators, friends, store…">
+
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
 
-<main id="friendProfile" class="friend-profile-wrapper">
-    <!-- friend_profile.js füllt das -->
-</main>
+<!-- Profil wird komplett per JS befüllt -->
+<main id="friendProfile" class="friend-profile-wrapper"></main>
 
 <script src="../search/search.js"></script>
 <script src="friend_profile.js"></script>
