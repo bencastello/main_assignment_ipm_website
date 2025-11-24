@@ -17,7 +17,7 @@
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">store</h2>
 
-    <!-- ⭐ global search trigger -->
+
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
@@ -29,7 +29,7 @@
          alt="Profile">
 </header>
 
-<!-- ⭐ GLOBAL SEARCH OVERLAY -->
+
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput"
@@ -43,7 +43,7 @@
 
 <main class="store-page">
 
-    <!-- FILTERS -->
+
     <aside class="store-filters">
         <h3>Filters</h3>
 
@@ -56,12 +56,6 @@
             <label><input type="checkbox" name="genre" value="Non-Fiction"> Non-Fiction</label>
         </div>
 
-        <div class="filter-block">
-            <h4>Format</h4>
-            <label><input type="checkbox" name="format" value="Hardcover"> Hardcover</label>
-            <label><input type="checkbox" name="format" value="Paperback"> Paperback</label>
-            <label><input type="checkbox" name="format" value="E-Book"> E-Book</label>
-        </div>
 
         <div class="filter-block">
             <h4>Price</h4>
@@ -88,7 +82,7 @@
     </aside>
 
 
-    <!-- PRODUCTS -->
+
     <section class="store-products">
         <div class="products-header">
             <h3>Books</h3>
@@ -96,12 +90,12 @@
         </div>
 
         <div id="productGrid" class="product-grid">
-            <!-- JS renders cards here -->
+
         </div>
     </section>
 
 
-    <!-- CART -->
+
     <aside class="store-cart">
         <h3>Cart</h3>
         <p id="cartEmptyText" class="cart-empty">Your cart is empty.</p>
@@ -127,7 +121,7 @@
 </main>
 
 
-<!-- CHECKOUT MODAL -->
+
 
 <div id="modalOverlay" class="modal-overlay hidden"></div>
 
@@ -155,26 +149,27 @@
 
             <label class="input-block">
                 Email
-                <input type="email" id="inputEmail" placeholder="you@example.com">
+                <input type="email" id="inputEmail" placeholder="fellow@reader.com">
             </label>
 
             <label class="input-block">
                 Shipping address
                 <textarea id="inputAddress" rows="3"
-                          placeholder="Street, city, country"></textarea>
+                          placeholder="Street, City, Country"></textarea>
             </label>
 
             <label class="input-block">
                 Payment method
                 <select id="inputPayment">
-                    <option value="card">Credit card (mock)</option>
-                    <option value="paypal">PayPal (mock)</option>
+                    <option value="card">Credit card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="paypal">Apple Pay</option>
                     <option value="invoice">Invoice</option>
                 </select>
             </label>
 
             <p class="checkout-note">
-                This is a demo checkout. No real payments are processed.
+                Just for clearance, of course there is no real money involved :)
             </p>
         </section>
     </div>
@@ -187,7 +182,7 @@
     </div>
 
     <p id="checkoutSuccessMsg" class="checkout-success hidden">
-        Thank you! Your order has been placed.
+        Thank you! You'll find the book in your library now :)
     </p>
 </div>
 

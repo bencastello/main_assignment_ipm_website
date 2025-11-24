@@ -19,7 +19,7 @@
     </div>
 </header>
 
-<!-- global search overlay, falls dein search.js das nutzt -->
+
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput" type="text" class="search-input" placeholder="Search shelves…">
@@ -39,7 +39,6 @@
         <p class="profile-realname" id="displayRealname"></p>
         <p class="profile-bio" id="displayBio"></p>
 
-        <!-- Badges entfernt: leerer Container bleibt für Layout, falls du später wieder was willst -->
         <div class="badge-row" id="badgeRow"></div>
 
         <div class="reading-progress">
@@ -104,6 +103,17 @@
         </section>
     </section>
 </main>
+
+<div id="editModalOverlay" class="modal-overlay hidden"></div>
+
+<div id="editModal" class="modal hidden">
+    <h3 style="margin-top:0;">Edit Profile</h3>
+    <p>Will be implemented in the final version.</p>
+
+    <div class="modal-actions">
+        <button id="closeEditModal" class="secondary-btn">Close</button>
+    </div>
+</div>
 
 <script src="../search/search.js"></script>
 <script src="profile.js"></script>
