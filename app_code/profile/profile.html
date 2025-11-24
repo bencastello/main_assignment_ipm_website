@@ -4,52 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – profile</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="profile.css">
 </head>
 
 <body>
-
 <header class="top-bar">
     <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">profile</h2>
-
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 </header>
 
-<!-- Global search overlay -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
-        <input id="globalSearchInput"
-               type="text"
-               class="search-input"
-               placeholder="Search shelves…">
+        <input id="globalSearchInput" type="text" class="search-input" placeholder="Search shelves…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
 
-
 <main class="profile-page">
-
-    <!-- HERO -->
     <section class="profile-hero">
-
         <div class="profile-avatar" id="avatarClickable">
             <img id="profileImg" src="" alt="Profile picture">
             <div class="avatar-overlay">change</div>
         </div>
-
         <h2 class="profile-username" id="displayUsername"></h2>
         <p class="profile-realname" id="displayRealname"></p>
         <p class="profile-bio" id="displayBio"></p>
-
         <div class="badge-row" id="badgeRow"></div>
-
         <div class="reading-progress">
             <div class="progress-label">
                 Reading goal: <span id="goalCount"></span>
@@ -58,44 +44,30 @@
                 <div class="progress-fill"></div>
             </div>
         </div>
-
-        <button class="edit-profile-btn" id="openEditBtn" type="button">
-            Edit profile
-        </button>
-
+        <button class="edit-profile-btn" id="openEditBtn" type="button">Edit profile</button>
     </section>
 
-
-    <!-- GRID -->
     <section class="profile-grid">
-
-        <!-- Preferences -->
         <section class="profile-card preferences-card">
             <h3>Preferences</h3>
-
             <div class="pref-group">
                 <h4>Genres</h4>
                 <div class="pill-row" id="prefGenres"></div>
             </div>
-
             <div class="pref-group">
                 <h4>Tone</h4>
                 <div class="pill-row" id="prefTone"></div>
             </div>
-
             <div class="pref-group">
                 <h4>Formats</h4>
                 <div class="pill-row" id="prefFormats"></div>
             </div>
-
             <div class="pref-group">
                 <h4>Reading pace</h4>
                 <div class="pill-row" id="prefPace"></div>
             </div>
         </section>
 
-
-        <!-- Stats -->
         <section class="profile-card stats-card">
             <h3>Reading summary</h3>
             <div class="stats-grid">
@@ -118,29 +90,19 @@
             </div>
         </section>
 
-
-        <!-- Favorites -->
         <section class="profile-card favorites-card">
             <h3>Favorites</h3>
             <div class="favorites-row" id="favoritesRow"></div>
         </section>
 
-
-        <!-- Currently reading -->
         <section class="profile-card current-card">
             <h3>Currently reading</h3>
-
-            <div class="current-layout" id="currentReadingBlock">
-                <!-- JS fills this -->
-            </div>
+            <div class="current-layout" id="currentReadingBlock"></div>
         </section>
-
     </section>
-
 </main>
 
 <script src="../search/search.js"></script>
 <script src="profile.js"></script>
-
 </body>
 </html>
