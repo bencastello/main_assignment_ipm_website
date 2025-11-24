@@ -5,17 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function initFriends() {
-    const res  = await fetch("../data/friends.json");
+    const res = await fetch("../data/friends.json");
     const json = await res.json();
     const friends = json.friends || [];
-
     const grid = document.getElementById("friendsGrid");
 
     function avatarUrl(friend) {
         const a = friend.avatar || "";
         if (!a) return "../user_icon.png";
         if (a.startsWith("http") || a.startsWith("../")) return a;
-        // avatars liegen unter /data/...
         return "../data/" + a;
     }
 
@@ -56,12 +54,11 @@ async function initFriends() {
 
     render(friends);
 
-    // Card-Klicks: Profil / Chat
     if (grid) {
         grid.addEventListener("click", (ev) => {
             const profileBtn = ev.target.closest(".friend-profile-btn");
-            const chatBtn    = ev.target.closest(".friend-chat-btn");
-            const main       = ev.target.closest(".friend-main");
+            const chatBtn = ev.target.closest(".friend-chat-btn");
+            const main = ev.target.closest(".friend-main");
 
             if (profileBtn) {
                 const id = profileBtn.dataset.id;
@@ -76,9 +73,6 @@ async function initFriends() {
         });
     }
 
-    // Falls du später noch eine lokale Friends-Suche willst:
-    // einfach ein Input mit id="friendsSearch" ergänzen,
-    // dann funktioniert das hier automatisch.
     const search = document.getElementById("friendsSearch");
     if (search) {
         search.addEventListener("input", (e) => {

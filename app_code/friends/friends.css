@@ -1,12 +1,9 @@
-/* === WRAPPER === */
-
 .friends-wrapper {
     max-width: 1100px;
     margin: 150px auto 100px;
     padding: 0 24px;
 }
 
-/* Header (Your friends...) */
 .friends-header {
     text-align: left;
     margin-bottom: 40px;
@@ -24,15 +21,11 @@
     font-size: 14px;
 }
 
-/* === GRID === */
-
 .friends-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 32px;
 }
-
-/* === FRIEND CARD === */
 
 .friend-card {
     background: #fff;
@@ -48,8 +41,6 @@
     box-shadow: 0 18px 42px rgba(0,0,0,0.10);
 }
 
-/* Avatar */
-
 .friend-avatar {
     width: 100px;
     height: 100px;
@@ -58,8 +49,6 @@
     margin: 0 auto 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
-
-/* Username + Name */
 
 .friend-meta h3 {
     margin: 0;
@@ -73,15 +62,11 @@
     color: #666;
 }
 
-/* Tags (genres) */
-
 .friend-genres {
     margin-top: 12px;
     font-size: 12px;
     color: #444;
 }
-
-/* Buttons */
 
 .friend-actions {
     display: flex;
@@ -107,14 +92,12 @@
     background: #eee;
 }
 
-/* wrapper closer to homepage look */
 .friends-wrapper {
     max-width: 1100px;
     margin: 140px auto 80px;
     padding: 0 24px;
 }
 
-/* Damit Search-Overlay NICHT hinter dem Grid ist */
 .search-overlay {
     z-index: 2000;
 }

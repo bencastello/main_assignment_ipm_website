@@ -12,20 +12,9 @@ function getFriendId() {
 
 function coverUrl(book) {
     if (!book || !book.cover) return "";
-
     let c = book.cover;
-
-    // absolute URLs? durchlassen
     if (c.startsWith("http")) return c;
-
-    // falls jemand "data/covers/..." reinschreibt: fixen
     c = c.replace(/^data\//, "");
-
-    // normalisieren
-    if (!c.startsWith("covers/")) {
-        console.warn("⚠️ Unexpected cover path:", c);
-    }
-
     return "../" + c;
 }
 
@@ -52,8 +41,7 @@ async function initFriendProfile() {
     ]);
 
     const friends = friendsData.friends || [];
-    const books   = booksData.books   || [];
-
+    const books = booksData.books || [];
     const friend = friends.find(f => f.id === friendId);
 
     if (!friend) {
@@ -74,15 +62,12 @@ async function initFriendProfile() {
             <p class="username">${friend.username}</p>
             <p class="bio">${friend.bio || ""}</p>
         </section>
-
         <section class="profile-section">
             <h3>Favorite genres</h3>
             <div class="tag-row">
-                ${(friend.favoriteGenres || [])
-        .map(g => `<span class="tag">${g}</span>`).join("")}
+                ${(friend.favoriteGenres || []).map(g => `<span class="tag">${g}</span>`).join("")}
             </div>
         </section>
-
         <section class="profile-section">
             <h3>Currently reading</h3>
             ${
@@ -101,7 +86,6 @@ async function initFriendProfile() {
             : "<p>No current book.</p>"
     }
         </section>
-
         <section class="profile-section">
             <h3>Favorites</h3>
             <div class="favorites-row">

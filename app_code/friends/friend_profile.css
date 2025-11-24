@@ -1,12 +1,8 @@
-/* === LAYOUT === */
-
 .friend-profile-wrapper {
     max-width: 900px;
     margin: 150px auto 120px;
     padding: 0 24px;
 }
-
-/* === HEADER === */
 
 .friend-header {
     text-align: center;
@@ -42,8 +38,6 @@
     line-height: 1.5;
 }
 
-/* === SECTIONS === */
-
 .profile-section {
     background: #fff;
     padding: 24px 26px;
@@ -58,8 +52,6 @@
     font-weight: 700;
 }
 
-/* === TAGS === */
-
 .tag-row {
     display: flex;
     flex-wrap: wrap;
@@ -72,8 +64,6 @@
     background: #eee;
     font-size: 13px;
 }
-
-/* === CURRENTLY READING === */
 
 .book-row {
     display: flex;
@@ -91,8 +81,6 @@
     border-radius: 12px;
     box-shadow: 0 10px 24px rgba(0,0,0,0.15);
 }
-
-/* === FAVORITES === */
 
 .favorites-row {
     display: flex;
@@ -115,4 +103,16 @@
     border-radius: 12px;
     margin-bottom: 8px;
     box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+
+body {
+    background: #f6f6f6;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
