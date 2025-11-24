@@ -16,29 +16,27 @@
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">profile</h2>
 
-    <!-- ⭐ GLOBAL SEARCH TRIGGER (wie im Store) -->
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 </header>
 
-<!-- ⭐ GLOBAL SEARCH OVERLAY (komplett aus store.html übernommen) -->
+<!-- Global search overlay -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput"
                type="text"
                class="search-input"
-               placeholder="Search books, curators, friends, store…">
+               placeholder="Search shelves…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
 
+
 <main class="profile-page">
 
-    <!-- =========================
-         HERO / HEADER
-    ========================== -->
+    <!-- HERO -->
     <section class="profile-hero">
 
         <div class="profile-avatar" id="avatarClickable">
@@ -46,236 +44,103 @@
             <div class="avatar-overlay">change</div>
         </div>
 
-        <h2 class="profile-username" id="displayUsername">@exampleuser</h2>
-        <p class="profile-realname" id="displayRealname">Petra Example</p>
+        <h2 class="profile-username" id="displayUsername"></h2>
+        <p class="profile-realname" id="displayRealname"></p>
+        <p class="profile-bio" id="displayBio"></p>
 
-        <p class="profile-bio" id="displayBio">
-            Book lover. Avid reader of mystery and fantasy. Always finding new stories to get lost in.
-        </p>
-
-        <div class="badge-row">
-            <span class="badge">📘 128 books</span>
-            <span class="badge">🔥 streak 12 days</span>
-            <span class="badge">⭐ curator</span>
-        </div>
+        <div class="badge-row" id="badgeRow"></div>
 
         <div class="reading-progress">
-            <div class="progress-label">Reading goal: <span id="goalCount">34 / 50</span> books</div>
+            <div class="progress-label">
+                Reading goal: <span id="goalCount"></span>
+            </div>
             <div class="progress-bar">
-                <div class="progress-fill" data-progress="68"></div>
+                <div class="progress-fill"></div>
             </div>
         </div>
 
         <button class="edit-profile-btn" id="openEditBtn" type="button">
             Edit profile
         </button>
+
     </section>
 
 
-    <!-- =========================
-         GRID OF CARDS
-    ========================== -->
+    <!-- GRID -->
     <section class="profile-grid">
 
-        <!-- PREFERENCES -->
+        <!-- Preferences -->
         <section class="profile-card preferences-card">
             <h3>Preferences</h3>
 
             <div class="pref-group">
                 <h4>Genres</h4>
-                <div class="pill-row">
-                    <button type="button" class="pill" data-pref="genre-fantasy">Fantasy</button>
-                    <button type="button" class="pill" data-pref="genre-thriller">Thriller</button>
-                    <button type="button" class="pill" data-pref="genre-romance">Romance</button>
-                    <button type="button" class="pill" data-pref="genre-scifi">Science Fiction</button>
-                    <button type="button" class="pill" data-pref="genre-lit">Literary</button>
-                </div>
+                <div class="pill-row" id="prefGenres"></div>
             </div>
 
             <div class="pref-group">
                 <h4>Tone</h4>
-                <div class="pill-row">
-                    <button type="button" class="pill" data-pref="tone-cozy">cozy</button>
-                    <button type="button" class="pill" data-pref="tone-dark">dark</button>
-                    <button type="button" class="pill" data-pref="tone-chaotic">chaotic</button>
-                    <button type="button" class="pill" data-pref="tone-wholesome">wholesome</button>
-                </div>
+                <div class="pill-row" id="prefTone"></div>
             </div>
 
             <div class="pref-group">
-                <h4>Format</h4>
-                <div class="pill-row">
-                    <button type="button" class="pill" data-pref="format-hardcover">Hardcover</button>
-                    <button type="button" class="pill" data-pref="format-paperback">Paperback</button>
-                    <button type="button" class="pill" data-pref="format-ebook">E-Book</button>
-                    <button type="button" class="pill" data-pref="format-audio">Audiobook</button>
-                </div>
+                <h4>Formats</h4>
+                <div class="pill-row" id="prefFormats"></div>
             </div>
 
             <div class="pref-group">
                 <h4>Reading pace</h4>
-                <div class="pill-row">
-                    <button type="button" class="pill" data-pref="pace-slow">slow</button>
-                    <button type="button" class="pill" data-pref="pace-normal">steady</button>
-                    <button type="button" class="pill" data-pref="pace-fast">fast reader</button>
-                </div>
+                <div class="pill-row" id="prefPace"></div>
             </div>
         </section>
 
 
-        <!-- READING STATS -->
+        <!-- Stats -->
         <section class="profile-card stats-card">
             <h3>Reading summary</h3>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-label">Books this year</div>
-                    <div class="stat-value" id="statBooks">34</div>
+                    <div class="stat-value" id="statBooks"></div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Pages read</div>
-                    <div class="stat-value" id="statPages">11,240</div>
+                    <div class="stat-value" id="statPages"></div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Avg. rating</div>
-                    <div class="stat-value" id="statRating">4.2★</div>
+                    <div class="stat-value" id="statRating"></div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Longest streak</div>
-                    <div class="stat-value" id="statStreak">28 d</div>
+                    <div class="stat-value" id="statStreak"></div>
                 </div>
             </div>
         </section>
 
 
-        <!-- FAVORITES -->
+        <!-- Favorites -->
         <section class="profile-card favorites-card">
             <h3>Favorites</h3>
-            <div class="favorites-row">
-                <article class="fav-book">
-                    <div class="fav-cover fav-hp2"></div>
-                    <p class="fav-title">Harry Potter II</p>
-                </article>
-                <article class="fav-book">
-                    <div class="fav-cover fav-faust"></div>
-                    <p class="fav-title">Faust II</p>
-                </article>
-                <article class="fav-book">
-                    <div class="fav-cover fav-friends"></div>
-                    <p class="fav-title">FRIENDS II</p>
-                </article>
-                <article class="fav-book">
-                    <div class="fav-cover fav-hitchhike"></div>
-                    <p class="fav-title">Hitchhike through the Galaxy</p>
-                </article>
-            </div>
+            <div class="favorites-row" id="favoritesRow"></div>
         </section>
 
 
-        <!-- CURRENTLY READING -->
+        <!-- Currently reading -->
         <section class="profile-card current-card">
             <h3>Currently reading</h3>
 
-            <div class="current-layout">
-                <div class="current-cover"></div>
-                <div class="current-info">
-                    <p class="current-title">The Long Way to a Small, Angry Planet</p>
-                    <p class="current-meta">Becky Chambers · cozy sci-fi</p>
-
-                    <div class="current-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" data-progress="64"></div>
-                        </div>
-                        <div class="current-percent">64%</div>
-                    </div>
-
-                    <button class="continue-btn" type="button">Continue reading</button>
-                </div>
+            <div class="current-layout" id="currentReadingBlock">
+                <!-- JS fills this -->
             </div>
         </section>
 
-
-        <!-- ACTIVITY -->
-        <section class="profile-card activity-card">
-            <h3>Activity</h3>
-            <ul class="activity-list">
-                <li>Curator since <strong>2024</strong></li>
-                <li>Created <strong>7</strong> recommendation lists</li>
-                <li>Wrote <strong>15</strong> curator posts</li>
-                <li>Last active <strong>2 hours ago</strong></li>
-            </ul>
-        </section>
-
-
-        <!-- PRIVACY -->
-        <section class="profile-card privacy-card">
-            <h3>Privacy</h3>
-
-            <label class="privacy-option">
-                <input type="radio" name="visibility" value="public" checked>
-                <span>Public</span>
-            </label>
-
-            <label class="privacy-option">
-                <input type="radio" name="visibility" value="friends">
-                <span>Friends only</span>
-            </label>
-        </section>
-
     </section>
+
 </main>
 
-<!-- =========================
-     MODAL: EDIT PROFILE
-========================== -->
-
-<div class="modal-overlay hidden" id="modalOverlay"></div>
-
-<div class="modal edit-modal hidden" id="editModal">
-    <h2>Edit profile</h2>
-
-    <label class="input-block">
-        Username
-        <input type="text" id="editUsername" placeholder="@exampleuser">
-    </label>
-
-    <label class="input-block">
-        Real name
-        <input type="text" id="editRealname" placeholder="Petra Example">
-    </label>
-
-    <label class="input-block">
-        Bio
-        <textarea id="editBio" rows="3"></textarea>
-    </label>
-
-    <div class="modal-actions">
-        <button type="button" class="secondary-btn" id="cancelEditBtn">Cancel</button>
-        <button type="button" class="primary-btn" id="saveProfileBtn">Save</button>
-    </div>
-</div>
-
-
-<!-- =========================
-     MODAL: PHOTO PICKER
-========================== -->
-
-<div class="modal photo-modal hidden" id="photoModal">
-    <h3>Change profile picture</h3>
-
-    <label class="upload-btn">
-        Upload image
-        <input type="file" accept="image/*" id="uploadInput">
-    </label>
-
-    <button type="button" class="random-avatar" id="randomAvatarBtn">
-        Random avatar
-    </button>
-</div>
-
-<!-- ⭐ Globale Suche JS -->
 <script src="../search/search.js"></script>
 <script src="profile.js"></script>
-<script src="../animations.js"></script>
 
 </body>
 </html>
