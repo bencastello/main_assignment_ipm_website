@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelves — friends</title>
+    <title>shelves. – friends</title>
 
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="friends.css">
@@ -13,7 +13,7 @@
 
 <header class="top-bar">
 
-    <!-- Left side -->
+    <!-- Left -->
     <div class="top-left">
         <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
 
@@ -21,36 +21,42 @@
         <h2 class="section">friends</h2>
     </div>
 
-    <!-- Center: Global Search Trigger -->
+    <!-- Center: global search trigger -->
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 
-    <!-- Right side -->
+    <!-- Right -->
     <div class="top-right">
-        <img onclick="window.location.href='../profile/profile.html?id=me'"
-             src="../user_icon.png"
+        <img src="../user_icon.png"
              class="profile-mini"
-             alt="Profile">
+             alt="Profile"
+             onclick="window.location.href='../profile/profile.html'">
     </div>
 
 </header>
 
-<!-- GLOBAL SEARCH OVERLAY (copied from my_books) -->
+<!-- Global search overlay (needed by search.js) -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput"
                type="text"
                class="search-input"
-               placeholder="Search books, curators, friends, store…">
+               placeholder="Search books, curators, friends…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
 
-
 <main class="friends-wrapper">
-    <div id="friendsGrid" class="friends-grid"></div>
+    <section class="friends-header">
+        <h2>Your friends</h2>
+        <p>People whose shelves you probably stalk anyway.</p>
+    </section>
+
+    <section id="friendsGrid" class="friends-grid">
+        <!-- friends.js renders cards here -->
+    </section>
 </main>
 
 <script src="friends.js"></script>

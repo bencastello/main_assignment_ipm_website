@@ -13,8 +13,14 @@
 
 <header class="top-bar">
     <button class="back-button" onclick="history.back()">←</button>
+
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">friend</h2>
+
+    <div class="search-wrapper" id="searchTrigger">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    </div>
 
     <img src="../user_icon.png"
          class="profile-mini"
@@ -22,10 +28,23 @@
          onclick="window.location.href='../profile/profile.html'">
 </header>
 
+<!-- Global search overlay (für search.js notwendig) -->
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput"
+               type="text"
+               class="search-input"
+               placeholder="Search books, curators, friends…">
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
+
 <main id="friendProfile" class="friend-profile-wrapper">
-    <!-- JS füllt das hier ein -->
+    <!-- friend_profile.js füllt das -->
 </main>
 
+<script src="../search/search.js"></script>
 <script src="friend_profile.js"></script>
+
 </body>
 </html>
