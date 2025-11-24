@@ -1,37 +1,49 @@
-console.log("curators.js loaded");
+async function loadJSON(path) {
+    const res = await fetch(path);
+    return await res.json();
+}
 
-const DATA_URL = "../data/curators.json";
-const bookOfWeekSection = document.getElementById("bookOfWeekSection");
-const curatorsGrid = document.getElementById("curatorsGrid");
+document.addEventListener("DOMContentLoaded", initCurators);
 
-// Load data
-async function loadCurators() {
+async function initCurators() {
     try {
-        const res = await fetch(DATA_URL);
-        const data = await res.json();
+        const [curatorData, bookData] = await Promise.all([
+            loadJSON("../data/curators.json"),
+            loadJSON("../data/books.json")
+        ]);
 
-        renderBookOfWeek(data.bookOfWeek);
-        renderCurators(data.curators);
+        const books = bookData.books;
+        const entries = curatorData.entries;
 
+        const bowEntry = entries.find(e => e.id === curatorData.bookOfWeek);
+        const pickEntries = entries.filter(e => e.id !== curatorData.bookOfWeek);
+
+        renderBookOfWeek(bowEntry, books);
+        renderPicks(pickEntries, books);
     } catch (err) {
-        console.error("Curators JSON error:", err);
+        console.error("Curators page error:", err);
     }
 }
 
-// Render BOW
-function renderBookOfWeek(bow) {
-    if (!bow) return;
+function findBook(books, id) {
+    return books.find(b => b.id === id);
+}
 
-    bookOfWeekSection.innerHTML = `
+function renderBookOfWeek(entry, books) {
+    const container = document.getElementById("bowSection");
+    if (!entry) return;
+
+    const book = findBook(books, entry.bookId);
+    if (!book) return;
+
+    container.innerHTML = `
         <div class="bow-card">
-            <div class="bow-cover" style="background-image:url('../${bow.cover}')"></div>
-
+            <div class="bow-cover" style="background-image:url('../${book.cover}')"></div>
             <div class="bow-text">
-                <h2>${bow.title}</h2>
-                <p>${bow.teaser}</p>
-
-                <button class="curator-btn"
-                    onclick="window.location.href='../${bow.detailPage}'">
+                <h2>${book.title}</h2>
+                <p>${entry.tagline}</p>
+                <button class="bow-btn"
+                    onclick="window.location.href='entry.html?id=${entry.id}'">
                     Read more →
                 </button>
             </div>
@@ -39,21 +51,26 @@ function renderBookOfWeek(bow) {
     `;
 }
 
-// Render curator grid
-function renderCurators(list) {
-    curatorsGrid.innerHTML = list.map(c => `
-        <div class="curator-card"
-             onclick="window.location.href='entry.html?id=${c.id}'">
+function renderPicks(entries, books) {
+    const grid = document.getElementById("pickGrid");
+    grid.innerHTML = "";
 
-            <div class="curator-img"
-                style="background-image:url('../${c.image}')"></div>
+    entries.forEach(entry => {
+        const book = findBook(books, entry.bookId);
+        if (!book) return;
 
-            <h3>${c.name}</h3>
-            <p class="curator-bio">${c.bio}</p>
+        const card = document.createElement("article");
+        card.className = "pick-card";
+        card.onclick = () => {
+            window.location.href = `entry.html?id=${entry.id}`;
+        };
 
-            <button class="curator-btn">Read more →</button>
-        </div>
-    `).join("");
+        card.innerHTML = `
+            <div class="pick-cover" style="background-image:url('../${book.cover}')"></div>
+            <div class="pick-title">${book.title}</div>
+            <div class="pick-curator">Picked by ${entry.curator}</div>
+        `;
+
+        grid.appendChild(card);
+    });
 }
-
-document.addEventListener("DOMContentLoaded", loadCurators);

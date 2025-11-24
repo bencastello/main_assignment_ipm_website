@@ -1,40 +1,53 @@
-console.log("entry.js loaded");
-
-async function loadCuratorData() {
-    const res = await fetch("../data/curators.json");
+async function loadJSON(path) {
+    const res = await fetch(path);
     return await res.json();
 }
 
-function getEntryId() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("id");
-}
+document.addEventListener("DOMContentLoaded", initEntry);
 
 async function initEntry() {
-    const data = await loadCuratorData();
-    const entryId = getEntryId();
-
+    const params = new URLSearchParams(window.location.search);
+    const entryId = params.get("id");
     if (!entryId) {
-        console.error("No entry id provided");
+        console.error("No entry id given");
         return;
     }
 
-    const entry = data.entries.find(e => e.id === entryId);
-    if (!entry) {
-        console.error("Entry not found:", entryId);
-        return;
+    try {
+        const [curatorData, bookData] = await Promise.all([
+            loadJSON("../data/curators.json"),
+            loadJSON("../data/books.json")
+        ]);
+
+        const entry = curatorData.entries.find(e => e.id === entryId);
+        if (!entry) {
+            console.error("Entry not found:", entryId);
+            return;
+        }
+
+        const book = bookData.books.find(b => b.id === entry.bookId);
+        if (!book) {
+            console.error("Book not found for entry:", entry.bookId);
+            return;
+        }
+
+        document.getElementById("entryTitle").textContent = book.title;
+        document.getElementById("entryCurator").textContent = `Picked by ${entry.curator}`;
+        document.getElementById("entryDescription").innerHTML = entry.fullText;
+
+        const coverEl = document.getElementById("entryCover");
+        coverEl.style.backgroundImage = `url('../${book.cover}')`;
+
+        const openBtn = document.getElementById("openBookBtn");
+        openBtn.textContent = "Buy / view details →";
+        openBtn.onclick = () => {
+            // von /curators/entry.html aus eine Ebene hoch,
+            // dann in /my_books/book_detail.html
+            window.location.href = `../my_books/book_detail.html?id=${book.id}`;
+        };
+
+
+    } catch (err) {
+        console.error("Entry page error:", err);
     }
-
-    // Fill DOM
-    document.getElementById("entryTitle").textContent = entry.title;
-    document.getElementById("entryCurator").textContent = entry.curator;
-    document.getElementById("entryDescription").innerHTML = entry.fullText;
-
-    const coverEl = document.getElementById("entryCover");
-    coverEl.style.backgroundImage = `url('../${entry.cover}')`;
-
-    const openBtn = document.getElementById("openBookBtn");
-    openBtn.onclick = () => window.location.href = entry.bookLink;
 }
-
-document.addEventListener("DOMContentLoaded", initEntry);

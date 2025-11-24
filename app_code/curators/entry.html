@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelves. – curator entry</title>
+    <title>shelves. – curator pick</title>
 
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="entry.css">
@@ -12,60 +12,41 @@
 <body>
 
 <header class="top-bar">
+    <button class="back-button" onclick="window.location.href='curators.html'">←</button>
 
-    <!-- Left -->
-    <div class="top-left">
-        <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
+    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+    <h2 class="section">curator pick</h2>
 
-        <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-        <h2 class="section">curators</h2>
-    </div>
-
-    <!-- Center: global search trigger -->
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+        <input type="text" placeholder="Search shelves…" readonly>
     </div>
 
-    <!-- Right -->
-    <div class="top-right">
-        <img src="../user_icon.png"
-             class="profile-mini"
-             onclick="window.location.href='../profile/profile.html'">
-    </div>
-
+    <img src="../user_icon.png" class="profile-mini"
+         onclick="window.location.href='../profile/profile.html'">
 </header>
 
-<!-- ⭐ GLOBAL SEARCH OVERLAY (identisch zu my_books/friends/curators) -->
-<div id="globalSearchOverlay" class="search-overlay hidden">
-    <div class="search-panel">
-        <input id="globalSearchInput"
-               type="text"
-               class="search-input"
-               placeholder="Search books, curators, friends, store…">
-        <div id="globalSearchResults" class="search-results"></div>
-    </div>
-</div>
+<main id="entryPage" class="entry-page">
 
-<main class="entry-page">
-
-    <section id="entryCard" class="entry-card">
+    <div class="entry-container">
 
         <div id="entryCover" class="entry-cover"></div>
 
-        <h2 id="entryTitle"></h2>
-        <h4 id="entryCurator"></h4>
+        <div class="entry-details">
+            <h1 id="entryTitle"></h1>
+            <p id="entryCurator" class="entry-curator"></p>
+            <div id="entryDescription" class="entry-text"></div>
 
-        <p id="entryDescription" class="entry-description"></p>
+            <button id="openBookBtn" class="entry-button">
+                Open book →
+            </button>
+        </div>
 
-        <button id="openBookBtn" class="book-btn">Open book →</button>
-
-    </section>
+    </div>
 
 </main>
 
-<script src="entry.js"></script>
 <script src="../search/search.js"></script>
-
+<script src="entry.js"></script>
 </body>
 </html>
