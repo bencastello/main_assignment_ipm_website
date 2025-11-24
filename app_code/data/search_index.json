@@ -78,9 +78,9 @@
   "users": [
     {
       "id": "me",
-      "name": "@exampleuser",
-      "realname": "Petra Example",
-      "bio": "Book lover. Avid reader of fantasy and mystery.",
+      "name": "@fellowreader",
+      "realname": "Fellow Reader",
+      "bio": "Bonjour, ca va?",
       "avatar": "user_icon.png"
     }
   ],
