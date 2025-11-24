@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – reader</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="reader.css">
 </head>
 <body>
-
 <header class="reader-bar">
     <button class="back-button" id="backBtn">←</button>
     <div class="reader-title" id="readerTitle">Book title</div>
-
     <div class="reader-progress">
         <span id="readerProgressLabel">0%</span>
         <div class="progress-bar">
@@ -21,19 +18,16 @@
         </div>
     </div>
 </header>
-
 <main class="reader-main">
     <div class="book" id="book">
         <div class="page left-page" id="leftPage"></div>
         <div class="page right-page" id="rightPage"></div>
     </div>
 </main>
-
 <footer class="reader-footer">
     <button type="button" id="prevChunk" class="secondary-btn">Back</button>
     <button type="button" id="nextChunk" class="primary-btn">Next</button>
 </footer>
-
 <script src="../data/books.js"></script>
 <script src="reader.js"></script>
 <script src="../animations.js"></script>

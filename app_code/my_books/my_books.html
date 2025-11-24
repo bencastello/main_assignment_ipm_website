@@ -4,78 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves.</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="my_books.css">
 </head>
 <body>
-
 <header class="top-bar">
-
-    <!-- Left side -->
     <div class="top-left">
         <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-
         <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
         <h2 class="section">my books</h2>
     </div>
-
-    <!-- Center: Global Search Trigger -->
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
-
-    <!-- Right side -->
     <div class="top-right">
-        <img onclick="window.location.href='../profile/profile.html'"
-             src="../user_icon.png"
-             class="profile-mini"
-             alt="Profile">
+        <img onclick="window.location.href='../profile/profile.html'" src="../user_icon.png" class="profile-mini" alt="Profile">
     </div>
-
 </header>
-<!-- GLOBAL SEARCH OVERLAY (same as homepage) -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
-        <input id="globalSearchInput"
-               type="text"
-               class="search-input"
-               placeholder="Search books, curators, friends, store…">
+        <input id="globalSearchInput" type="text" class="search-input" placeholder="Search books, curators, friends, store…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
-
-
-
 <main class="books-wrapper">
-
-    <!-- CONTINUE READING -->
     <section class="continue-section">
         <h3 class="section-title">Continue Reading</h3>
-
         <div id="continueList" class="horizontal-scroll"></div>
     </section>
-
-    <!-- RECENTLY ADDED -->
     <section class="recent-section">
         <h3 class="section-title">Recently Added</h3>
-
         <div id="recentList" class="horizontal-scroll"></div>
     </section>
-
-    <!-- FULL LIBRARY -->
     <section class="library-section">
         <h3 class="section-title">My Library</h3>
-
         <div id="libraryGrid" class="grid-library"></div>
     </section>
-
 </main>
-
 <script src="my_books.js"></script>
 <script src="../search/search.js"></script>
 <script src="../animations.js"></script>
-
 </body>
 </html>

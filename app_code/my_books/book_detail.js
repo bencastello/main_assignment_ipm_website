@@ -15,8 +15,7 @@ async function loadBooks() {
         const res = await fetch(BOOKS_URL);
         const data = await res.json();
         return data.books || [];
-    } catch (err) {
-        console.error("Could not load books.json", err);
+    } catch {
         return [];
     }
 }
@@ -44,11 +43,9 @@ async function initDetail() {
 
     const isOwned = ownedBooks.includes(book.id);
 
-    // Titel + Autor
     document.getElementById("detailTitle").textContent = book.title;
     document.getElementById("detailAuthor").textContent = book.author;
 
-    // METADATA (nur wenn owned)
     const metaEl = document.getElementById("detailMeta");
     metaEl.textContent = isOwned
         ? [book.genre, book.pages ? `${book.pages} pages` : null, book.price ? `${book.price} €` : null]
@@ -56,11 +53,9 @@ async function initDetail() {
             .join(" · ")
         : book.genre || "";
 
-    // Cover setzen
     const coverEl = document.getElementById("detailCover");
     coverEl.style.backgroundImage = `url('../${book.cover}')`;
 
-    // Progress nur anzeigen, wenn owned
     const progressSection = document.querySelector(".detail-progress");
     if (!isOwned) {
         progressSection.style.display = "none";
@@ -69,24 +64,22 @@ async function initDetail() {
         document.getElementById("detailProgressLabel").textContent = `${progress}%`;
         const fill = document.getElementById("detailProgressFill");
         fill.style.width = "0%";
-        requestAnimationFrame(() => (fill.style.width = `${progress}%`));
+        requestAnimationFrame(() => {
+            fill.style.width = `${progress}%`;
+        });
     }
 
-    // Aktion-Buttons
     const actions = document.querySelector(".detail-actions");
-
     const continueBtn = document.getElementById("continueBtn");
 
     if (isOwned) {
         continueBtn.style.display = "inline-flex";
     } else {
         continueBtn.style.display = "none";
-
         const buyBtn = document.createElement("button");
         buyBtn.textContent = `Buy for ${book.price || "?"} €`;
         buyBtn.className = "primary-btn";
         buyBtn.id = "buyBtn";
-
         buyBtn.addEventListener("click", () => {
             if (!ownedBooks.includes(book.id)) {
                 ownedBooks.push(book.id);
@@ -94,7 +87,6 @@ async function initDetail() {
             }
             window.location.reload();
         });
-
         actions.prepend(buyBtn);
     }
 

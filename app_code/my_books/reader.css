@@ -4,7 +4,6 @@ body {
     font-family: system-ui, sans-serif;
 }
 
-/* Header */
 .reader-bar {
     position: fixed;
     top: 0;
@@ -51,14 +50,12 @@ body {
     transition: width .25s ease-out;
 }
 
-/* Main */
 .reader-main {
     padding: 90px 16px 70px;
     display: flex;
     justify-content: center;
 }
 
-/* BOOK LOOK */
 .book {
     width: 90%;
     max-width: 900px;
@@ -74,8 +71,7 @@ body {
     background: #fffef6;
     padding: 28px;
     border: 1px solid #e9e4d8;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.1),
-    0 10px 25px rgba(0,0,0,0.05);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 0 10px 25px rgba(0,0,0,0.05);
     font-family: Georgia, serif;
     line-height: 1.7;
     overflow-y: auto;
@@ -90,13 +86,11 @@ body {
     border-left: none;
 }
 
-/* Flip animation */
 .page.flipping {
     transform-origin: left;
     transform: rotateY(-180deg);
 }
 
-/* Footer */
 .reader-footer {
     position: fixed;
     left: 0;
