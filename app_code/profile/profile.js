@@ -124,7 +124,7 @@ async function initProfile() {
         reader.readAsDataURL(file);
     });
 
-    // MODAL LOGIC
+
     const editBtn = document.getElementById("openEditBtn");
     const editModal = document.getElementById("editModal");
     const editOverlay = document.getElementById("editModalOverlay");
