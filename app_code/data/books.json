@@ -674,6 +674,19 @@
       "owned": false
     },
     {
+      "id": "dead_poets",
+      "title": "Dead Poets Society",
+      "author": "N. H. Kleinbaum",
+      "genre": "Classics",
+      "format": "Paperback",
+      "price": 13.99,
+      "featured": false,
+      "cover": "covers/dead_poets.jpg",
+      "tags": ["coming of age", "school", "literature", "emotion"],
+      "owned": false
+    },
+
+    {
       "id": "into_wild",
       "title": "Into the Wild",
       "author": "Jon Krakauer",
