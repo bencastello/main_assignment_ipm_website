@@ -1,4 +1,3 @@
-// app_code/for_u/coverflow.js
 console.log("coverflow.js (JSON mode, random 5) loaded.");
 
 const BOOKS_URL = "../data/books.json";
@@ -15,34 +14,24 @@ async function loadBooks() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-
     const books = await loadBooks();
     if (!books.length) {
         console.warn("No books found in books.json");
         return;
     }
 
-    // 🎲 pick 5 random books
-    const randomBooks = books
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 5);
-
-    // -----------------------------
-    // DOM dynamisch erzeugen
-    // -----------------------------
+    const randomBooks = books.sort(() => Math.random() - 0.5).slice(0, 5);
     const track = document.querySelector(".cf-track");
-    track.innerHTML = ""; // clear placeholder items
+    track.innerHTML = "";
 
     randomBooks.forEach((b, i) => {
         const item = document.createElement("div");
         item.classList.add("cf-item");
-
         item.innerHTML = `
             <div class="cf-cover" style="background-image:url('../${b.cover}')"></div>
             <div class="cf-title">${b.title}</div>
             <div class="cf-meta">${b.author}</div>
         `;
-
         item.addEventListener("click", () => {
             if (i === current) {
                 window.location.href = `../my_books/book_detail.html?id=${b.id}`;
@@ -50,37 +39,25 @@ document.addEventListener("DOMContentLoaded", async () => {
                 go(i);
             }
         });
-
         track.appendChild(item);
     });
 
     const items = Array.from(document.querySelectorAll(".cf-item"));
     const left = document.querySelector(".cf-arrow-left");
     const right = document.querySelector(".cf-arrow-right");
-
     let current = 0;
 
     function update() {
         items.forEach((item, i) => {
             const offset = i - current;
             const abs = Math.abs(offset);
-
             const baseX = 260;
             const x = offset * baseX;
-
-            const scale = (i === current)
-                ? 1.7
-                : 1.0 - abs * 0.15;
-
-            const z = (i === current)
-                ? 350
-                : 200 - abs * 120;
-
+            const scale = i === current ? 1.7 : 1 - abs * 0.15;
+            const z = i === current ? 350 : 200 - abs * 120;
             const rot = offset * -35;
-
             const opacity = Math.max(0, 1 - abs * 0.3);
             item.style.opacity = opacity;
-
             item.style.transform = `
                 translate(-50%, -50%)
                 translateX(${x}px)
@@ -88,12 +65,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 rotateY(${rot}deg)
                 scale(${scale})
             `;
-
-            if (i === current) {
-                item.classList.add("is-active");
-            } else {
-                item.classList.remove("is-active");
-            }
+            if (i === current) item.classList.add("is-active");
+            else item.classList.remove("is-active");
         });
     }
 
