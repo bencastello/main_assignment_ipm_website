@@ -11,12 +11,10 @@ async function initProfile() {
     const me = users.users.find(u => u.id === "me");
     const bookList = books.books;
 
-
     const usernameEl = document.getElementById("displayUsername");
     const realnameEl = document.getElementById("displayRealname");
     const bioEl = document.getElementById("displayBio");
     const avatarImg = document.getElementById("profileImg");
-
 
     const rawUsername = me.username || "";
     const displayUsername = rawUsername.startsWith("@") ? rawUsername : "@" + rawUsername;
@@ -26,20 +24,16 @@ async function initProfile() {
 
     const defaultAvatar = "../data/" + me.avatar;
 
-
     const savedAvatar = localStorage.getItem("profileAvatar");
     avatarImg.src = savedAvatar || defaultAvatar;
 
-
     document.getElementById("badgeRow").innerHTML = "";
-
 
     const maxGoal = 50;
     const pct = Math.min(100, Math.round((me.stats.booksThisYear / maxGoal) * 100));
     document.querySelector(".progress-fill").style.width = pct + "%";
     document.getElementById("goalCount").textContent =
         `${me.stats.booksThisYear} / ${maxGoal}`;
-
 
     buildPills("prefGenres", me.preferences.genres || []);
     buildPills("prefTone", me.preferences.tone || []);
@@ -59,7 +53,6 @@ async function initProfile() {
             wrap.appendChild(el);
         });
     }
-
 
     document.getElementById("statBooks").textContent = me.stats.booksThisYear;
     document.getElementById("statPages").textContent = me.stats.pagesRead.toLocaleString();
@@ -109,7 +102,6 @@ async function initProfile() {
         });
     }
 
-
     const avatarClickable = document.getElementById("avatarClickable");
     const avatarInput = document.getElementById("avatarInput");
 
@@ -133,6 +125,27 @@ async function initProfile() {
         };
         reader.readAsDataURL(file);
     });
+
+    // MODAL LOGIC
+    const editBtn = document.getElementById("openEditBtn");
+    const editModal = document.getElementById("editModal");
+    const editOverlay = document.getElementById("editModalOverlay");
+    const closeEditModal = document.getElementById("closeEditModal");
+
+    editBtn.addEventListener("click", () => {
+        editModal.classList.remove("hidden");
+        editModal.classList.add("visible");
+        editOverlay.classList.remove("hidden");
+    });
+
+    const hideModal = () => {
+        editModal.classList.add("hidden");
+        editModal.classList.remove("visible");
+        editOverlay.classList.add("hidden");
+    };
+
+    closeEditModal.addEventListener("click", hideModal);
+    editOverlay.addEventListener("click", hideModal);
 }
 
 document.addEventListener("DOMContentLoaded", initProfile);
