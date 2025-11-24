@@ -1,7 +1,3 @@
-/* -----------------------------------------------------
-   GLOBAL RESETS
------------------------------------------------------ */
-
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
 
 * {
@@ -15,10 +11,6 @@ body {
     background: #ffffff;
     color: #111;
 }
-
-/* -----------------------------------------------------
-   TOP BAR
------------------------------------------------------ */
 
 .top-bar {
     width: 100%;
@@ -38,10 +30,6 @@ body {
     font-weight: 700;
     cursor: pointer;
 }
-
-/* -----------------------------------------------------
-   SEARCH BAR (TOP)
------------------------------------------------------ */
 
 .search-wrapper {
     display: flex;
@@ -63,20 +51,12 @@ body {
     background: transparent;
 }
 
-/* -----------------------------------------------------
-   PROFILE ICON
------------------------------------------------------ */
-
 .profile-mini {
     width: 42px;
     height: 42px;
     border-radius: 50%;
     cursor: pointer;
 }
-
-/* -----------------------------------------------------
-   GLOBAL SEARCH OVERLAY
------------------------------------------------------ */
 
 .global-search-overlay {
     position: fixed;
