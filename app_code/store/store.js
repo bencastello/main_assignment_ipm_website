@@ -1,50 +1,38 @@
-// shelves – store (optimized, format removed + pagination)
 console.log("store.js loaded (format filter removed + pagination)");
 
 document.addEventListener("DOMContentLoaded", () => {
-    const productGrid   = document.getElementById("productGrid");
-    const resultsInfo   = document.getElementById("resultsInfo");
-
-    const globalSearch  = document.getElementById("globalSearch"); // optional / meist null
-    const genreChecks   = Array.from(document.querySelectorAll("input[name='genre']"));
-
+    const productGrid = document.getElementById("productGrid");
+    const resultsInfo = document.getElementById("resultsInfo");
+    const globalSearch = document.getElementById("globalSearch");
+    const genreChecks = Array.from(document.querySelectorAll("input[name='genre']"));
     const priceMinInput = document.getElementById("priceMin");
     const priceMaxInput = document.getElementById("priceMax");
-    const sortSelect    = document.getElementById("sortSelect");
-    const clearFilters  = document.getElementById("clearFiltersBtn");
-
+    const sortSelect = document.getElementById("sortSelect");
+    const clearFilters = document.getElementById("clearFiltersBtn");
     const cartEmptyText = document.getElementById("cartEmptyText");
-    const cartItemsEl   = document.getElementById("cartItems");
+    const cartItemsEl = document.getElementById("cartItems");
     const cartItemCount = document.getElementById("cartItemCount");
-    const cartTotalEl   = document.getElementById("cartTotal");
-
-    const checkoutBtn         = document.getElementById("checkoutBtn");
-    const modalOverlay        = document.getElementById("modalOverlay");
-    const checkoutModal       = document.getElementById("checkoutModal");
-    const checkoutList        = document.getElementById("checkoutList");
-    const checkoutTotal       = document.getElementById("checkoutTotal");
-    const cancelCheckoutBtn   = document.getElementById("cancelCheckoutBtn");
-    const confirmCheckoutBtn  = document.getElementById("confirmCheckoutBtn");
-    const checkoutSuccessMsg  = document.getElementById("checkoutSuccessMsg");
-
-    const inputName    = document.getElementById("inputName");
-    const inputEmail   = document.getElementById("inputEmail");
+    const cartTotalEl = document.getElementById("cartTotal");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const checkoutModal = document.getElementById("checkoutModal");
+    const checkoutList = document.getElementById("checkoutList");
+    const checkoutTotal = document.getElementById("checkoutTotal");
+    const cancelCheckoutBtn = document.getElementById("cancelCheckoutBtn");
+    const confirmCheckoutBtn = document.getElementById("confirmCheckoutBtn");
+    const checkoutSuccessMsg = document.getElementById("checkoutSuccessMsg");
+    const inputName = document.getElementById("inputName");
+    const inputEmail = document.getElementById("inputEmail");
     const inputAddress = document.getElementById("inputAddress");
 
     let allBooks = [];
     let filteredBooks = [];
-
-    // ⭐ Pagination
     let currentPage = 1;
     const ITEMS_PER_PAGE = 10;
-
     let cart = [];
     let ownedIds = [];
-
-    const CART_KEY  = "shelves_store_cart";
+    const CART_KEY = "shelves_store_cart";
     const OWNED_KEY = "ownedBooks";
-
-    /* ---------- utils ---------- */
 
     function debounce(fn, delay = 150) {
         let t;
@@ -110,17 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const json = await res.json();
             allBooks = Array.isArray(json.books) ? json.books : [];
             applyFilters();
-        } catch (err) {
-            console.error(err);
+        } catch {
             productGrid.innerHTML = `<p class="store-error">Could not load books.</p>`;
         }
     }
 
-    /* ---------- filtering ---------- */
-
     function applyFilters() {
         let list = [...allBooks];
-
         const q = (globalSearch?.value || "").trim().toLowerCase();
         if (q) {
             list = list.filter(b => {
@@ -134,13 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        const selectedGenres = genreChecks
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
-
-        if (selectedGenres.length) {
-            list = list.filter(b => selectedGenres.includes(b.genre));
-        }
+        const selectedGenres = genreChecks.filter(cb => cb.checked).map(cb => cb.value);
+        if (selectedGenres.length) list = list.filter(b => selectedGenres.includes(b.genre));
 
         const min = parseFloat(priceMinInput.value || "");
         const max = parseFloat(priceMaxInput.value || "");
@@ -152,12 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sort === "price-asc") return a.price - b.price;
             if (sort === "price-desc") return b.price - a.price;
             if (sort === "title-asc") return a.title.localeCompare(b.title);
-            // default: featured
             return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
         });
 
         filteredBooks = list;
-        currentPage = 1;           // ⭐ immer auf Seite 1 springen nach Filteränderung
+        currentPage = 1;
         renderProducts();
         updateResultsInfo();
     }
@@ -165,8 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateResultsInfo() {
         resultsInfo.textContent = `${filteredBooks.length} of ${allBooks.length} books`;
     }
-
-    /* ---------- products + pagination ---------- */
 
     function renderProducts() {
         if (!filteredBooks.length) {
@@ -176,37 +152,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE) || 1;
-        if (currentPage > totalPages) {
-            currentPage = totalPages;
-        }
+        if (currentPage > totalPages) currentPage = totalPages;
 
         const start = (currentPage - 1) * ITEMS_PER_PAGE;
-        const end   = start + ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
         const pageBooks = filteredBooks.slice(start, end);
 
         productGrid.innerHTML = pageBooks.map(b => {
             const qty = inCart(b.id);
             const owned = ownedIds.includes(b.id);
-
             return `
             <article class="product-card" data-id="${b.id}">
                 ${owned ? `<span class="owned-badge">Owned</span>` : ""}
                 <div class="product-cover" style="background-image:url('${coverUrl(b)}')"></div>
-
                 <div class="product-info">
                     <h4>${escapeHtml(b.title)}</h4>
                     <p class="product-author">${escapeHtml(b.author)}</p>
                     <p class="product-meta"><span>${escapeHtml(b.genre)}</span></p>
                 </div>
-
                 <div class="product-footer">
                     <span class="product-price">€${Number(b.price).toFixed(2)}</span>
                     ${
                 owned
                     ? `<button class="add-cart-btn" disabled>Already owned</button>`
-                    : `<button class="add-cart-btn" data-id="${b.id}">
-                                   ${qty ? `In cart (${qty})` : "Add to cart"}
-                               </button>`
+                    : `<button class="add-cart-btn" data-id="${b.id}">${qty ? `In cart (${qty})` : "Add to cart"}</button>`
             }
                 </div>
             </article>`;
@@ -218,8 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderPagination() {
         const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE);
         const containerId = "paginationControls";
-
         let container = document.getElementById(containerId);
+
         if (!container) {
             container = document.createElement("div");
             container.id = containerId;
@@ -233,11 +202,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let html = "";
-
         for (let i = 1; i <= totalPages; i++) {
             html += `<button class="page-btn ${i === currentPage ? "active" : ""}" data-page="${i}">${i}</button>`;
         }
-
         container.innerHTML = html;
 
         container.querySelectorAll(".page-btn").forEach(btn => {
@@ -251,16 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ---------- cart ---------- */
-
     function renderCart() {
         if (!cart.length) {
             cartItemsEl.innerHTML = "";
             cartEmptyText.style.display = "block";
         } else {
             cartEmptyText.style.display = "none";
-            cartItemsEl.innerHTML = cart
-                .map(item => `
+            cartItemsEl.innerHTML = cart.map(item => `
                 <li class="cart-item">
                     <div class="cart-item-info">
                         <div class="cart-item-title">${escapeHtml(item.title)}</div>
@@ -278,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         cartItemCount.textContent = String(cart.reduce((sum, i) => sum + i.qty, 0));
-        cartTotalEl.textContent   = `€${cartTotal().toFixed(2)}`;
+        cartTotalEl.textContent = `€${cartTotal().toFixed(2)}`;
     }
 
     function addToCart(book) {
@@ -288,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         saveCart();
         renderCart();
-        renderProducts(); // aktualisiert auch Pagination-Buttons
+        renderProducts();
     }
 
     function changeCartQty(id, delta) {
@@ -302,8 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCart();
         renderProducts();
     }
-
-    /* ---------- checkout ---------- */
 
     function openCheckout() {
         if (!cart.length) return;
@@ -348,22 +310,15 @@ document.addEventListener("DOMContentLoaded", () => {
         applyFilters();
     }
 
-    /* ---------- events ---------- */
-
-    if (globalSearch) {
-        globalSearch.addEventListener("input", debounce(applyFilters, 150));
-    }
-
+    if (globalSearch) globalSearch.addEventListener("input", debounce(applyFilters, 150));
     genreChecks.forEach(cb => cb.addEventListener("change", applyFilters));
-
     if (priceMinInput) priceMinInput.addEventListener("input", applyFilters);
     if (priceMaxInput) priceMaxInput.addEventListener("input", applyFilters);
-    if (sortSelect)    sortSelect.addEventListener("change", applyFilters);
+    if (sortSelect) sortSelect.addEventListener("change", applyFilters);
 
     if (clearFilters) {
         clearFilters.addEventListener("click", () => {
             genreChecks.forEach(cb => cb.checked = false);
-
             if (priceMinInput) priceMinInput.value = "";
             if (priceMaxInput) priceMaxInput.value = "";
             sortSelect.value = "featured";
@@ -382,19 +337,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!ev.target.closest(".product-footer")) {
             const card = ev.target.closest(".product-card");
-            if (card) {
-                window.location.href = `../my_books/book_detail.html?id=${card.dataset.id}`;
-            }
+            if (card) window.location.href = `../my_books/book_detail.html?id=${card.dataset.id}`;
         }
     });
 
     cartItemsEl.addEventListener("click", ev => {
-        if (ev.target.classList.contains("cart-minus")) {
-            changeCartQty(ev.target.dataset.id, -1);
-        }
-        if (ev.target.classList.contains("cart-plus")) {
-            changeCartQty(ev.target.dataset.id, +1);
-        }
+        if (ev.target.classList.contains("cart-minus")) changeCartQty(ev.target.dataset.id, -1);
+        if (ev.target.classList.contains("cart-plus")) changeCartQty(ev.target.dataset.id, +1);
     });
 
     checkoutBtn.addEventListener("click", openCheckout);
@@ -408,8 +357,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", ev => {
         if (ev.key === "Escape") closeCheckout();
     });
-
-    /* ---------- init ---------- */
 
     loadCart();
     loadOwnedBooks();
