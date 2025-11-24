@@ -1,61 +1,109 @@
-console.log("friend_profile.js loaded");
+console.log("friend_profile.js loaded (fixed)");
 
-async function loadFriends() {
-    const res = await fetch("../data/friends.json");
-    const data = await res.json();
-    return data.friends || [];
+async function loadJSON(path) {
+    const res = await fetch(path);
+    return res.json();
 }
 
-async function loadBooks() {
-    const res = await fetch("../data/books.json");
-    const data = await res.json();
-    return data.books || [];
-}
-
-function getId() {
+function getFriendId() {
     const params = new URLSearchParams(window.location.search);
     return params.get("id");
 }
 
-async function initFriend() {
-    const [friends, books] = await Promise.all([loadFriends(), loadBooks()]);
-    const id = getId();
-    const profile = friends.find(f => f.id === id);
+function coverUrl(book) {
+    if (!book || !book.cover) return "";
+    let c = book.cover;
+    if (c.startsWith("http")) return c;
+    c = c.replace(/^data\//, "");
+    return "../" + c;
+}
 
-    const container = document.getElementById("friendProfile");
+function avatarUrl(friend) {
+    const a = friend.avatar || "";
+    if (!a) return "../user_icon.png";
+    if (a.startsWith("http") || a.startsWith("../")) return a;
+    return "../data/" + a;
+}
 
-    if (!profile) {
-        container.innerHTML = "<h2>Friend not found</h2>";
+async function initFriendProfile() {
+    const root = document.getElementById("friendProfile");
+    if (!root) return;
+
+    const friendId = getFriendId();
+    if (!friendId) {
+        root.innerHTML = "<p>Friend id missing.</p>";
         return;
     }
 
-    const favBooks = books.filter(b => profile.favBooks?.includes(b.id));
+    const [friendsData, booksData] = await Promise.all([
+        loadJSON("../data/friends.json"),
+        loadJSON("../data/books.json")
+    ]);
 
-    container.innerHTML = `
-        <img class="friend-avatar" src="../${profile.avatar}">
-        <h2 class="friend-name">${profile.name}</h2>
-        <p class="friend-username">@${profile.username}</p>
-        <p class="friend-bio">${profile.bio || ""}</p>
+    const friends = friendsData.friends || [];
+    const books = booksData.books || [];
+    const friend = friends.find(f => f.id === friendId);
 
-        <section class="friend-books-section">
-            <h3>Favorite Books</h3>
-            <div class="friend-books-wrapper">
-                ${favBooks
-        .map(b => `
-                        <div class="friend-book-card"
-                             onclick="window.location.href='../my_books/book_detail.html?id=${b.id}'">
-                            <div class="friend-book-cover"
-                                 style="background-image:url('../${b.cover}')"></div>
-                            <p>${b.title}</p>
-                        </div>
-                    `).join("")}
+    if (!friend) {
+        root.innerHTML = "<p>Friend not found.</p>";
+        return;
+    }
+
+    const favorites = (friend.favorites || [])
+        .map(id => books.find(b => b.id === id))
+        .filter(Boolean);
+
+    const currentBook = books.find(b => b.id === friend.currentReading);
+
+    root.innerHTML = `
+        <section class="friend-header">
+            <img src="${avatarUrl(friend)}" class="friend-avatar-large" alt="">
+            <h2>${friend.realname || friend.username}</h2>
+            <p class="username">${friend.username}</p>
+            <p class="bio">${friend.bio || ""}</p>
+        </section>
+        <section class="profile-section">
+            <h3>Favorite genres</h3>
+            <div class="tag-row">
+                ${(friend.favoriteGenres || []).map(g => `<span class="tag">${g}</span>`).join("")}
+            </div>
+        </section>
+        <section class="profile-section">
+            <h3>Currently reading</h3>
+            ${
+        currentBook
+            ? `
+                <div class="book-row"
+                     onclick="window.location.href='../my_books/book_detail.html?id=${currentBook.id}'">
+                    <div class="book-cover"
+                         style="background-image:url('${coverUrl(currentBook)}')"></div>
+                    <div>
+                        <h4>${currentBook.title}</h4>
+                        <p>${currentBook.author}</p>
+                        <p>${Math.round((friend.currentProgress || 0) * 100)}%</p>
+                    </div>
+                </div>`
+            : "<p>No current book.</p>"
+    }
+        </section>
+        <section class="profile-section">
+            <h3>Favorites</h3>
+            <div class="favorites-row">
+                ${
+        favorites.length
+            ? favorites.map(b => `
+                            <div class="fav-book"
+                                 onclick="window.location.href='../my_books/book_detail.html?id=${b.id}'">
+                                <div class="fav-cover"
+                                     style="background-image:url('${coverUrl(b)}')"></div>
+                                <p>${b.title}</p>
+                            </div>
+                        `).join("")
+            : "<p>No favorites yet.</p>"
+    }
             </div>
         </section>
     `;
 }
 
-document.addEventListener("DOMContentLoaded", initFriend);
-
-icon.addEventListener("click", () => {
-    window.location.href = `friend_profile.html?id=${f.id}`;
-});
+document.addEventListener("DOMContentLoaded", initFriendProfile);

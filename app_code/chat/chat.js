@@ -1,32 +1,12 @@
 console.log("chat.js loaded");
 
-/**
- * State is shared across all pages via localStorage.
- * - On the chat page we render + mark messages as read.
- * - On other pages (homepage etc.) wir benutzen nur die Badge oben rechts.
- */
-
-const STORAGE_KEY = "shelves_chat_threads_v2";
+const STORAGE_KEY = "shelves_chat_threads_v4";
 
 const THREADS_CONFIG = [
-    {
-        id: "bookclub",
-        label: "Book Club",
-        description: "Shared notes & chaos.",
-    },
-    {
-        id: "anna_dm",
-        label: "Anna",
-        description: "1:1 with Anna.",
-    },
-    {
-        id: "fiio_dm",
-        label: "Fiio",
-        description: "Fiio & memes.",
-    }
+    { id: "bookclub", label: "Book Club", description: "Shared notes & chaos." },
+    { id: "anna_dm", label: "Anna", description: "1:1 with Anna." },
+    { id: "fiio_dm", label: "Fiio", description: "Fiio & memes." }
 ];
-
-// ------------ helpers for time / storage ------------
 
 function nowISO() {
     return new Date().toISOString();
@@ -41,20 +21,19 @@ function loadThreads() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) {
-            // seed with a tiny welcome in Book Club
             return {
                 bookclub: [
                     {
                         id: "m1",
                         from: "other",
-                        text: "Welcome to the shelves chat 👋",
+                        text: "Hello fellow reader, this is where the Reading Group Chat would be",
                         ts: nowISO(),
                         read: false
                     },
                     {
                         id: "m2",
                         from: "other",
-                        text: "Use this to dump project chaos and book recs.",
+                        text: "See you on Sunday?",
                         ts: nowISO(),
                         read: false
                     }
@@ -62,9 +41,7 @@ function loadThreads() {
             };
         }
         const parsed = JSON.parse(raw);
-        if (!parsed || typeof parsed !== "object") {
-            return {};
-        }
+        if (!parsed || typeof parsed !== "object") return {};
         return parsed;
     } catch (e) {
         console.error("Failed to parse chat threads from storage", e);
@@ -84,7 +61,6 @@ function ensureThread(threads, id) {
     if (!threads[id]) threads[id] = [];
 }
 
-// calculate unread count across all threads (for header badge)
 function countUnread(threads) {
     let unread = 0;
     Object.values(threads).forEach(list => {
@@ -98,7 +74,6 @@ function countUnread(threads) {
 function updateGlobalBadge(threads) {
     const badge = document.getElementById("chatBadge");
     if (!badge) return;
-
     const unread = countUnread(threads);
     if (unread > 0) {
         badge.hidden = false;
@@ -108,21 +83,13 @@ function updateGlobalBadge(threads) {
     }
 }
 
-// ------------ CHAT PAGE LOGIC ------------
-
 document.addEventListener("DOMContentLoaded", () => {
     let threads = loadThreads();
-
-    // update badge on *every* page that loads this script
     updateGlobalBadge(threads);
 
     const chatRoot = document.getElementById("chatPageRoot");
-    if (!chatRoot) {
-        // not on chat page, done.
-        return;
-    }
+    if (!chatRoot) return;
 
-    // We are on chat/chat.html -> wire full UI
     let activeThreadId = THREADS_CONFIG[0].id;
     ensureThread(threads, activeThreadId);
 
@@ -188,30 +155,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const list = threads[activeThreadId];
 
         if (!list || list.length === 0) {
-            messagesEl.innerHTML = '<div class="chat-empty">No messages yet. Say hi to everyone!</div>';
+            messagesEl.innerHTML =
+                '<div class="chat-empty">No messages yet. Say hi to everyone!</div>';
         } else {
-            messagesEl.innerHTML = list.map(m => {
-                const meClass = m.from === "me" ? " me" : "";
-                const label = m.from === "me" ? "You" : "Them";
-                return `
-                    <div class="message-row${meClass}">
-                        <div class="message-bubble">
-                            <div>${m.text}</div>
-                            <div class="message-meta">${label} · ${formatTime(m.ts)}</div>
+            messagesEl.innerHTML = list
+                .map(m => {
+                    const meClass = m.from === "me" ? " me" : "";
+                    const label = m.from === "me" ? "You" : "Them";
+                    return `
+                        <div class="message-row${meClass}">
+                            <div class="message-bubble">
+                                <div>${m.text}</div>
+                                <div class="message-meta">${label} · ${formatTime(m.ts)}</div>
+                            </div>
                         </div>
-                    </div>
-                `;
-            }).join("");
+                    `;
+                })
+                .join("");
         }
 
-        // scroll to bottom
         messagesEl.scrollTop = messagesEl.scrollHeight;
 
-        // mark as read + update storage + badge
         markThreadRead(activeThreadId);
         saveThreads(threads);
         updateGlobalBadge(threads);
-        renderSidebar(); // refresh badges
+        renderSidebar();
     }
 
     function sendMessage() {
@@ -238,25 +206,23 @@ document.addEventListener("DOMContentLoaded", () => {
         renderMessages();
     }
 
-    // form submit & button click
-    formEl.addEventListener("submit", (e) => {
+    formEl.addEventListener("submit", e => {
         e.preventDefault();
         sendMessage();
     });
 
-    sendBtn.addEventListener("click", (e) => {
+    sendBtn.addEventListener("click", e => {
         e.preventDefault();
         sendMessage();
     });
 
-    inputEl.addEventListener("keydown", (e) => {
+    inputEl.addEventListener("keydown", e => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
     });
 
-    // initial render
     renderSidebar();
     renderMessages();
 });

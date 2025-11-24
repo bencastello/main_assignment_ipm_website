@@ -1,11 +1,9 @@
-/* Layout wrapper */
 .home-wrapper {
     max-width: 1040px;
     margin: 140px auto 120px;
     padding: 0 32px 80px;
 }
 
-/* Hero */
 .home-hero h2 {
     font-size: 28px;
     margin-bottom: 6px;
@@ -17,7 +15,6 @@
     margin-bottom: 32px;
 }
 
-/* Nav pill bar */
 .home-nav {
     display: flex;
     flex-wrap: wrap;
@@ -33,11 +30,9 @@
     cursor: pointer;
     text-align: left;
     min-width: 150px;
-
     display: flex;
     flex-direction: column;
     gap: 2px;
-
     font-size: 13px;
     transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
 }
@@ -58,7 +53,6 @@
     color: #777;
 }
 
-/* Sections */
 .home-section {
     margin-top: 40px;
 }
@@ -85,7 +79,6 @@
     text-decoration: underline;
 }
 
-/* Shared row layout */
 .home-row {
     display: flex;
     gap: 18px;
@@ -94,7 +87,6 @@
     padding-bottom: 6px;
 }
 
-/* Continue reading / Trending cards */
 .home-cont-card,
 .home-trend-card {
     flex: 0 0 160px;
@@ -128,7 +120,6 @@
     font-weight: 500;
 }
 
-/* Featured block */
 .home-featured-card {
     display: flex;
     gap: 24px;
@@ -165,7 +156,6 @@
     color: #666;
 }
 
-/* Search overlay */
 .search-overlay {
     position: fixed;
     inset: 0;
@@ -209,7 +199,6 @@
     overflow-y: auto;
 }
 
-/* Search results (used by search.js) */
 .result-category {
     font-size: 11px;
     text-transform: uppercase;
@@ -257,7 +246,6 @@
     padding: 8px 2px;
 }
 
-/* Chat launcher in header */
 .chat-launcher {
     position: absolute;
     top: 60px;

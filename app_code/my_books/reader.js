@@ -4,46 +4,28 @@ const BOOKS_URL = "../data/books.json";
 const PROGRESS_KEY = "shelves_reader_progress";
 const CHARS_PER_PAGE = 1500;
 
-/* Load books.json */
 async function loadBooks() {
     const res = await fetch(BOOKS_URL);
     const data = await res.json();
     return data.books || [];
 }
 
-/*
-   Load text file of book.
-   This version automatically handles:
-   - "books/hp2.txt"
-   - "data/books/hp2.txt"
-   - "/books/hp2.txt"
-   - "../books/hp2.txt"
-   - ANY relative or root path
-*/
 async function loadBookText(path) {
-
-    // If path starts with "/", "../", "./" → use directly
     if (path.startsWith("/") || path.startsWith("../") || path.startsWith("./")) {
         const res = await fetch(path);
         return await res.text();
     }
-
-    // If path starts with "books/" → treat as "../books/"
     if (path.startsWith("books/")) {
         const res = await fetch("../" + path);
         return await res.text();
     }
-
-    // Otherwise treat as "../data/<path>"
     const res = await fetch("../data/" + path);
     return await res.text();
 }
 
-/* Split text into pages */
 function splitIntoPages(text) {
     const pages = [];
     let pos = 0;
-
     while (pos < text.length) {
         const slice = text.slice(pos, pos + CHARS_PER_PAGE);
         const lastSpace = slice.lastIndexOf(" ");
@@ -51,11 +33,9 @@ function splitIntoPages(text) {
         pages.push(slice.slice(0, cut).trim());
         pos += cut;
     }
-
     return pages;
 }
 
-/* Helpers */
 function getIdFromQuery() {
     const params = new URLSearchParams(window.location.search);
     return params.get("id") || "hitchhike";
@@ -72,7 +52,6 @@ function saveProgress(bookId, page) {
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(all));
 }
 
-/* Init Reader */
 async function initReader() {
     const books = await loadBooks();
     const bookId = getIdFromQuery();
@@ -93,7 +72,6 @@ async function initReader() {
 
     titleEl.textContent = book.title;
 
-    // Load & split pages
     let pages = [];
 
     if (book.textFile) {
@@ -112,17 +90,14 @@ async function initReader() {
     function renderSpread() {
         leftPage.textContent = pages[currentPage] || "";
         rightPage.textContent = pages[currentPage + 1] || "";
-
         const pct = Math.round((currentPage / (pages.length - 1)) * 100);
         progressLabel.textContent = pct + "%";
         progressFill.style.width = pct + "%";
-
         saveProgress(bookId, currentPage);
     }
 
     renderSpread();
 
-    /* Buttons */
     document.getElementById("nextChunk").addEventListener("click", () => {
         if (currentPage < pages.length - 2) {
             rightPage.classList.add("flipping");

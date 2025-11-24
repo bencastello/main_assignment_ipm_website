@@ -69,7 +69,10 @@
     { "id": "bad_blood", "title": "Bad Blood", "author": "John Carreyrou", "genre": "Non-Fiction", "cover": "covers/bad_blood.jpg" },
     { "id": "psychopath_test", "title": "The Psychopath Test", "author": "Jon Ronson", "genre": "Non-Fiction", "cover": "covers/psychopath_test.jpg" },
     { "id": "into_thin_air", "title": "Into Thin Air", "author": "Jon Krakauer", "genre": "Non-Fiction", "cover": "covers/into_thin_air.jpg" },
-    { "id": "into_wild", "title": "Into the Wild", "author": "Jon Krakauer", "genre": "Non-Fiction", "cover": "covers/into_the_wild.jpg" }
+    { "id": "into_wild", "title": "Into the Wild", "author": "Jon Krakauer", "genre": "Non-Fiction", "cover": "covers/into_the_wild.jpg" },
+    {"id": "dead_poets", "title": "Dead Poets Society", "author": "N. H. Kleinbaum", "genre": "Classics", "cover": "covers/dead_poets.jpg"
+    }
+
   ],
 
   "users": [

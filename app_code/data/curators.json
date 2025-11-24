@@ -1,102 +1,49 @@
 {
-  "bookOfWeek": {
-    "id": "faust2",
-    "title": "Book of the Week: Faust II",
-    "author": "Johann Wolfgang von Goethe",
-    "teaser": "Chosen for its surreal depth, philosophical weight and its timeless ability to haunt readers long after the final page.",
-    "cover": "covers/faust2.jpg",
-    "detailPage": "my_books/book_detail.html?id=faust2"
-  },
+  "bookOfWeek": "bow_dead_poets",
 
-  "curators": [
+  "entries": [
     {
-      "id": "sonja",
-      "name": "Sonja",
-      "image": "curators/placeholder.jpg",
-      "bio": "Loves myth-heavy fantasy, lyrical writing and unexpectedly weird books.",
-      "entries": [
-        {
-          "title": "Harry Potter II – Why the sequel hits harder than you remember",
-          "text": "Sonja revisits a childhood classic and explores why Chamber of Secrets still feels unsettling and emotional."
-        },
-        {
-          "title": "Dark fantasy and the beauty of flawed heroes",
-          "text": "An essay on why morally ambiguous characters are more comforting than perfect ones."
-        }
-      ]
+      "id": "bow_dead_poets",
+      "bookId": "dead_poets",
+      "curator": "Taija",
+      "tagline": "A powerful story about individuality, rebellion and poetry at a strict boys' school.",
+      "fullText": "<p>The novel “Dead Poet Society” by N.H. Kleinbaum is the bookish adaptation of the movie with the same title starring our beloved Robin Williams. \nThis book is perfect for truly anyone. No matter if you just like to suffer and want to test how many tears you can shed over a bunch of fictional boys that deserved better or if you simply are too good to just watch the movie but still want to have an opinion. \nThis book will teleport you into eternal autumn (and possibly depression) with it’s truly touching and raw characters. It paints a picture of such relatable human troubles that no matter at which point in life everyone will relate to.\nOnce you’re obsessed with the characters you will start to read and analyse every single reference to poetry, scriptures or bible verses. This will make you realize how detailed the parallels and metaphors, how thought through and simply breathtaking the scene settings are. It will make you want to peel back layer after layer of characters, their past and dreams (and if you have not watched the movie at this point in your journey – what even are you doing?).\nHowever, be warned. If you watched the movie first (and even if you didn’t), you might want to skip some pages. Because in this adaptation the author made some questionable choices of adding (completely unnecessary and out of character) subplots that might make you hate some of your favourite characters.</p>"
     },
 
     {
-      "id": "lara",
-      "name": "Lara",
-      "image": "curators/placeholder.jpg",
-      "bio": "YA addict, soft romance enjoyer, collector of cozy tropes.",
-      "entries": [
-        {
-          "title": "FRIENDS II – The perfectly chaotic comfort read",
-          "text": "Lara explains why FRIENDS II became her emotional support book this year."
-        },
-        {
-          "title": "A guide to romance books that won't make you cringe",
-          "text": "Wholesome, charming and emotionally grounded picks."
-        }
-      ]
+      "id": "pick_secret_history",
+      "bookId": "secret_history",
+      "curator": "Lara K.",
+      "tagline": "Dark academia, obsession and a Greek-class gone very wrong.",
+      "fullText": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vehicula efficitur tortor id egestas. Vestibulum vel nisl et metus consequat placerat id eget velit. Curabitur laoreet risus eu feugiat euismod. Nam interdum dignissim urna, at tristique lorem hendrerit non. Aliquam quis dui ut magna mollis lobortis. Quisque vitae enim sed arcu lacinia molestie. Curabitur bibendum mi sem, id bibendum ex vehicula vel. Suspendisse vehicula ornare neque, quis dignissim augue fringilla rhoncus. Curabitur sodales ex ut justo consectetur ultricies. Etiam molestie suscipit enim sit amet condimentum. Nullam non congue metus, vel convallis libero. Nulla facilisi. Praesent vulputate massa sem. Curabitur semper pharetra enim, sed semper neque rutrum ac. Fusce sagittis commodo mattis. Pellentesque arcu ipsum, eleifend a sem vel, imperdiet volutpat ligula.\n\nDuis ac rutrum augue. Sed dapibus nisi non ipsum vestibulum, et ultrices leo euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque hendrerit purus eros, vel malesuada arcu scelerisque vel. Vivamus blandit arcu ut arcu ullamcorper, a posuere magna ultrices. Proin vel lorem euismod, fermentum leo ac, condimentum magna.\n\nPellentesque sed dignissim lacus. Proin congue imperdiet orci vel venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla quis tellus quis neque mattis tristique sit amet id arcu. Fusce congue, est at rhoncus viverra, magna tortor vehicula est, non aliquet risus elit sed massa. Vestibulum facilisis laoreet sagittis. In laoreet erat urna. Cras lobortis venenatis massa vel consequat. Aenean posuere pulvinar diam, vitae lobortis quam sollicitudin vitae. Nunc eleifend enim tortor, sit amet luctus nunc dictum quis. Ut sagittis magna pharetra turpis molestie, nec sollicitudin sapien consectetur. Nullam faucibus enim libero, eget fermentum erat rhoncus in. Etiam lobortis eget quam sed eleifend. Sed venenatis felis in eros tempus, at laoreet lacus gravida.\n\nProin vel risus ut nisl ornare condimentum eu eget velit. Pellentesque imperdiet, lectus sit amet hendrerit tincidunt, metus neque tincidunt dolor, vel bibendum turpis ipsum et dui. Phasellus facilisis vestibulum tellus, et vulputate turpis blandit eu. Vestibulum pharetra porttitor diam, vitae commodo libero placerat in. Maecenas in quam vitae mi fermentum vestibulum. Suspendisse quam lectus, faucibus sed diam in, dictum pulvinar urna. Duis et commodo nunc.\n\nNam et congue magna, id tempus ex. In eu efficitur risus. Aliquam efficitur purus orci, pretium commodo felis gravida posuere. Morbi vel massa non nibh facilisis volutpat sit amet non sapien. Pellentesque convallis hendrerit dui, vel eleifend arcu interdum vitae. Nullam mi mi, lobortis nec viverra non, lacinia sit amet risus. Ut dictum varius erat, a consectetur turpis venenatis non. Sed nibh nisl, fringilla et nulla eu, sagittis mattis nunc. Donec ut sem molestie, venenatis ipsum non, vulputate mi. Duis leo magna, dignissim sagittis tempus non, rhoncus et leo.\n\nIn vitae dapibus massa, ut elementum orci. Morbi euismod blandit placerat. Quisque in felis sit amet metus tristique tempor ornare nec risus. Integer consectetur a leo eget accumsan. Sed justo tortor, finibus porttitor mauris at, rutrum venenatis nulla. Nunc sed placerat ligula.</p>"
     },
-
     {
-      "id": "petra",
-      "name": "Petra",
-      "image": "curators/placeholder.jpg",
-      "bio": "Non-fiction enthusiast with a weakness for philosophy and space science.",
-      "entries": [
-        {
-          "title": "Hitchhike through the Galaxy – Why absurd sci-fi matters",
-          "text": "Petra argues why humor belongs in space science."
-        },
-        {
-          "title": "The non-fiction books that changed my worldview in 2024",
-          "text": "A look at bold ideas, quiet revolutions, and unexpected insights."
-        }
-      ]
+      "id": "pick_normal_people",
+      "bookId": "normal_people",
+      "curator": "Fio Example",
+      "tagline": "Intimate, messy, painfully honest relationship study.",
+      "fullText": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vehicula efficitur tortor id egestas. Vestibulum vel nisl et metus consequat placerat id eget velit. Curabitur laoreet risus eu feugiat euismod. Nam interdum dignissim urna, at tristique lorem hendrerit non. Aliquam quis dui ut magna mollis lobortis. Quisque vitae enim sed arcu lacinia molestie. Curabitur bibendum mi sem, id bibendum ex vehicula vel. Suspendisse vehicula ornare neque, quis dignissim augue fringilla rhoncus. Curabitur sodales ex ut justo consectetur ultricies. Etiam molestie suscipit enim sit amet condimentum. Nullam non congue metus, vel convallis libero. Nulla facilisi. Praesent vulputate massa sem. Curabitur semper pharetra enim, sed semper neque rutrum ac. Fusce sagittis commodo mattis. Pellentesque arcu ipsum, eleifend a sem vel, imperdiet volutpat ligula.\n\nDuis ac rutrum augue. Sed dapibus nisi non ipsum vestibulum, et ultrices leo euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque hendrerit purus eros, vel malesuada arcu scelerisque vel. Vivamus blandit arcu ut arcu ullamcorper, a posuere magna ultrices. Proin vel lorem euismod, fermentum leo ac, condimentum magna.\n\nPellentesque sed dignissim lacus. Proin congue imperdiet orci vel venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla quis tellus quis neque mattis tristique sit amet id arcu. Fusce congue, est at rhoncus viverra, magna tortor vehicula est, non aliquet risus elit sed massa. Vestibulum facilisis laoreet sagittis. In laoreet erat urna. Cras lobortis venenatis massa vel consequat. Aenean posuere pulvinar diam, vitae lobortis quam sollicitudin vitae. Nunc eleifend enim tortor, sit amet luctus nunc dictum quis. Ut sagittis magna pharetra turpis molestie, nec sollicitudin sapien consectetur. Nullam faucibus enim libero, eget fermentum erat rhoncus in. Etiam lobortis eget quam sed eleifend. Sed venenatis felis in eros tempus, at laoreet lacus gravida.\n\nProin vel risus ut nisl ornare condimentum eu eget velit. Pellentesque imperdiet, lectus sit amet hendrerit tincidunt, metus neque tincidunt dolor, vel bibendum turpis ipsum et dui. Phasellus facilisis vestibulum tellus, et vulputate turpis blandit eu. Vestibulum pharetra porttitor diam, vitae commodo libero placerat in. Maecenas in quam vitae mi fermentum vestibulum. Suspendisse quam lectus, faucibus sed diam in, dictum pulvinar urna. Duis et commodo nunc.\n\nNam et congue magna, id tempus ex. In eu efficitur risus. Aliquam efficitur purus orci, pretium commodo felis gravida posuere. Morbi vel massa non nibh facilisis volutpat sit amet non sapien. Pellentesque convallis hendrerit dui, vel eleifend arcu interdum vitae. Nullam mi mi, lobortis nec viverra non, lacinia sit amet risus. Ut dictum varius erat, a consectetur turpis venenatis non. Sed nibh nisl, fringilla et nulla eu, sagittis mattis nunc. Donec ut sem molestie, venenatis ipsum non, vulputate mi. Duis leo magna, dignissim sagittis tempus non, rhoncus et leo.\n\nIn vitae dapibus massa, ut elementum orci. Morbi euismod blandit placerat. Quisque in felis sit amet metus tristique tempor ornare nec risus. Integer consectetur a leo eget accumsan. Sed justo tortor, finibus porttitor mauris at, rutrum venenatis nulla. Nunc sed placerat ligula.</p>"
     },
-
     {
-      "id": "peter",
-      "name": "Peter",
-      "image": "curators/placeholder.jpg",
-      "bio": "Thriller reader. Obsessed with tension, pacing, and clever twists.",
-      "entries": [
-        {
-          "title": "How to spot a good plot twist",
-          "text": "Peter breaks down what makes a thriller 'twist' feel earned."
-        }
-      ]
+      "id": "pick_dune",
+      "bookId": "dune",
+      "curator": "Anna Weber",
+      "tagline": "Epic sci-fi politics, sandworms, and prophecy.",
+      "fullText": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vehicula efficitur tortor id egestas. Vestibulum vel nisl et metus consequat placerat id eget velit. Curabitur laoreet risus eu feugiat euismod. Nam interdum dignissim urna, at tristique lorem hendrerit non. Aliquam quis dui ut magna mollis lobortis. Quisque vitae enim sed arcu lacinia molestie. Curabitur bibendum mi sem, id bibendum ex vehicula vel. Suspendisse vehicula ornare neque, quis dignissim augue fringilla rhoncus. Curabitur sodales ex ut justo consectetur ultricies. Etiam molestie suscipit enim sit amet condimentum. Nullam non congue metus, vel convallis libero. Nulla facilisi. Praesent vulputate massa sem. Curabitur semper pharetra enim, sed semper neque rutrum ac. Fusce sagittis commodo mattis. Pellentesque arcu ipsum, eleifend a sem vel, imperdiet volutpat ligula.\n\nDuis ac rutrum augue. Sed dapibus nisi non ipsum vestibulum, et ultrices leo euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque hendrerit purus eros, vel malesuada arcu scelerisque vel. Vivamus blandit arcu ut arcu ullamcorper, a posuere magna ultrices. Proin vel lorem euismod, fermentum leo ac, condimentum magna.\n\nPellentesque sed dignissim lacus. Proin congue imperdiet orci vel venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla quis tellus quis neque mattis tristique sit amet id arcu. Fusce congue, est at rhoncus viverra, magna tortor vehicula est, non aliquet risus elit sed massa. Vestibulum facilisis laoreet sagittis. In laoreet erat urna. Cras lobortis venenatis massa vel consequat. Aenean posuere pulvinar diam, vitae lobortis quam sollicitudin vitae. Nunc eleifend enim tortor, sit amet luctus nunc dictum quis. Ut sagittis magna pharetra turpis molestie, nec sollicitudin sapien consectetur. Nullam faucibus enim libero, eget fermentum erat rhoncus in. Etiam lobortis eget quam sed eleifend. Sed venenatis felis in eros tempus, at laoreet lacus gravida.\n\nProin vel risus ut nisl ornare condimentum eu eget velit. Pellentesque imperdiet, lectus sit amet hendrerit tincidunt, metus neque tincidunt dolor, vel bibendum turpis ipsum et dui. Phasellus facilisis vestibulum tellus, et vulputate turpis blandit eu. Vestibulum pharetra porttitor diam, vitae commodo libero placerat in. Maecenas in quam vitae mi fermentum vestibulum. Suspendisse quam lectus, faucibus sed diam in, dictum pulvinar urna. Duis et commodo nunc.\n\nNam et congue magna, id tempus ex. In eu efficitur risus. Aliquam efficitur purus orci, pretium commodo felis gravida posuere. Morbi vel massa non nibh facilisis volutpat sit amet non sapien. Pellentesque convallis hendrerit dui, vel eleifend arcu interdum vitae. Nullam mi mi, lobortis nec viverra non, lacinia sit amet risus. Ut dictum varius erat, a consectetur turpis venenatis non. Sed nibh nisl, fringilla et nulla eu, sagittis mattis nunc. Donec ut sem molestie, venenatis ipsum non, vulputate mi. Duis leo magna, dignissim sagittis tempus non, rhoncus et leo.\n\nIn vitae dapibus massa, ut elementum orci. Morbi euismod blandit placerat. Quisque in felis sit amet metus tristique tempor ornare nec risus. Integer consectetur a leo eget accumsan. Sed justo tortor, finibus porttitor mauris at, rutrum venenatis nulla. Nunc sed placerat ligula.</p>"
     },
-
     {
-      "id": "geri",
-      "name": "Geri",
-      "image": "curators/placeholder.jpg",
-      "bio": "Classic literature defender. Will die for Goethe.",
-      "entries": [
-        {
-          "title": "Why Faust II is still painfully relevant",
-          "text": "Geri explains Goethe's prophecy-like relevance to modern society."
-        }
-      ]
+      "id": "pick_1984",
+      "bookId": "1984",
+      "curator": "Geri M.",
+      "tagline": "A warning disguised as a novel. Uncomfortable and essential.",
+      "fullText": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vehicula efficitur tortor id egestas. Vestibulum vel nisl et metus consequat placerat id eget velit. Curabitur laoreet risus eu feugiat euismod. Nam interdum dignissim urna, at tristique lorem hendrerit non. Aliquam quis dui ut magna mollis lobortis. Quisque vitae enim sed arcu lacinia molestie. Curabitur bibendum mi sem, id bibendum ex vehicula vel. Suspendisse vehicula ornare neque, quis dignissim augue fringilla rhoncus. Curabitur sodales ex ut justo consectetur ultricies. Etiam molestie suscipit enim sit amet condimentum. Nullam non congue metus, vel convallis libero. Nulla facilisi. Praesent vulputate massa sem. Curabitur semper pharetra enim, sed semper neque rutrum ac. Fusce sagittis commodo mattis. Pellentesque arcu ipsum, eleifend a sem vel, imperdiet volutpat ligula.\n\nDuis ac rutrum augue. Sed dapibus nisi non ipsum vestibulum, et ultrices leo euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque hendrerit purus eros, vel malesuada arcu scelerisque vel. Vivamus blandit arcu ut arcu ullamcorper, a posuere magna ultrices. Proin vel lorem euismod, fermentum leo ac, condimentum magna.\n\nPellentesque sed dignissim lacus. Proin congue imperdiet orci vel venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla quis tellus quis neque mattis tristique sit amet id arcu. Fusce congue, est at rhoncus viverra, magna tortor vehicula est, non aliquet risus elit sed massa. Vestibulum facilisis laoreet sagittis. In laoreet erat urna. Cras lobortis venenatis massa vel consequat. Aenean posuere pulvinar diam, vitae lobortis quam sollicitudin vitae. Nunc eleifend enim tortor, sit amet luctus nunc dictum quis. Ut sagittis magna pharetra turpis molestie, nec sollicitudin sapien consectetur. Nullam faucibus enim libero, eget fermentum erat rhoncus in. Etiam lobortis eget quam sed eleifend. Sed venenatis felis in eros tempus, at laoreet lacus gravida.\n\nProin vel risus ut nisl ornare condimentum eu eget velit. Pellentesque imperdiet, lectus sit amet hendrerit tincidunt, metus neque tincidunt dolor, vel bibendum turpis ipsum et dui. Phasellus facilisis vestibulum tellus, et vulputate turpis blandit eu. Vestibulum pharetra porttitor diam, vitae commodo libero placerat in. Maecenas in quam vitae mi fermentum vestibulum. Suspendisse quam lectus, faucibus sed diam in, dictum pulvinar urna. Duis et commodo nunc.\n\nNam et congue magna, id tempus ex. In eu efficitur risus. Aliquam efficitur purus orci, pretium commodo felis gravida posuere. Morbi vel massa non nibh facilisis volutpat sit amet non sapien. Pellentesque convallis hendrerit dui, vel eleifend arcu interdum vitae. Nullam mi mi, lobortis nec viverra non, lacinia sit amet risus. Ut dictum varius erat, a consectetur turpis venenatis non. Sed nibh nisl, fringilla et nulla eu, sagittis mattis nunc. Donec ut sem molestie, venenatis ipsum non, vulputate mi. Duis leo magna, dignissim sagittis tempus non, rhoncus et leo.\n\nIn vitae dapibus massa, ut elementum orci. Morbi euismod blandit placerat. Quisque in felis sit amet metus tristique tempor ornare nec risus. Integer consectetur a leo eget accumsan. Sed justo tortor, finibus porttitor mauris at, rutrum venenatis nulla. Nunc sed placerat ligula.</p>"
     },
-
     {
-      "id": "armin",
-      "name": "Armin",
-      "image": "curators/placeholder.jpg",
-      "bio": "Sci-fi historian. Enjoyer of big concepts and quiet tragedies.",
-      "entries": [
-        {
-          "title": "The evolution of sci-fi worldbuilding",
-          "text": "Armin tracks how the genre redefined imagination across decades."
-        }
-      ]
+      "id": "pick_hitchhike",
+      "bookId": "hitchhike",
+      "curator": "Sarah L.",
+      "tagline": "Chaotic, absurd, deeply comforting sci-fi humour.",
+      "fullText": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vehicula efficitur tortor id egestas. Vestibulum vel nisl et metus consequat placerat id eget velit. Curabitur laoreet risus eu feugiat euismod. Nam interdum dignissim urna, at tristique lorem hendrerit non. Aliquam quis dui ut magna mollis lobortis. Quisque vitae enim sed arcu lacinia molestie. Curabitur bibendum mi sem, id bibendum ex vehicula vel. Suspendisse vehicula ornare neque, quis dignissim augue fringilla rhoncus. Curabitur sodales ex ut justo consectetur ultricies. Etiam molestie suscipit enim sit amet condimentum. Nullam non congue metus, vel convallis libero. Nulla facilisi. Praesent vulputate massa sem. Curabitur semper pharetra enim, sed semper neque rutrum ac. Fusce sagittis commodo mattis. Pellentesque arcu ipsum, eleifend a sem vel, imperdiet volutpat ligula.\n\nDuis ac rutrum augue. Sed dapibus nisi non ipsum vestibulum, et ultrices leo euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque hendrerit purus eros, vel malesuada arcu scelerisque vel. Vivamus blandit arcu ut arcu ullamcorper, a posuere magna ultrices. Proin vel lorem euismod, fermentum leo ac, condimentum magna.\n\nPellentesque sed dignissim lacus. Proin congue imperdiet orci vel venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla quis tellus quis neque mattis tristique sit amet id arcu. Fusce congue, est at rhoncus viverra, magna tortor vehicula est, non aliquet risus elit sed massa. Vestibulum facilisis laoreet sagittis. In laoreet erat urna. Cras lobortis venenatis massa vel consequat. Aenean posuere pulvinar diam, vitae lobortis quam sollicitudin vitae. Nunc eleifend enim tortor, sit amet luctus nunc dictum quis. Ut sagittis magna pharetra turpis molestie, nec sollicitudin sapien consectetur. Nullam faucibus enim libero, eget fermentum erat rhoncus in. Etiam lobortis eget quam sed eleifend. Sed venenatis felis in eros tempus, at laoreet lacus gravida.\n\nProin vel risus ut nisl ornare condimentum eu eget velit. Pellentesque imperdiet, lectus sit amet hendrerit tincidunt, metus neque tincidunt dolor, vel bibendum turpis ipsum et dui. Phasellus facilisis vestibulum tellus, et vulputate turpis blandit eu. Vestibulum pharetra porttitor diam, vitae commodo libero placerat in. Maecenas in quam vitae mi fermentum vestibulum. Suspendisse quam lectus, faucibus sed diam in, dictum pulvinar urna. Duis et commodo nunc.\n\nNam et congue magna, id tempus ex. In eu efficitur risus. Aliquam efficitur purus orci, pretium commodo felis gravida posuere. Morbi vel massa non nibh facilisis volutpat sit amet non sapien. Pellentesque convallis hendrerit dui, vel eleifend arcu interdum vitae. Nullam mi mi, lobortis nec viverra non, lacinia sit amet risus. Ut dictum varius erat, a consectetur turpis venenatis non. Sed nibh nisl, fringilla et nulla eu, sagittis mattis nunc. Donec ut sem molestie, venenatis ipsum non, vulputate mi. Duis leo magna, dignissim sagittis tempus non, rhoncus et leo.\n\nIn vitae dapibus massa, ut elementum orci. Morbi euismod blandit placerat. Quisque in felis sit amet metus tristique tempor ornare nec risus. Integer consectetur a leo eget accumsan. Sed justo tortor, finibus porttitor mauris at, rutrum venenatis nulla. Nunc sed placerat ligula.</p>"
     }
   ]
 }

@@ -1,25 +1,15 @@
 console.log("search.js loaded (universal paths fix)");
 
-/* -----------------------------------------------------------
-   UNIVERSAL ROOT RESOLUTION WITH CURATORS SUPPORT
-   ----------------------------------------------------------- */
-
 function root(path) {
-    // Handle all feature folders that sit one level deep
     if (window.location.pathname.includes("/my_books/")) return "../" + path;
     if (window.location.pathname.includes("/store/")) return "../" + path;
     if (window.location.pathname.includes("/friends/")) return "../" + path;
     if (window.location.pathname.includes("/profile/")) return "../" + path;
-    if (window.location.pathname.includes("/curators/")) return "../" + path;   // <-- THE FIX
+    if (window.location.pathname.includes("/curators/")) return "../" + path;
     if (window.location.pathname.includes("/chat/")) return "../" + path;
     if (window.location.pathname.includes("/for_u/")) return "../" + path;
-    // Homepage or top-level pages
     return path;
 }
-
-/* -----------------------------------------------------------
-   LOAD DATA
-   ----------------------------------------------------------- */
 
 async function loadAllData() {
     const [booksRes, usersRes, friendsRes] = await Promise.all([
@@ -28,7 +18,6 @@ async function loadAllData() {
         fetch(root("data/users.json")),
         fetch(root("data/friends.json"))
     ]);
-
     return {
         books: (await booksRes.json()).books || [],
         users: (await usersRes.json()).users || [],
@@ -36,20 +25,12 @@ async function loadAllData() {
     };
 }
 
-/* -----------------------------------------------------------
-   DOM REFS
-   ----------------------------------------------------------- */
-
-const overlay  = document.getElementById("globalSearchOverlay");
-const input    = document.getElementById("globalSearchInput");
-const results  = document.getElementById("globalSearchResults");
-const trigger  = document.getElementById("searchTrigger");
+const overlay = document.getElementById("globalSearchOverlay");
+const input = document.getElementById("globalSearchInput");
+const results = document.getElementById("globalSearchResults");
+const trigger = document.getElementById("searchTrigger");
 
 let CACHE = null;
-
-/* -----------------------------------------------------------
-   OPEN/CLOSE OVERLAY
-   ----------------------------------------------------------- */
 
 function openSearch() {
     overlay.classList.remove("hidden");
@@ -79,10 +60,6 @@ overlay.addEventListener("click", (e) => {
     if (e.target === overlay) closeSearch();
 });
 
-/* -----------------------------------------------------------
-   PATH HELPERS
-   ----------------------------------------------------------- */
-
 function linkToBook(id) {
     if (window.location.pathname.includes("/my_books/"))
         return `book_detail.html?id=${id}`;
@@ -101,10 +78,6 @@ function linkToFriend(id) {
     return `friends/friend_profile.html?id=${id}`;
 }
 
-/* -----------------------------------------------------------
-   LIVE SEARCH
-   ----------------------------------------------------------- */
-
 input.addEventListener("input", async (e) => {
     const q = e.target.value.trim().toLowerCase();
     if (!q) {
@@ -114,10 +87,8 @@ input.addEventListener("input", async (e) => {
 
     if (!CACHE) CACHE = await loadAllData();
     const { books, users, friends } = CACHE;
-
     const out = [];
 
-    /* BOOKS */
     const foundBooks = books.filter(b =>
         b.title.toLowerCase().includes(q) ||
         (b.author || "").toLowerCase().includes(q)
@@ -138,7 +109,6 @@ input.addEventListener("input", async (e) => {
         });
     }
 
-    /* USERS */
     const foundUsers = users.filter(u =>
         u.name.toLowerCase().includes(q) ||
         u.realname.toLowerCase().includes(q)
@@ -158,7 +128,6 @@ input.addEventListener("input", async (e) => {
         });
     }
 
-    /* FRIENDS */
     const foundFriends = friends.filter(f =>
         f.name.toLowerCase().includes(q)
     );

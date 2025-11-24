@@ -1,167 +1,83 @@
-.entry-page {
-    max-width: 900px;
-    margin: 140px auto 60px;
-    padding: 0 20px;
+.entry-wrapper {
+    max-width: 800px;
+    margin: 140px auto;
+    padding: 0 24px;
 }
 
 .entry-card {
     background: #fff;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
 }
 
 .entry-cover {
-    width: 240px;
-    height: 360px;
-    margin: 0 auto 20px;
-    border-radius: 14px;
+    width: 300px;
+    height: 420px;
+    border-radius: 16px;
+    margin: 0 auto 30px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 14px 30px rgba(0,0,0,0.2);
 }
 
-.entry-description {
-    line-height: 1.6;
-    margin-top: 20px;
-    color: #333;
+.entry-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
 }
 
-.book-btn {
-    margin-top: 24px;
-    padding: 10px 22px;
-    border: none;
-    border-radius: 999px;
-    background: #111;
-    color: #fff;
-    cursor: pointer;
+.entry-curator {
+    text-align: center;
+    margin-top: 4px;
     font-size: 15px;
-}
-/* === GLOBAL SEARCH OVERLAY (copied from my_books.css) === */
-.search-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 120px;
-    z-index: 2000;
-}
-
-.search-overlay.hidden {
-    display: none;
-}
-
-.search-panel {
-    width: min(640px, 90vw);
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 18px 60px rgba(0,0,0,0.25);
-    padding: 18px 20px 10px;
-}
-
-.search-input {
-    width: 100%;
-    border-radius: 999px;
-    border: 1px solid #e0e0e0;
-    padding: 9px 14px;
-    font-size: 14px;
-    outline: none;
-}
-
-.search-input:focus {
-    border-color: #999;
-}
-
-.search-results {
-    margin-top: 14px;
-    max-height: 320px;
-    overflow-y: auto;
-}
-
-.result-category {
-    font-size: 11px;
-    text-transform: uppercase;
-    color: #999;
-    letter-spacing: 0.08em;
-    margin-top: 12px;
-    margin-bottom: 4px;
-}
-
-.result-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 4px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.result-item:hover {
-    background: #f4f4f4;
-}
-
-.result-cover {
-    width: 32px;
-    height: 48px;
-    border-radius: 6px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.result-meta h4 {
-    font-size: 13px;
-    margin-bottom: 2px;
-}
-
-.result-meta p {
-    font-size: 11px;
     color: #777;
 }
 
-.no-results {
-    font-size: 12px;
-    color: #888;
-    padding: 8px 2px;
+.entry-description {
+    margin-top: 26px;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #444;
 }
 
-/* Make search trigger clickable on top bar */
-#searchTrigger {
-    position: relative;
-    z-index: 9999;
-    pointer-events: auto;
+.entry-container {
+    max-width: 900px;
+    margin: 140px auto;
+    display: flex;
+    gap: 40px;
 }
 
-.top-bar {
-    pointer-events: auto;
+.entry-cover {
+    width: 260px;
+    height: 380px;
+    border-radius: 16px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.15);
 }
 
-.top-bar * {
-    pointer-events: auto;
+.entry-details h1 {
+    margin: 0 0 6px;
 }
 
-#globalSearchOverlay.hidden {
-    pointer-events: none;
+.entry-curator {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
 }
 
-#searchTrigger {
-    position: relative;
-    z-index: 9999;
-    pointer-events: auto;
+.entry-text {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 24px;
 }
 
-.top-bar {
-    pointer-events: auto;
+.entry-button {
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
 }
-
-.top-bar * {
-    pointer-events: auto;
-}
-
-#globalSearchOverlay.hidden {
-    pointer-events: none;
-}
-

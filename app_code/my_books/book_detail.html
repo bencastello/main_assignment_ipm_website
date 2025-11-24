@@ -4,35 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – book</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="book_detail.css">
 </head>
 <body>
-
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href= history.back() ">←</button>
-
+    <button class="back-button" onclick="history.back()">←</button>
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
     <h2 class="section">book</h2>
-
     <div class="search-wrapper">
         <span class="search-icon">⌕</span>
         <label><input type="text" placeholder="find..."></label>
     </div>
 </header>
-
 <main class="detail-wrapper">
-
     <section class="detail-layout">
-
         <div class="detail-cover" id="detailCover"></div>
-
         <div class="detail-info">
             <h2 id="detailTitle">Title</h2>
             <p class="detail-author" id="detailAuthor">Author</p>
             <p class="detail-meta" id="detailMeta"></p>
-
             <div class="detail-progress">
                 <div class="progress-label">
                     Progress: <span id="detailProgressLabel">0%</span>
@@ -41,25 +32,17 @@
                     <div class="progress-fill" id="detailProgressFill"></div>
                 </div>
             </div>
-
             <div class="detail-actions">
                 <button type="button" class="primary-btn" id="continueBtn">Continue reading</button>
-                <button type="button" class="secondary-btn" onclick="window.location.href='my_books.html'">
-                    Back to my books
-                </button>
+                <button type="button" class="secondary-btn" onclick="window.location.href='my_books.html'">Back to my books</button>
             </div>
         </div>
     </section>
-
     <section class="detail-description">
         <h3>About this book</h3>
-        <p id="detailDescription">
-            Loading description…
-        </p>
+        <p id="detailDescription">Loading description…</p>
     </section>
-
 </main>
-
 <script src="book_detail.js"></script>
 <script src="../animations.js"></script>
 </body>

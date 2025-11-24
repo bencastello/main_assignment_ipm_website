@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shelves — friends</title>
+    <title>shelves. – friends</title>
 
     <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="../homepage.css">
     <link rel="stylesheet" href="friends.css">
 </head>
 
@@ -13,31 +14,25 @@
 
 <header class="top-bar">
 
-    <!-- Left side -->
     <div class="top-left">
         <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-
         <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
         <h2 class="section">friends</h2>
     </div>
 
-    <!-- Center: Global Search Trigger -->
     <div class="search-wrapper" id="searchTrigger">
         <span class="search-icon">⌕</span>
         <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
     </div>
 
-    <!-- Right side -->
     <div class="top-right">
-        <img onclick="window.location.href='../profile/profile.html?id=me'"
-             src="../user_icon.png"
+        <img src="../user_icon.png"
              class="profile-mini"
-             alt="Profile">
+             onclick="window.location.href='../profile/profile.html'">
     </div>
 
 </header>
 
-<!-- GLOBAL SEARCH OVERLAY (copied from my_books) -->
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
         <input id="globalSearchInput"
@@ -48,13 +43,17 @@
     </div>
 </div>
 
-
 <main class="friends-wrapper">
-    <div id="friendsGrid" class="friends-grid"></div>
+    <section class="friends-header">
+        <h2>Your friends</h2>
+        <p>People whose shelves you probably stalk anyway.</p>
+    </section>
+
+    <section id="friendsGrid" class="friends-grid"></section>
 </main>
 
-<script src="friends.js"></script>
 <script src="../search/search.js"></script>
+<script src="friends.js"></script>
 
 </body>
 </html>

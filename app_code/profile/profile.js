@@ -1,245 +1,141 @@
-console.log("profile.js loaded");
+console.log("profile.js – clean rebuild");
 
-document.addEventListener("DOMContentLoaded", () => {
-    initProfile().catch(err => console.error(err));
-});
+async function loadJSON(path) {
+    return (await fetch(path)).json();
+}
 
 async function initProfile() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id") || "me";
+    const users = await loadJSON("../data/users.json");
+    const books = await loadJSON("../data/books.json");
 
-    const [userData, friendsData, booksData] = await Promise.all([
-        fetch("../data/users.json").then(r => r.json()),
-        fetch("../data/friends.json").then(r => r.json()),
-        fetch("../data/books.json").then(r => r.json())
-    ]);
+    const me = users.users.find(u => u.id === "me");
+    const bookList = books.books;
 
-    const users   = userData.users   || [];
-    const friends = friendsData.friends || [];
-    const books   = booksData.books  || [];
+    // -------- Profil-Basics --------
+    const usernameEl = document.getElementById("displayUsername");
+    const realnameEl = document.getElementById("displayRealname");
+    const bioEl = document.getElementById("displayBio");
+    const avatarImg = document.getElementById("profileImg");
 
-    const userMap = {};
-    users.forEach(u => userMap[u.id] = u);
-    const friendMap = {};
-    friends.forEach(f => friendMap[f.id] = f);
-    const bookMap = {};
-    books.forEach(b => bookMap[b.id] = b);
+    // username: falls JSON schon mit @ beginnt, nicht doppeln
+    const rawUsername = me.username || "";
+    const displayUsername = rawUsername.startsWith("@") ? rawUsername : "@" + rawUsername;
+    usernameEl.textContent = displayUsername;
+    realnameEl.textContent = me.realname || "";
+    bioEl.textContent = me.bio || "";
 
-    let mode = "self";
-    let profile = null;
+    // Avatar standard aus JSON
+    const defaultAvatar = "../data/" + me.avatar;
 
-    if (id === "me" || userMap[id]) {
-        mode = "self";
-        profile = userMap[id] || userMap["me"];
-    } else {
-        mode = "friend";
-        profile = friendMap[id];
-    }
+    // gespeicherten Avatar aus localStorage nehmen, falls vorhanden
+    const savedAvatar = localStorage.getItem("profileAvatar");
+    avatarImg.src = savedAvatar || defaultAvatar;
 
-    if (!profile) {
-        document.body.innerHTML = "<p>Profile not found.</p>";
-        return;
-    }
+    // Badges komplett raus
+    document.getElementById("badgeRow").innerHTML = "";
 
-    // DOM refs (an dein HTML angepasst)
-    const profileImg       = document.getElementById("profileImg");
-    const displayUsername  = document.getElementById("displayUsername");
-    const displayRealname  = document.getElementById("displayRealname");
-    const displayBio       = document.getElementById("displayBio");
-    const goalCount        = document.getElementById("goalCount");
-    const statBooks        = document.getElementById("statBooks");
-    const statPages        = document.getElementById("statPages");
-    const statRating       = document.getElementById("statRating");
-    const statStreak       = document.getElementById("statStreak");
-    const favRow           = document.getElementById("favRow");
-    const currentTitle     = document.querySelector(".current-title");
-    const currentMeta      = document.querySelector(".current-meta");
-    const currentCover     = document.querySelector(".current-cover");
-    const currentPercentEl = document.querySelector(".current-percent");
-    const progressFills    = Array.from(document.querySelectorAll(".progress-fill"));
-    const openEditBtn      = document.getElementById("openEditBtn");
-    const messageBtn       = document.getElementById("messageFriendBtn");
+    // Reading goal
+    const maxGoal = 50;
+    const pct = Math.min(100, Math.round((me.stats.booksThisYear / maxGoal) * 100));
+    document.querySelector(".progress-fill").style.width = pct + "%";
+    document.getElementById("goalCount").textContent =
+        `${me.stats.booksThisYear} / ${maxGoal}`;
 
-    // Basisdaten
-    if (profileImg) {
-        const avatar = profile.avatar || "user_icon.png";
-        profileImg.src = avatar.startsWith("http") || avatar.startsWith("../")
-            ? avatar
-            : "../" + avatar;
-    }
-    if (displayUsername) displayUsername.textContent = profile.username || "@user";
-    if (displayRealname) displayRealname.textContent = profile.realname || profile.name || "";
-    if (displayBio)      displayBio.textContent = profile.bio || "";
+    // -------- Preferences (Pills klickbar) --------
+    buildPills("prefGenres", me.preferences.genres || []);
+    buildPills("prefTone", me.preferences.tone || []);
+    buildPills("prefFormats", me.preferences.formats || []);
+    buildPills("prefPace", [me.preferences.pace].filter(Boolean));
 
-    // Stats & Goal (nur für self sinnvoll, aber wir faken für Freunde notfalls nichts)
-    if (mode === "self" && profile.stats) {
-        if (goalCount) {
-            const goalCur = profile.stats.booksThisYear || 0;
-            const goalTarget = 50;
-            goalCount.textContent = `${goalCur} / ${goalTarget}`;
-        }
-        if (statBooks)  statBooks.textContent  = profile.stats.booksThisYear || 0;
-        if (statPages)  statPages.textContent  = (profile.stats.pagesRead || 0).toLocaleString();
-        if (statRating) statRating.textContent = (profile.stats.avgRating || 0).toFixed(1) + "★";
-        if (statStreak) statStreak.textContent = (profile.stats.streakDays || 0) + " d";
-    }
-
-    // Favorites
-    if (favRow) {
-        const favIds = profile.favorites || profile.favourites || [];
-        favRow.innerHTML = favIds.map(id => {
-            const b = bookMap[id];
-            if (!b) return "";
-            const cover = b.cover ? `style="background-image:url('../${b.cover}')"` : "";
-            return `
-                <article class="fav-book">
-                    <div class="fav-cover" ${cover}></div>
-                    <p class="fav-title">${escapeHtml(b.title)}</p>
-                </article>
-            `;
-        }).join("");
-    }
-
-    // Currently reading
-    const currentId = profile.currentReading;
-    const progress  = profile.currentProgress || 0;
-    if (currentId && bookMap[currentId]) {
-        const b = bookMap[currentId];
-        if (currentTitle) currentTitle.textContent = b.title;
-        if (currentMeta)  currentMeta.textContent  = `${b.author} · ${b.genre}`;
-        if (currentCover) {
-            currentCover.style.backgroundImage = `linear-gradient(135deg, #283048, #859398), url('../${b.cover}')`;
-            currentCover.style.backgroundSize = "cover";
-        }
-        if (currentPercentEl) currentPercentEl.textContent = `${Math.round(progress * 100)}%`;
-        progressFills.forEach(fill => {
-            const target = fill.dataset.progress ? Number(fill.dataset.progress) : progress * 100;
-            requestAnimationFrame(() => {
-                fill.style.width = `${target}%`;
+    function buildPills(id, arr) {
+        const wrap = document.getElementById(id);
+        wrap.innerHTML = "";
+        arr.forEach(p => {
+            const el = document.createElement("button");
+            el.className = "pill selected";
+            el.textContent = p;
+            el.addEventListener("click", () => {
+                el.classList.toggle("selected");
             });
+            wrap.appendChild(el);
         });
     }
 
-    // Edit vs. Message
-    if (mode === "self") {
-        if (openEditBtn) openEditBtn.classList.remove("hidden");
-        if (messageBtn)  messageBtn.classList.add("hidden");
-        setupSelfEditing(profile);
-    } else {
-        if (openEditBtn) openEditBtn.classList.add("hidden");
-        if (messageBtn) {
-            messageBtn.classList.remove("hidden");
-            messageBtn.addEventListener("click", () => {
-                const thread = profile.chatThread || profile.id;
-                window.location.href = `../chat/chat.html?thread=${encodeURIComponent(thread)}`;
-            });
-        }
-    }
-}
+    // -------- Stats (ohne avg rating) --------
+    document.getElementById("statBooks").textContent = me.stats.booksThisYear;
+    document.getElementById("statPages").textContent = me.stats.pagesRead.toLocaleString();
+    document.getElementById("statStreak").textContent = me.stats.streakDays + " d";
 
-function setupSelfEditing(profile) {
-    const modalOverlay    = document.getElementById("modalOverlay");
-    const editModal       = document.getElementById("editModal");
-    const openEditBtn     = document.getElementById("openEditBtn");
-    const editUsername    = document.getElementById("editUsername");
-    const editRealname    = document.getElementById("editRealname");
-    const editBio         = document.getElementById("editBio");
-    const saveProfileBtn  = document.getElementById("saveProfileBtn");
-    const cancelEditBtn   = document.getElementById("cancelEditBtn");
-    const profileImg      = document.getElementById("profileImg");
+    // -------- Random Favorites (4 Stück) --------
+    const favWrap = document.getElementById("favoritesRow");
+    favWrap.innerHTML = "";
+
+    const candidates = bookList.filter(b => !!b.cover);
+    const random4 = [...candidates].sort(() => Math.random() - 0.5).slice(0, 4);
+
+    random4.forEach(b => {
+        const el = document.createElement("article");
+        el.className = "fav-book";
+        el.innerHTML = `
+            <div class="fav-cover" style="background-image:url('../${b.cover}')"></div>
+            <p class="fav-title">${b.title}</p>
+        `;
+        el.addEventListener("click", () => {
+            window.location.href = `../book_detail/book_detail.html?id=${b.id}`;
+        });
+        favWrap.appendChild(el);
+    });
+
+    // -------- Currently reading --------
+    const current = bookList.find(b => b.id === me.currentReading);
+    const block = document.getElementById("currentReadingBlock");
+
+    if (current) {
+        const pr = Math.round((me.currentProgress || 0) * 100);
+        block.innerHTML = `
+            <div class="current-cover" style="background-image:url('../${current.cover}')"></div>
+            <div class="current-info">
+                <p class="current-title">${current.title}</p>
+                <p class="current-meta">${current.author} · ${current.genre}</p>
+                <div class="current-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:${pr}%"></div>
+                    </div>
+                    <div class="current-percent">${pr}%</div>
+                </div>
+                <button class="continue-btn">Continue reading</button>
+            </div>
+        `;
+
+        block.querySelector(".continue-btn").addEventListener("click", () => {
+            window.location.href = `../book_detail/book_detail.html?id=${current.id}`;
+        });
+    }
+
+    // -------- Avatar ändern (File Upload + localStorage) --------
     const avatarClickable = document.getElementById("avatarClickable");
-    const photoModal      = document.getElementById("photoModal");
-    const uploadInput     = document.getElementById("uploadInput");
-    const randomAvatarBtn = document.getElementById("randomAvatarBtn");
+    const avatarInput = document.getElementById("avatarInput");
 
-    const displayUsername = document.getElementById("displayUsername");
-    const displayRealname = document.getElementById("displayRealname");
-    const displayBio      = document.getElementById("displayBio");
+    avatarClickable.addEventListener("click", () => {
+        avatarInput.click();
+    });
 
-    function openModal(modal) {
-        modalOverlay.classList.remove("hidden");
-        modal.classList.remove("hidden");
-        requestAnimationFrame(() => modal.classList.add("visible"));
-    }
+    avatarInput.addEventListener("change", event => {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
 
-    function closeModal(modal) {
-        modal.classList.remove("visible");
-        setTimeout(() => {
-            modal.classList.add("hidden");
-            if (!document.querySelector(".modal.visible")) {
-                modalOverlay.classList.add("hidden");
+        const reader = new FileReader();
+        reader.onload = e => {
+            const dataUrl = e.target.result;
+            avatarImg.src = dataUrl;
+            try {
+                localStorage.setItem("profileAvatar", dataUrl);
+            } catch (err) {
+                console.warn("Could not save avatar to localStorage", err);
             }
-        }, 180);
-    }
-
-    if (openEditBtn) {
-        openEditBtn.addEventListener("click", () => {
-            editUsername.value = displayUsername.textContent.trim();
-            editRealname.value = displayRealname.textContent.trim();
-            editBio.value      = displayBio.textContent.trim();
-            openModal(editModal);
-        });
-    }
-
-    if (saveProfileBtn) {
-        saveProfileBtn.addEventListener("click", () => {
-            const newUser = editUsername.value.trim();
-            const newReal = editRealname.value.trim();
-            const newBio  = editBio.value.trim();
-
-            if (newUser) displayUsername.textContent = newUser;
-            if (newReal) displayRealname.textContent = newReal;
-            displayBio.textContent = newBio || displayBio.textContent;
-
-            closeModal(editModal);
-        });
-    }
-
-    if (cancelEditBtn) cancelEditBtn.addEventListener("click", () => closeModal(editModal));
-
-    if (avatarClickable) {
-        avatarClickable.addEventListener("click", () => openModal(photoModal));
-    }
-
-    if (randomAvatarBtn) {
-        randomAvatarBtn.addEventListener("click", () => {
-            const seed = Math.floor(Math.random() * 100000);
-            profileImg.src = `https://api.dicebear.com/7.x/thumbs/svg?seed=${seed}`;
-            closeModal(photoModal);
-        });
-    }
-
-    if (uploadInput) {
-        uploadInput.addEventListener("change", e => {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = () => { profileImg.src = reader.result; };
-            reader.readAsDataURL(file);
-            closeModal(photoModal);
-        });
-    }
-
-    modalOverlay.addEventListener("click", () => {
-        [editModal, photoModal].forEach(m => {
-            if (!m.classList.contains("hidden")) closeModal(m);
-        });
-    });
-
-    document.addEventListener("keydown", e => {
-        if (e.key === "Escape") {
-            [editModal, photoModal].forEach(m => {
-                if (!m.classList.contains("hidden")) closeModal(m);
-            });
-        }
+        };
+        reader.readAsDataURL(file);
     });
 }
 
-function escapeHtml(str) {
-    return String(str || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
+document.addEventListener("DOMContentLoaded", initProfile);

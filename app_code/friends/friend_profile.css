@@ -1,61 +1,118 @@
 .friend-profile-wrapper {
     max-width: 900px;
-    margin: 140px auto 60px;
+    margin: 150px auto 120px;
     padding: 0 24px;
-    text-align: center;
 }
 
-.friend-avatar {
+.friend-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.friend-avatar-large {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
     margin-bottom: 16px;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
 }
 
-.friend-name {
+.friend-header h2 {
     font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 4px;
+    margin: 0;
+    font-weight: 700;
 }
 
-.friend-username {
+.username {
+    margin-top: 6px;
     font-size: 15px;
     color: #777;
-    margin-bottom: 16px;
 }
 
-.friend-bio {
-    max-width: 480px;
-    margin: 0 auto 24px;
+.bio {
+    max-width: 520px;
+    margin: 16px auto 0;
     font-size: 15px;
     color: #444;
+    line-height: 1.5;
 }
 
-.friend-books-section {
-    margin-top: 40px;
-    text-align: left;
+.profile-section {
+    background: #fff;
+    padding: 24px 26px;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
 }
 
-.friend-books-wrapper {
+.profile-section h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.tag-row {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #eee;
+    font-size: 13px;
+}
+
+.book-row {
+    display: flex;
     gap: 16px;
-    padding: 12px 0;
+    align-items: center;
+    cursor: pointer;
 }
 
-.friend-book-card {
-    min-width: 120px;
-    text-align: center;
-}
-
-.friend-book-cover {
-    width: 120px;
-    height: 180px;
-    border-radius: 12px;
+.book-cover {
+    width: 80px;
+    height: 120px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    margin-bottom: 6px;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+.favorites-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 8px 2px;
+}
+
+.fav-book {
+    min-width: 120px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.fav-cover {
+    width: 120px;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+
+body {
+    background: #f6f6f6;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }

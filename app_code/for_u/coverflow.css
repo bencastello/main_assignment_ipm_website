@@ -1,7 +1,3 @@
-/* ===========================
-   COVERFLOW – FINAL VERSION
-   =========================== */
-
 .foru-center {
     max-width: 1000px;
     margin: 0 auto;
@@ -14,7 +10,6 @@
     padding-top: 140px;
 }
 
-/* Wrapper für alles – bleibt breit */
 .coverflow-wrapper {
     width: 100%;
     position: relative;
@@ -24,30 +19,22 @@
     justify-content: center;
 }
 
-/* ======================================
-   Arrows – perfekt zentriert links/rechts
-   ====================================== */
-
 .cf-arrow {
     width: 48px;
     height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: transparent;
     border: none;
     font-size: 34px;
     opacity: 0.5;
     cursor: pointer;
-
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-
-    z-index: 9999; /* <-- wichtig */
+    z-index: 9999;
 }
-
 
 .cf-arrow:hover {
     opacity: 1;
@@ -60,10 +47,6 @@
 .cf-arrow-right {
     right: calc(50% - 420px);
 }
-
-/* ======================================
-   Track – absolut zentriert
-   ====================================== */
 
 .cf-viewport {
     width: 100%;
@@ -78,18 +61,12 @@
     transform-style: preserve-3d;
 }
 
-/* ======================================
-   Items – absolut in der Mitte
-   ====================================== */
-
 .cf-item {
     position: absolute;
     left: 50%;
     top: 50%;
-
     transform-origin: center center;
     opacity: 0;
-
     transition: transform 300ms ease, opacity 300ms ease;
     text-align: center;
     z-index: 1;
@@ -101,26 +78,15 @@
     opacity: 1;
 }
 
-/* ======================================
-   Cover style
-   ====================================== */
-
 .cf-cover {
     width: 100%;
     height: 320px;
-
-    border-radius: 14px; /* optional, passt optisch zu deiner Seite */
-    background-size: cover;      /* <<< fix */
-    background-position: center;  /* <<< fix */
-    background-repeat: no-repeat; /* <<< fix */
-
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     box-shadow: 0 20px 40px rgba(0,0,0,0.18);
 }
-
-
-/* ======================================
-   Text unter Covers
-   ====================================== */
 
 .cf-title {
     margin: 12px 0 2px;
@@ -133,7 +99,6 @@
     color: #555;
 }
 
-/* Textblock unten */
 .cf-info {
     margin-top: 20px;
 }
@@ -147,10 +112,6 @@
     font-size: 14px;
     color: #444;
 }
-
-/* ======================================
-   Placeholder Colors
-   ====================================== */
 
 .cf-cover.hp2 {
     background: linear-gradient(135deg, #182848, #4b6cb7);
@@ -168,7 +129,6 @@
     background: linear-gradient(135deg, #11998e, #38ef7d);
 }
 
-/* === GLOBAL SEARCH OVERLAY === */
 .search-overlay {
     position: fixed;
     inset: 0;
@@ -257,7 +217,6 @@
     padding: 8px 2px;
 }
 
-/* Required for triggered search */
 #searchTrigger {
     position: relative;
     z-index: 9999;
