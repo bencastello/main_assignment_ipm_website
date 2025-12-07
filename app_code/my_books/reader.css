@@ -63,8 +63,11 @@ body {
     display: flex;
     position: relative;
     perspective: 2000px;
-    gap: 0;
 }
+
+/* ------------------------- */
+/* PAGE + CURL EFFECT        */
+/* ------------------------- */
 
 .page {
     flex: 1;
@@ -74,8 +77,54 @@ body {
     box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 0 10px 25px rgba(0,0,0,0.05);
     font-family: Georgia, serif;
     line-height: 1.7;
-    overflow-y: hidden;
-    transition: transform 0.7s ease;
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* The wrapper does the actual curl */
+.page-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: inherit;
+    background: inherit;
+    border: inherit;
+    box-shadow: inherit;
+    transform-origin: left center;
+    will-change: transform, opacity;
+}
+
+/* Curl shadow */
+.page-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -30%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+            to left,
+            rgba(0,0,0,0.25),
+            rgba(0,0,0,0.05),
+            rgba(0,0,0,0)
+    );
+    opacity: 0;
+    transition: opacity .4s ease;
+    pointer-events: none;
+}
+
+/* Flip animation */
+.page.flipping .page-wrapper {
+    transform: rotateY(-160deg) translateX(-2px);
+    transition: transform .4s ease-out;
+}
+
+/* Shadow appears during flip */
+.page.flipping .page-wrapper::after {
+    opacity: 1;
 }
 
 .left-page {
@@ -84,11 +133,6 @@ body {
 
 .right-page {
     border-left: none;
-}
-
-.page.flipping {
-    transform-origin: left;
-    transform: rotateY(-180deg);
 }
 
 .reader-footer {
@@ -121,6 +165,7 @@ body {
     background: #eee;
 }
 
+/* Page numbers */
 .page-number {
     position: absolute;
     bottom: 10px;
@@ -129,10 +174,11 @@ body {
     font-family: Georgia, serif;
     pointer-events: none;
 }
+
 .left-page .page-number {
     left: 20px;
 }
+
 .right-page .page-number {
     right: 20px;
 }
-
