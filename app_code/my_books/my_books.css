@@ -194,7 +194,7 @@
     padding: 8px 2px;
 }
 
-#searchTrigger {
+.searchTrigger {
     position: relative;
     z-index: 9999;
     pointer-events: auto;
