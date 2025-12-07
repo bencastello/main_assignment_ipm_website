@@ -62,6 +62,7 @@ async function initReader() {
     const progressFill = document.getElementById("readerProgressFill");
     const leftPage = document.getElementById("leftPage");
     const rightPage = document.getElementById("rightPage");
+    const pageNumberEl = document.getElementById("pageNumber");
 
     if (!book) {
         titleEl.textContent = "Not found";
@@ -87,14 +88,48 @@ async function initReader() {
 
     let currentPage = loadProgress(bookId).page;
 
+    function updatePageNumber() {
+        const left = currentPage + 1;
+        const right = currentPage + 2 <= pages.length ? currentPage + 2 : null;
+
+        if (right) {
+            pageNumberEl.textContent = `Page ${left}–${right}`;
+        } else {
+            pageNumberEl.textContent = `Page ${left}`;
+        }
+    }
+
     function renderSpread() {
         leftPage.textContent = pages[currentPage] || "";
         rightPage.textContent = pages[currentPage + 1] || "";
+
+        const leftNum = currentPage + 1;
+        const rightNum = currentPage + 2 <= pages.length ? currentPage + 2 : null;
+
+        const oldLeft = leftPage.querySelector(".page-number");
+        if (oldLeft) oldLeft.remove();
+        const oldRight = rightPage.querySelector(".page-number");
+        if (oldRight) oldRight.remove();
+
+        const leftEl = document.createElement("div");
+        leftEl.className = "page-number";
+        leftEl.textContent = leftNum;
+        leftPage.appendChild(leftEl);
+
+        if (rightNum) {
+            const rightEl = document.createElement("div");
+            rightEl.className = "page-number";
+            rightEl.textContent = rightNum;
+            rightPage.appendChild(rightEl);
+        }
+
         const pct = Math.round((currentPage / (pages.length - 1)) * 100);
         progressLabel.textContent = pct + "%";
         progressFill.style.width = pct + "%";
+
         saveProgress(bookId, currentPage);
     }
+
 
     renderSpread();
 

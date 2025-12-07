@@ -120,3 +120,19 @@ body {
 .secondary-btn {
     background: #eee;
 }
+
+.page-number {
+    position: absolute;
+    bottom: 10px;
+    font-size: 13px;
+    opacity: 0.6;
+    font-family: Georgia, serif;
+    pointer-events: none;
+}
+.left-page .page-number {
+    left: 20px;
+}
+.right-page .page-number {
+    right: 20px;
+}
+
