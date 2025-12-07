@@ -2,7 +2,6 @@
     max-width: 1000px;
     margin: 150px auto 80px;
     padding: 0 20px;
-    font-family: inherit;
 }
 
 .detail-layout {
@@ -19,17 +18,19 @@
     border-radius: 18px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .detail-info h2 {
     margin: 0 0 6px;
     font-size: 26px;
+    font-weight: 700;
 }
 
 .detail-author {
     margin: 0 0 6px;
     color: #555;
+    font-size: 15px;
 }
 
 .detail-meta {
@@ -61,7 +62,7 @@
     width: 0;
     background: #111;
     border-radius: 999px;
-    transition: width .3s ease-out;
+    transition: width 0.3s ease-out;
 }
 
 .detail-actions {
@@ -107,46 +108,15 @@
 @media (max-width: 780px) {
     .detail-layout {
         grid-template-columns: 1fr;
-        justify-items: center;
         text-align: center;
     }
-
-    .detail-info {
-        width: 100%;
-    }
-
     .detail-actions {
         justify-content: center;
     }
 }
 
-.back-button {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 6px 10px;
-    font-size: 18px;
-    cursor: pointer;
-    margin-right: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: background 0.15s ease, transform 0.12s ease;
-}
-
-.back-button:hover {
-    background: #f4f4f4;
-    transform: translateY(-2px);
-}
-
-.back-button:active {
-    transform: translateY(0);
-}
-
-.top-bar {
-    display: flex;
-    align-items: center;
+@media (max-width: 480px) {
+    .detail-wrapper {
+        margin-top: 130px;
+    }
 }
