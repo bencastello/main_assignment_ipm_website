@@ -5,18 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – curators</title>
     <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="../homepage.css">
     <link rel="stylesheet" href="curators.css">
 </head>
 <body>
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">curators</h2>
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    <nav class="top-nav">
+        <a href="../my_books/my_books.html">My Books</a>
+        <a href="../for_u/for_u.html">For You</a>
+        <a href="../friends/friends.html">Friends</a>
+        <a href="../curators/curators.html" class="active">Curated</a>
+        <a href="../store/store.html">Store</a>
+    </nav>
+    <div class="top-right">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+        <button class="chat-launcher" onclick="window.location.href='../chat/chat.html'">💬
+            <span class="chat-badge" hidden></span>
+        </button>
+        <img src="../user_icon.png" class="profile-mini" alt="Profile" onclick="window.location.href='../profile/profile.html'">
     </div>
-    <img src="../user_icon.png" class="profile-mini" onclick="window.location.href='../profile/profile.html'">
 </header>
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
