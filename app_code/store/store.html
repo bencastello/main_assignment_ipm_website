@@ -4,49 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – store</title>
-
     <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="../homepage.css">
     <link rel="stylesheet" href="store.css">
 </head>
-
 <body>
-
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">store</h2>
-
-
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    <nav class="top-nav">
+        <a href="../my_books/my_books.html">My Books</a>
+        <a href="../for_u/for_u.html">For You</a>
+        <a href="../friends/friends.html">Friends</a>
+        <a href="../curators/curators.html">Curated</a>
+        <a href="../store/store.html" class="active">Store</a>
+    </nav>
+    <div class="top-right">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+        <button class="chat-launcher" onclick="window.location.href='../chat/chat.html'">💬
+            <span class="chat-badge" hidden></span>
+        </button>
+        <img onclick="window.location.href='../profile/profile.html'" src="../user_icon.png" class="profile-mini" alt="Profile">
     </div>
-
-    <img onclick="window.location.href='../profile/profile.html'"
-         src="../user_icon.png"
-         class="profile-mini"
-         alt="Profile">
 </header>
-
-
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
-        <input id="globalSearchInput"
-               type="text"
-               class="search-input"
-               placeholder="Search books, curators, friends, store…">
+        <input id="globalSearchInput" type="text" class="search-input" placeholder="Search books, curators, friends, store…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
-
-
 <main class="store-page">
-
-
     <aside class="store-filters">
         <h3>Filters</h3>
-
         <div class="filter-block">
             <h4>Genre</h4>
             <label><input type="checkbox" name="genre" value="Fantasy"> Fantasy</label>
@@ -55,8 +46,6 @@
             <label><input type="checkbox" name="genre" value="Contemporary"> Contemporary</label>
             <label><input type="checkbox" name="genre" value="Non-Fiction"> Non-Fiction</label>
         </div>
-
-
         <div class="filter-block">
             <h4>Price</h4>
             <div class="price-row">
@@ -65,7 +54,6 @@
                 <input type="number" id="priceMax" placeholder="max" min="0">
             </div>
         </div>
-
         <div class="filter-block">
             <h4>Sort by</h4>
             <select id="sortSelect">
@@ -75,33 +63,19 @@
                 <option value="title-asc">Title A–Z</option>
             </select>
         </div>
-
-        <button id="clearFiltersBtn" class="clear-filters-btn" type="button">
-            clear filters
-        </button>
+        <button id="clearFiltersBtn" class="clear-filters-btn" type="button">clear filters</button>
     </aside>
-
-
-
     <section class="store-products">
         <div class="products-header">
             <h3>Books</h3>
             <p id="resultsInfo"></p>
         </div>
-
-        <div id="productGrid" class="product-grid">
-
-        </div>
+        <div id="productGrid" class="product-grid"></div>
     </section>
-
-
-
     <aside class="store-cart">
         <h3>Cart</h3>
         <p id="cartEmptyText" class="cart-empty">Your cart is empty.</p>
-
         <ul id="cartItems" class="cart-items"></ul>
-
         <div class="cart-summary">
             <div class="row">
                 <span>Items</span>
@@ -112,82 +86,54 @@
                 <span id="cartTotal">€0.00</span>
             </div>
         </div>
-
-        <button id="checkoutBtn" class="checkout-btn" type="button">
-            Checkout
-        </button>
+        <button id="checkoutBtn" class="checkout-btn" type="button">Checkout</button>
     </aside>
-
 </main>
-
-
-
-
 <div id="modalOverlay" class="modal-overlay hidden"></div>
-
 <div id="checkoutModal" class="modal checkout-modal hidden">
     <h2>Checkout</h2>
-
     <div class="checkout-layout">
         <section class="checkout-summary">
             <h3>Order summary</h3>
             <ul id="checkoutList"></ul>
-
             <div class="checkout-total-row">
                 <span>Total</span>
                 <span id="checkoutTotal">€0.00</span>
             </div>
         </section>
-
         <section class="checkout-form">
             <h3>Customer details</h3>
-
             <label class="input-block">
                 Full name
                 <input type="text" id="inputName" placeholder="Your name">
             </label>
-
             <label class="input-block">
                 Email
                 <input type="email" id="inputEmail" placeholder="fellow@reader.com">
             </label>
-
             <label class="input-block">
                 Shipping address
-                <textarea id="inputAddress" rows="3"
-                          placeholder="Street, City, Country"></textarea>
+                <textarea id="inputAddress" rows="3" placeholder="Street, City, Country"></textarea>
             </label>
-
             <label class="input-block">
                 Payment method
                 <select id="inputPayment">
                     <option value="card">Credit card</option>
                     <option value="paypal">PayPal</option>
-                    <option value="paypal">Apple Pay</option>
+                    <option value="apple">Apple Pay</option>
                     <option value="invoice">Invoice</option>
                 </select>
             </label>
-
-            <p class="checkout-note">
-                Just for clearance, of course there is no real money involved :)
-            </p>
+            <p class="checkout-note">Just for clearance, of course there is no real money involved :)</p>
         </section>
     </div>
-
     <div class="modal-actions">
         <button id="cancelCheckoutBtn" class="secondary-btn" type="button">Cancel</button>
-        <button id="confirmCheckoutBtn" class="primary-btn" type="button">
-            Place order
-        </button>
+        <button id="confirmCheckoutBtn" class="primary-btn" type="button">Place order</button>
     </div>
-
-    <p id="checkoutSuccessMsg" class="checkout-success hidden">
-        Thank you! You'll find the book in your library now :)
-    </p>
+    <p id="checkoutSuccessMsg" class="checkout-success hidden">Thank you! You'll find the book in your library now :)</p>
 </div>
-
 <script src="../search/search.js"></script>
 <script src="store.js"></script>
-
 </body>
 </html>
