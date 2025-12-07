@@ -1,56 +1,122 @@
+/* -------- GENERAL LAYOUT -------- */
+
 .home-wrapper {
     max-width: 1040px;
-    margin: 140px auto 120px;
+    margin: 32px auto 80px;
     padding: 0 32px 80px;
 }
 
+/* -------- HEADER -------- */
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 48px;
+    height: 72px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+
+    /* fancy glaze */
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.85);
+}
+
+.top-nav {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-right: 700px;
+}
+
+.top-nav a {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+    color: #333; /* ← neutral, modern, unaufdringlich */
+    text-decoration: none; /* ← kill underline */
+}
+
+
+.top-nav a:hover {
+    background: rgba(0,0,0,0.05);
+    color: #000; /* ← clean hover */
+}
+
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* -------- SEARCH BAR -------- */
+
+.search-wrapper {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    padding: 4px 14px;
+
+    /* Soft shadow fancy */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.search-wrapper:hover {
+    border-color: #ccc;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.09);
+}
+
+.search-wrapper input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 13px;
+}
+
+/* -------- CHAT ICON -------- */
+
+.chat-launcher {
+    position: static;
+    font-size: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.chat-badge {
+    min-width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: #ff4b4b;
+    color: #fff;
+    font-size: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* -------- HERO -------- */
+
 .home-hero h2 {
-    font-size: 28px;
-    margin-bottom: 6px;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin-bottom: 48px; /* stronger separation */
 }
 
 .home-hero p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 32px;
+    font-size: 15px;
+    color: #777;
+    max-width: 70ch;
 }
 
-.home-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 40px;
-}
-
-.home-nav-item {
-    border-radius: 999px;
-    border: 1px solid #dedede;
-    background: #fafafa;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-align: left;
-    min-width: 150px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 13px;
-    transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
-}
-
-.home-nav-item:hover {
-    background: #ffffff;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    transform: translateY(-1px);
-}
-
-.nav-label {
-    font-weight: 600;
-    font-size: 13px;
-}
-
+/* -------- SECTION HEADERS -------- */
 
 .home-section {
-    margin-top: 40px;
+    margin-top: 56px; /* more premium spacing */
 }
 
 .home-section-header {
@@ -62,7 +128,9 @@
 }
 
 .home-section-header h3 {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
 }
 
 .home-section-header a {
@@ -74,6 +142,8 @@
 .home-section-header a:hover {
     text-decoration: underline;
 }
+
+/* -------- CARDS -------- */
 
 .home-row {
     display: flex;
@@ -87,15 +157,18 @@
 .home-trend-card {
     flex: 0 0 160px;
     border-radius: 16px;
+
     background: #fafafa;
     padding: 10px 10px 14px;
     cursor: pointer;
-    transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
+
+    /* smooth transitions */
+    transition: 0.15s ease;
 }
 
 .home-cont-card:hover,
 .home-trend-card:hover {
-    background: #ffffff;
+    background: #fff;
     box-shadow: 0 12px 30px rgba(0,0,0,0.06);
     transform: translateY(-2px);
 }
@@ -105,7 +178,6 @@
     border-radius: 12px;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     height: 180px;
     margin-bottom: 8px;
 }
@@ -116,41 +188,46 @@
     font-weight: 500;
 }
 
+/* -------- FEATURED BANNER -------- */
+
 .home-featured-card {
     display: flex;
-    gap: 24px;
-    padding: 20px 24px;
-    border-radius: 20px;
-    background: #f6f6f6;
-    cursor: pointer;
-    align-items: center;
-    transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
+    gap: 28px;
+    padding: 28px;
+    border-radius: 28px;
+
+    /* Soft luxury gradient */
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    border: 1px solid rgba(0,0,0,0.03);
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    transition: all 0.25s ease;
 }
 
 .home-featured-card:hover {
-    background: #ffffff;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.07);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.08);
 }
 
 .home-featured-cover {
-    width: 120px;
-    height: 180px;
+    width: 130px;
+    height: 195px; /* upgraded size */
     border-radius: 16px;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 
 .home-featured-text h4 {
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-size: 18px;
+    margin-bottom: 6px;
 }
 
 .home-featured-text p {
     font-size: 13px;
     color: #666;
 }
+
+/* -------- SEARCH OVERLAY -------- */
 
 .search-overlay {
     position: fixed;
@@ -182,12 +259,9 @@
     border: 1px solid #e0e0e0;
     padding: 9px 14px;
     font-size: 14px;
-    outline: none;
 }
 
-.search-input:focus {
-    border-color: #999;
-}
+/* -------- SEARCH RESULTS -------- */
 
 .search-results {
     margin-top: 14px;
@@ -223,7 +297,6 @@
     border-radius: 6px;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 
 .result-meta h4 {
@@ -242,27 +315,7 @@
     padding: 8px 2px;
 }
 
-.chat-launcher {
-    position: absolute;
-    top: 60px;
-    right: 110px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.chat-badge {
-    min-width: 16px;
-    height: 16px;
-    border-radius: 999px;
-    background: #ff4b4b;
-    color: #fff;
-    font-size: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+/* -------- EXTRA POLISH -------- */
+* {
+    scroll-behavior: smooth;
 }
