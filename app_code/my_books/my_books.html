@@ -9,17 +9,23 @@
 </head>
 <body>
 <header class="top-bar">
-    <div class="top-left">
-        <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-        <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-        <h2 class="section">my books</h2>
-    </div>
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
-    </div>
+    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+    <nav class="top-nav">
+        <a href="../my_books/my_books.html" class="active">My Books</a>
+        <a href="../for_u/for_u.html">For You</a>
+        <a href="../friends/friends.html">Friends</a>
+        <a href="../curators/curators.html">Curated</a>
+        <a href="../store/store.html">Store</a>
+    </nav>
     <div class="top-right">
-        <img onclick="window.location.href='../profile/profile.html'" src="../user_icon.png" class="profile-mini" alt="Profile">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+        <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open chat" onclick="window.location.href='../chat/chat.html'">💬
+            <span class="chat-badge" id="chatBadge" hidden></span>
+        </button>
+        <img src="../user_icon.png" class="profile-mini" alt="Profile" onclick="window.location.href='../profile/profile.html'">
     </div>
 </header>
 <div id="globalSearchOverlay" class="search-overlay hidden">
