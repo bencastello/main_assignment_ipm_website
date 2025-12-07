@@ -1,149 +1,244 @@
-async function loadJSON(path) {
-    return (await fetch(path)).json();
+let profile = {
+    username: "@fellowreader",
+    realname: "Fellow Reader",
+    bio: "Hello there, it's me :)",
+    avatar: "../user_icon.png",
+    readingGoal: { current: 34, goal: 50 },
+    preferences: {
+        genres: ["Fantasy", "Sci-Fi", "Classics", "Crime"]
+    },
+    stats: {
+        books: 34,
+        pages: 11240,
+        streak: 28
+    },
+    favorites: [
+        { id: 1, title: "The Hobbit", cover: "../covers/hobbit.jpg" },
+        { id: 2, title: "Hitchhiker's Guide", cover: "../covers/hhgttg.jpg" },
+        { id: 3, title: "Gone Girl", cover: "../covers/gone_girl.jpg" },
+        { id: 4, title: "Jane Eyre", cover: "../covers/jane_eyre.jpg" }
+    ],
+    current: {
+        id: 2,
+        title: "The Long Way to a Small, Angry Planet",
+        author: "Becky Chambers",
+        cover: "../covers/long_way.jpg",
+        progress: 62
+    }
+};
+
+const ALL_GENRES = [
+    "Fantasy", "Sci-Fi", "Classics", "Crime",
+    "Romance", "Thriller", "Horror", "Mystery",
+    "Historical", "Adventure", "Drama", "Non-Fiction"
+];
+
+async function loadRealBooks() {
+    try {
+        const res = await fetch("../data/books.json");
+        const data = await res.json();
+        return data.books || [];
+    } catch {
+        return [];
+    }
 }
 
-async function initProfile() {
-    const users = await loadJSON("../data/users.json");
-    const books = await loadJSON("../data/books.json");
+async function syncProfileBooks() {
+    const realBooks = await loadRealBooks();
 
-    const me = users.users.find(u => u.id === "me");
-    const bookList = books.books;
-
-    const usernameEl = document.getElementById("displayUsername");
-    const realnameEl = document.getElementById("displayRealname");
-    const bioEl = document.getElementById("displayBio");
-    const avatarImg = document.getElementById("profileImg");
-
-    const rawUsername = me.username || "";
-    const displayUsername = rawUsername.startsWith("@") ? rawUsername : "@" + rawUsername;
-    usernameEl.textContent = displayUsername;
-    realnameEl.textContent = me.realname || "";
-    bioEl.textContent = me.bio || "";
-
-    const defaultAvatar = "../data/" + me.avatar;
-
-    const savedAvatar = localStorage.getItem("profileAvatar");
-    avatarImg.src = savedAvatar || defaultAvatar;
-
-    document.getElementById("badgeRow").innerHTML = "";
-
-    const maxGoal = 50;
-    const pct = Math.min(100, Math.round((me.stats.booksThisYear / maxGoal) * 100));
-    document.querySelector(".progress-fill").style.width = pct + "%";
-    document.getElementById("goalCount").textContent =
-        `${me.stats.booksThisYear} / ${maxGoal}`;
-
-    buildPills("prefGenres", me.preferences.genres || []);
-    buildPills("prefTone", me.preferences.tone || []);
-    buildPills("prefFormats", me.preferences.formats || []);
-    buildPills("prefPace", [me.preferences.pace].filter(Boolean));
-
-    function buildPills(id, arr) {
-        const wrap = document.getElementById(id);
-        wrap.innerHTML = "";
-        arr.forEach(p => {
-            const el = document.createElement("button");
-            el.className = "pill selected";
-            el.textContent = p;
-            el.addEventListener("click", () => {
-                el.classList.toggle("selected");
-            });
-            wrap.appendChild(el);
-        });
+    function matchTitle(title) {
+        return realBooks.find(
+            b => b.title.trim().toLowerCase() === title.trim().toLowerCase()
+        );
     }
 
-    document.getElementById("statBooks").textContent = me.stats.booksThisYear;
-    document.getElementById("statPages").textContent = me.stats.pagesRead.toLocaleString();
-    document.getElementById("statStreak").textContent = me.stats.streakDays + " d";
+    profile.favorites = [
+        matchTitle("The Hobbit"),
+        matchTitle("Hitchhiker's Guide"),
+        matchTitle("Gone Girl"),
+        matchTitle("Jane Eyre")
+    ].filter(Boolean);
 
-    const favWrap = document.getElementById("favoritesRow");
-    favWrap.innerHTML = "";
+    const currentReal = matchTitle("The Long Way to a Small, Angry Planet");
+    if (currentReal) {
+        profile.current.id = currentReal.id;
+        profile.current.cover = "../" + currentReal.cover;
+        profile.current.author = currentReal.author;
+    }
+}
 
-    const candidates = bookList.filter(b => !!b.cover);
-    const random4 = [...candidates].sort(() => Math.random() - 0.5).slice(0, 4);
+document.addEventListener("DOMContentLoaded", async () => {
+    await syncProfileBooks();
+    loadProfile();
+    setupProfileEditing();
+    setupAvatarUpload();
+    setupGenreModal();
+});
 
-    random4.forEach(b => {
-        const el = document.createElement("article");
-        el.className = "fav-book";
-        el.innerHTML = `
-            <div class="fav-cover" style="background-image:url('../${b.cover}')"></div>
-            <p class="fav-title">${b.title}</p>
-        `;
-        el.addEventListener("click", () => {
-            window.location.href = `../book_detail/book_detail.html?id=${b.id}`;
-        });
-        favWrap.appendChild(el);
+function loadProfile() {
+    document.getElementById("displayUsername").textContent = profile.username;
+    document.getElementById("displayRealname").textContent = profile.realname;
+    document.getElementById("displayBio").textContent = profile.bio;
+    document.getElementById("profileImg").src = profile.avatar;
+    loadGenres();
+    loadStats();
+    loadFavorites();
+    loadCurrentReading();
+    loadReadingProgress();
+}
+
+function loadGenres() {
+    const el = document.getElementById("prefGenres");
+    el.innerHTML = "";
+    profile.preferences.genres.forEach(g => {
+        const pill = document.createElement("div");
+        pill.className = "pill";
+        pill.textContent = g;
+        el.appendChild(pill);
     });
+}
 
-    const current = bookList.find(b => b.id === me.currentReading);
+function loadStats() {
+    document.getElementById("statBooks").textContent = profile.stats.books;
+    document.getElementById("statPages").textContent = profile.stats.pages;
+    document.getElementById("statStreak").textContent = profile.stats.streak + " d";
+}
+
+function loadFavorites() {
+    const row = document.getElementById("favoritesRow");
+    row.innerHTML = "";
+    profile.favorites.forEach(book => {
+        const item = document.createElement("div");
+        item.className = "fav-book";
+        const cover = document.createElement("div");
+        cover.className = "fav-cover";
+        cover.style.backgroundImage = `url('../${book.cover}')`;
+        cover.style.cursor = "pointer";
+        cover.addEventListener("click", () => {
+            window.location.href = `../my_books/book_detail.html?id=${book.id}`;
+        });
+        const title = document.createElement("div");
+        title.textContent = book.title;
+        title.style.fontSize = "13px";
+        title.style.cursor = "pointer";
+        title.addEventListener("click", () => {
+            window.location.href = `../my_books/book_detail.html?id=${book.id}`;
+        });
+        item.appendChild(cover);
+        item.appendChild(title);
+        row.appendChild(item);
+    });
+}
+
+function loadCurrentReading() {
     const block = document.getElementById("currentReadingBlock");
-
-    if (current) {
-        const pr = Math.round((me.currentProgress || 0) * 100);
-        block.innerHTML = `
-            <div class="current-cover" style="background-image:url('../${current.cover}')"></div>
-            <div class="current-info">
-                <p class="current-title">${current.title}</p>
-                <p class="current-meta">${current.author} · ${current.genre}</p>
-                <div class="current-progress">
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width:${pr}%"></div>
-                    </div>
-                    <div class="current-percent">${pr}%</div>
-                </div>
-                <button class="continue-btn">Continue reading</button>
-            </div>
-        `;
-
-        block.querySelector(".continue-btn").addEventListener("click", () => {
-            window.location.href = `../book_detail/book_detail.html?id=${current.id}`;
-        });
-    }
-
-    const avatarClickable = document.getElementById("avatarClickable");
-    const avatarInput = document.getElementById("avatarInput");
-
-    avatarClickable.addEventListener("click", () => {
-        avatarInput.click();
+    block.innerHTML = "";
+    const cover = document.createElement("div");
+    cover.className = "current-cover";
+    cover.style.backgroundImage = `url('${profile.current.cover}')`;
+    cover.style.cursor = "pointer";
+    cover.addEventListener("click", () => {
+        window.location.href = `../my_books/book_detail.html?id=${profile.current.id}`;
     });
+    const info = document.createElement("div");
+    info.className = "current-info";
+    const title = document.createElement("h4");
+    title.className = "current-title";
+    title.textContent = profile.current.title;
+    const meta = document.createElement("div");
+    meta.className = "current-meta";
+    meta.textContent = profile.current.author;
+    const progress = document.createElement("div");
+    progress.textContent = profile.current.progress + "% read";
+    info.appendChild(title);
+    info.appendChild(meta);
+    info.appendChild(progress);
+    block.appendChild(cover);
+    block.appendChild(info);
+}
 
-    avatarInput.addEventListener("change", event => {
-        const file = event.target.files && event.target.files[0];
+function loadReadingProgress() {
+    const { current, goal } = profile.readingGoal;
+    const fill = document.getElementById("progressFill");
+    fill.style.width = Math.min(100, Math.round((current / goal) * 100)) + "%";
+    document.getElementById("goalCount").textContent = `${current} / ${goal}`;
+}
+
+function setupAvatarUpload() {
+    document.getElementById("avatarClickable").addEventListener("click", () => {
+        document.getElementById("avatarInput").click();
+    });
+    document.getElementById("avatarInput").addEventListener("change", e => {
+        const file = e.target.files[0];
         if (!file) return;
-
         const reader = new FileReader();
-        reader.onload = e => {
-            const dataUrl = e.target.result;
-            avatarImg.src = dataUrl;
-            try {
-                localStorage.setItem("profileAvatar", dataUrl);
-            } catch (err) {
-                console.warn("Could not save avatar to localStorage", err);
-            }
+        reader.onload = () => {
+            profile.avatar = reader.result;
+            document.getElementById("profileImg").src = reader.result;
         };
         reader.readAsDataURL(file);
     });
-
-
-    const editBtn = document.getElementById("openEditBtn");
-    const editModal = document.getElementById("editModal");
-    const editOverlay = document.getElementById("editModalOverlay");
-    const closeEditModal = document.getElementById("closeEditModal");
-
-    editBtn.addEventListener("click", () => {
-        editModal.classList.remove("hidden");
-        editModal.classList.add("visible");
-        editOverlay.classList.remove("hidden");
-    });
-
-    const hideModal = () => {
-        editModal.classList.add("hidden");
-        editModal.classList.remove("visible");
-        editOverlay.classList.add("hidden");
-    };
-
-    closeEditModal.addEventListener("click", hideModal);
-    editOverlay.addEventListener("click", hideModal);
 }
 
-document.addEventListener("DOMContentLoaded", initProfile);
+function setupProfileEditing() {
+    const modal = document.getElementById("editModal");
+    const overlay = document.getElementById("editModalOverlay");
+    document.getElementById("openEditBtn").addEventListener("click", () => {
+        document.getElementById("editUsername").value = profile.username;
+        document.getElementById("editRealname").value = profile.realname;
+        document.getElementById("editBio").value = profile.bio;
+        modal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+    });
+    document.getElementById("closeEditModal").addEventListener("click", () => {
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    });
+    document.getElementById("saveEditModal").addEventListener("click", () => {
+        profile.username = document.getElementById("editUsername").value;
+        profile.realname = document.getElementById("editRealname").value;
+        profile.bio = document.getElementById("editBio").value;
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+        loadProfile();
+    });
+}
+
+function setupGenreModal() {
+    const modal = document.getElementById("prefModal");
+    const overlay = document.getElementById("prefModalOverlay");
+    document.getElementById("openPrefBtn").addEventListener("click", openGenreEditor);
+    document.getElementById("closePrefModal").addEventListener("click", () => {
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    });
+    document.getElementById("savePrefModal").addEventListener("click", saveGenres);
+}
+
+function openGenreEditor() {
+    const container = document.getElementById("editGenres");
+    container.innerHTML = "";
+    ALL_GENRES.forEach(g => {
+        const pill = document.createElement("div");
+        pill.className = "pill editable";
+        pill.textContent = g;
+        if (profile.preferences.genres.includes(g)) {
+            pill.classList.add("selected");
+        }
+        pill.addEventListener("click", () => {
+            pill.classList.toggle("selected");
+        });
+        container.appendChild(pill);
+    });
+    document.getElementById("prefModal").classList.remove("hidden");
+    document.getElementById("prefModalOverlay").classList.remove("hidden");
+}
+
+function saveGenres() {
+    profile.preferences.genres = Array.from(
+        document.querySelectorAll("#editGenres .pill.selected")
+    ).map(p => p.textContent);
+    document.getElementById("prefModal").classList.add("hidden");
+    document.getElementById("prefModalOverlay").classList.add("hidden");
+    loadGenres();
+}
