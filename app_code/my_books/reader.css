@@ -65,10 +65,6 @@ body {
     perspective: 2000px;
 }
 
-/* ------------------------- */
-/* PAGE + CURL EFFECT        */
-/* ------------------------- */
-
 .page {
     flex: 1;
     background: #fffef6;
@@ -82,7 +78,6 @@ body {
     transform-style: preserve-3d;
 }
 
-/* The wrapper does the actual curl */
 .page-wrapper {
     position: absolute;
     top: 0;
@@ -97,7 +92,6 @@ body {
     will-change: transform, opacity;
 }
 
-/* Curl shadow */
 .page-wrapper::after {
     content: "";
     position: absolute;
@@ -105,24 +99,17 @@ body {
     right: -30%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(
-            to left,
-            rgba(0,0,0,0.25),
-            rgba(0,0,0,0.05),
-            rgba(0,0,0,0)
-    );
+    background: linear-gradient(to left, rgba(0,0,0,0.25), rgba(0,0,0,0.05), rgba(0,0,0,0));
     opacity: 0;
     transition: opacity .4s ease;
     pointer-events: none;
 }
 
-/* Flip animation */
 .page.flipping .page-wrapper {
     transform: rotateY(-160deg) translateX(-2px);
     transition: transform .4s ease-out;
 }
 
-/* Shadow appears during flip */
 .page.flipping .page-wrapper::after {
     opacity: 1;
 }
@@ -147,25 +134,45 @@ body {
     align-items: center;
 }
 
-.primary-btn,
-.secondary-btn {
-    border-radius: 999px;
+.nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     border: none;
-    padding: 8px 18px;
-    font-size: 14px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    transition: background .15s ease, transform .15s ease;
 }
 
-.primary-btn {
-    background: #111;
-    color: #fff;
+.reader-arrows {
+    position: absolute;
+    top: 50%;
+    width: 70%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
 }
 
-.secondary-btn {
-    background: #eee;
+.reader-arrows .nav-btn {
+    pointer-events: all;
 }
 
-/* Page numbers */
+.nav-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.nav-btn:active {
+    transform: translateY(0px);
+}
+
 .page-number {
     position: absolute;
     bottom: 10px;
