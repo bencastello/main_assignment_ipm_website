@@ -4,87 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – for you</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="coverflow.css">
+    <link rel="stylesheet" href="../homepage.css">
 </head>
-
 <body>
-
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">for you</h2>
-
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    <nav class="top-nav">
+        <a href="../my_books/my_books.html">My Books</a>
+        <a href="../for_u/for_u.html" class="active">For You</a>
+        <a href="../friends/friends.html">Friends</a>
+        <a href="../curators/curators.html">Curated</a>
+        <a href="../store/store.html">Store</a>
+    </nav>
+    <div class="top-right">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+        <button class="chat-launcher" onclick="window.location.href='../chat/chat.html'">💬
+            <span class="chat-badge" hidden></span>
+        </button>
+        <img src="../user_icon.png" class="profile-mini" alt="Profile" onclick="window.location.href='../profile/profile.html'">
     </div>
-
-    <img src="../user_icon.png"
-         class="profile-mini"
-         alt="Profile"
-         onclick="window.location.href='../profile/profile.html'">
 </header>
-
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
-        <input id="globalSearchInput"
-               type="text"
-               class="search-input"
-               placeholder="Search books, curators, friends, store…">
+        <input id="globalSearchInput" type="text" class="search-input" placeholder="Search books, curators, friends, store…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
-
 <main class="scene scene-foru">
     <div class="foru-center">
-
         <div class="coverflow-wrapper">
-
             <button class="cf-arrow cf-arrow-left" aria-label="previous">⟨</button>
-
             <div class="cf-viewport">
                 <div class="cf-track">
-
                     <article class="cf-item is-active" data-index="0">
                         <div class="cf-cover hp2"></div>
                         <h3 class="cf-title">Harry Potter II</h3>
                         <p class="cf-meta">Fantasy · Friend rec</p>
                     </article>
-
                     <article class="cf-item" data-index="1">
                         <div class="cf-cover faust2"></div>
                         <h3 class="cf-title">Faust II</h3>
                         <p class="cf-meta">Klassiker · Deep stuff</p>
                     </article>
-
                     <article class="cf-item" data-index="2">
                         <div class="cf-cover friends2"></div>
                         <h3 class="cf-title">FRIENDS II</h3>
                         <p class="cf-meta">Roman · Lighthearted chaos</p>
                     </article>
-
                     <article class="cf-item" data-index="3">
                         <div class="cf-cover hitchhike"></div>
                         <h3 class="cf-title">Hitchhike through the Galaxy</h3>
                         <p class="cf-meta">Sci-Fi · Absurdist humor</p>
                     </article>
-
                 </div>
             </div>
-
             <button class="cf-arrow cf-arrow-right" aria-label="next">⟩</button>
-
         </div>
-
     </div>
 </main>
-
 <script src="../search/search.js"></script>
 <script src="coverflow.js"></script>
 <script src="../animations.js"></script>
-
 </body>
 </html>
