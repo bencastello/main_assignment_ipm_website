@@ -4,56 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – friends</title>
-
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="../homepage.css">
     <link rel="stylesheet" href="friends.css">
 </head>
-
 <body>
-
 <header class="top-bar">
-
-    <div class="top-left">
-        <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
-        <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-        <h2 class="section">friends</h2>
-    </div>
-
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
-    </div>
-
+    <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
+    <nav class="top-nav">
+        <a href="../my_books/my_books.html">My Books</a>
+        <a href="../for_u/for_u.html">For You</a>
+        <a href="../friends/friends.html" class="active">Friends</a>
+        <a href="../curators/curators.html">Curated</a>
+        <a href="../store/store.html">Store</a>
+    </nav>
     <div class="top-right">
-        <img src="../user_icon.png"
-             class="profile-mini"
-             onclick="window.location.href='../profile/profile.html'">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+        <button class="chat-launcher" onclick="window.location.href='../chat/chat.html'">💬
+            <span class="chat-badge" hidden></span>
+        </button>
+        <img src="../user_icon.png" class="profile-mini" alt="Profile" onclick="window.location.href='../profile/profile.html'">
     </div>
-
 </header>
-
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
-        <input id="globalSearchInput"
-               type="text"
-               class="search-input"
-               placeholder="Search books, curators, friends, store…">
+        <input id="globalSearchInput" type="text" class="search-input" placeholder="Search books, curators, friends, store…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
-
 <main class="friends-wrapper">
     <section class="friends-header">
         <h2>Your friends</h2>
         <p>(We know those are not actually your friends, but that is the joke of a Prototype, isn't it?)</p>
     </section>
-
     <section id="friendsGrid" class="friends-grid"></section>
 </main>
-
 <script src="../search/search.js"></script>
 <script src="friends.js"></script>
-
 </body>
 </html>

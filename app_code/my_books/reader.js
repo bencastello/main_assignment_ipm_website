@@ -87,16 +87,61 @@ async function initReader() {
 
     let currentPage = loadProgress(bookId).page;
 
+    /* ------------------- */
+    /* WRAP PAGE CONTENT   */
+    /* ------------------- */
+    function wrapPage(page) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "page-wrapper";
+
+        while (page.firstChild) {
+            wrapper.appendChild(page.firstChild);
+        }
+        page.appendChild(wrapper);
+    }
+
+    wrapPage(leftPage);
+    wrapPage(rightPage);
+
+    /* ------------------- */
+    /* RENDER PAGES        */
+    /* ------------------- */
+
     function renderSpread() {
-        leftPage.textContent = pages[currentPage] || "";
-        rightPage.textContent = pages[currentPage + 1] || "";
+        leftPage.querySelector(".page-wrapper").textContent = pages[currentPage] || "";
+        rightPage.querySelector(".page-wrapper").textContent = pages[currentPage + 1] || "";
+
+        /* Remove old numbers */
+        leftPage.querySelector(".page-number")?.remove();
+        rightPage.querySelector(".page-number")?.remove();
+
+        const leftNum = currentPage + 1;
+        const rightNum = currentPage + 2 <= pages.length ? currentPage + 2 : null;
+
+        const leftNumEl = document.createElement("div");
+        leftNumEl.className = "page-number";
+        leftNumEl.textContent = leftNum;
+        leftPage.appendChild(leftNumEl);
+
+        if (rightNum) {
+            const rightNumEl = document.createElement("div");
+            rightNumEl.className = "page-number";
+            rightNumEl.textContent = rightNum;
+            rightPage.appendChild(rightNumEl);
+        }
+
         const pct = Math.round((currentPage / (pages.length - 1)) * 100);
         progressLabel.textContent = pct + "%";
         progressFill.style.width = pct + "%";
+
         saveProgress(bookId, currentPage);
     }
 
     renderSpread();
+
+    /* ------------------- */
+    /* FLIP EVENTS         */
+    /* ------------------- */
 
     document.getElementById("nextChunk").addEventListener("click", () => {
         if (currentPage < pages.length - 2) {
@@ -105,7 +150,7 @@ async function initReader() {
                 currentPage += 2;
                 rightPage.classList.remove("flipping");
                 renderSpread();
-            }, 700);
+            }, 400);
         }
     });
 
@@ -116,7 +161,7 @@ async function initReader() {
                 currentPage -= 2;
                 leftPage.classList.remove("flipping");
                 renderSpread();
-            }, 700);
+            }, 400);
         }
     });
 

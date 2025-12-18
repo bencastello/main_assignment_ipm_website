@@ -31,14 +31,14 @@
     background: #fff;
     padding: 22px 18px;
     border-radius: 20px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
     text-align: center;
-    transition: transform .2s ease, box-shadow .2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .friend-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 18px 42px rgba(0,0,0,0.10);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.1);
 }
 
 .friend-avatar {
@@ -47,7 +47,7 @@
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto 14px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .friend-meta h3 {
@@ -92,16 +92,46 @@
     background: #eee;
 }
 
-.friends-wrapper {
-    max-width: 1100px;
-    margin: 140px auto 80px;
-    padding: 0 24px;
+.top-nav a.active {
+    background: rgba(0, 0, 0, 0.05);
+    color: #000;
+    font-weight: 600;
 }
 
-.search-overlay {
-    z-index: 2000;
+@media (max-width: 900px) {
+    .top-bar {
+        padding: 12px 24px;
+    }
+    .top-nav a {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
 }
 
-.top-bar * {
-    pointer-events: auto;
+@media (max-width: 680px) {
+    .top-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 16px 20px;
+        gap: 14px;
+    }
+    .top-nav {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0;
+    }
+    .top-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar {
+        padding: 14px 16px;
+    }
+    .top-nav a {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
 }

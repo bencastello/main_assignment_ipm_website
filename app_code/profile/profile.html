@@ -6,116 +6,114 @@
     <title>shelves. – profile</title>
     <link rel="stylesheet" href="../shelves.css">
     <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="../homepage.css">
 </head>
-
 <body>
 <header class="top-bar">
-    <button class="back-button" onclick="window.location.href='../homepage.html'">←</button>
+    <button class="back-button" onclick="history.back()">←</button>
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">profile</h2>
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+    <nav class="top-nav">
+        <a href="../my_books/my_books.html">My Books</a>
+        <a href="../for_u/for_u.html">For You</a>
+        <a href="../friends/friends.html">Friends</a>
+        <a href="../curators/curators.html">Curated</a>
+        <a href="../store/store.html">Store</a>
+        <a href="../profile/profile.html" class="active">Profile</a>
+    </nav>
+    <div class="top-right">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+        <button class="chat-launcher" onclick="window.location.href='../chat/chat.html'">💬
+            <span class="chat-badge" hidden></span>
+        </button>
+        <img src="../user_icon.png" class="profile-mini" alt="Profile" onclick="window.location.href='../profile/profile.html'">
     </div>
 </header>
-
-
-<div id="globalSearchOverlay" class="search-overlay hidden">
-    <div class="search-panel">
-        <input id="globalSearchInput" type="text" class="search-input" placeholder="Search shelves…">
-        <div id="globalSearchResults" class="search-results"></div>
-    </div>
-</div>
-
 <main class="profile-page">
     <section class="profile-hero">
         <div class="profile-avatar" id="avatarClickable">
-            <img id="profileImg" src="" alt="Profile picture">
-            <div class="avatar-overlay">change</div>
+            <img id="profileImg" src="../user_icon.png" alt="Profile picture">
+            <div class="avatar-overlay">Change</div>
         </div>
-        <input type="file" id="avatarInput" accept="image/*" style="display:none">
-
-        <h2 class="profile-username" id="displayUsername"></h2>
-        <p class="profile-realname" id="displayRealname"></p>
-        <p class="profile-bio" id="displayBio"></p>
-
+        <input type="file" id="avatarInput" accept="image/*" hidden>
+        <h2 class="profile-username" id="displayUsername">@user</h2>
+        <p class="profile-realname" id="displayRealname">Reader</p>
+        <p class="profile-bio" id="displayBio">Hello there, it's me :)</p>
         <div class="badge-row" id="badgeRow"></div>
-
         <div class="reading-progress">
-            <div class="progress-label">
-                Reading goal: <span id="goalCount"></span>
-            </div>
+            <div class="progress-label">Reading goal: <span id="goalCount">0 / 0</span></div>
             <div class="progress-bar">
-                <div class="progress-fill"></div>
+                <div class="progress-fill" id="progressFill"></div>
             </div>
         </div>
-
         <button class="edit-profile-btn" id="openEditBtn" type="button">Edit profile</button>
     </section>
-
     <section class="profile-grid">
         <section class="profile-card preferences-card">
-            <h3>Preferences</h3>
+            <div class="pref-header">
+                <h3>Preferences</h3>
+                <button class="edit-pref-btn" id="openPrefBtn">Edit</button>
+            </div>
             <div class="pref-group">
                 <h4>Genres</h4>
                 <div class="pill-row" id="prefGenres"></div>
             </div>
-            <div class="pref-group">
-                <h4>Tone</h4>
-                <div class="pill-row" id="prefTone"></div>
-            </div>
-            <div class="pref-group">
-                <h4>Formats</h4>
-                <div class="pill-row" id="prefFormats"></div>
-            </div>
-            <div class="pref-group">
-                <h4>Reading pace</h4>
-                <div class="pill-row" id="prefPace"></div>
-            </div>
         </section>
-
+        <div id="prefModalOverlay" class="modal-overlay hidden"></div>
+        <div id="prefModal" class="modal hidden">
+            <h3>Edit Preferences</h3>
+            <div class="pref-edit-block">
+                <h4>Genres</h4>
+                <div id="editGenres" class="pill-row"></div>
+            </div>
+            <div class="modal-actions">
+                <button id="savePrefModal" class="primary-btn">Save</button>
+                <button id="closePrefModal" class="secondary-btn">Close</button>
+            </div>
+        </div>
         <section class="profile-card stats-card">
             <h3>Reading summary</h3>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-label">Books this year</div>
-                    <div class="stat-value" id="statBooks"></div>
+                    <div class="stat-value" id="statBooks">0</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Pages read</div>
-                    <div class="stat-value" id="statPages"></div>
+                    <div class="stat-value" id="statPages">0</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Longest streak</div>
-                    <div class="stat-value" id="statStreak"></div>
+                    <div class="stat-value" id="statStreak">0 d</div>
                 </div>
             </div>
         </section>
-
         <section class="profile-card favorites-card">
             <h3>Favorites</h3>
             <div class="favorites-row" id="favoritesRow"></div>
         </section>
-
         <section class="profile-card current-card">
             <h3>Currently reading</h3>
             <div class="current-layout" id="currentReadingBlock"></div>
         </section>
     </section>
 </main>
-
 <div id="editModalOverlay" class="modal-overlay hidden"></div>
-
 <div id="editModal" class="modal hidden">
-    <h3 style="margin-top:0;">Edit Profile</h3>
-    <p>Will be implemented in the final version.</p>
-
+    <h3>Edit Profile</h3>
+    <label>Username</label>
+    <input type="text" id="editUsername">
+    <label>Real name</label>
+    <input type="text" id="editRealname">
+    <label>Bio</label>
+    <textarea id="editBio"></textarea>
     <div class="modal-actions">
+        <button id="saveEditModal" class="primary-btn">Save</button>
         <button id="closeEditModal" class="secondary-btn">Close</button>
     </div>
 </div>
-
-<script src="../search/search.js"></script>
 <script src="profile.js"></script>
 </body>
 </html>

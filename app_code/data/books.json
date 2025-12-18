@@ -127,7 +127,7 @@
       "featured": true,
       "cover": "covers/hobbit.jpg",
       "tags": ["classic", "dragons", "adventure"],
-      "owned": false,
+      "owned": true,
       "textFile": "books/lorem_ipsum.txt"
     },
     {
