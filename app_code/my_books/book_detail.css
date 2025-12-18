@@ -2,7 +2,6 @@
     max-width: 1000px;
     margin: 150px auto 80px;
     padding: 0 20px;
-    font-family: inherit;
 }
 
 .detail-layout {
@@ -19,17 +18,19 @@
     border-radius: 18px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .detail-info h2 {
     margin: 0 0 6px;
     font-size: 26px;
+    font-weight: 700;
 }
 
 .detail-author {
     margin: 0 0 6px;
     color: #555;
+    font-size: 15px;
 }
 
 .detail-meta {
@@ -61,7 +62,7 @@
     width: 0;
     background: #111;
     border-radius: 999px;
-    transition: width .3s ease-out;
+    transition: width 0.3s ease-out;
 }
 
 .detail-actions {
@@ -107,15 +108,15 @@
 @media (max-width: 780px) {
     .detail-layout {
         grid-template-columns: 1fr;
-        justify-items: center;
         text-align: center;
     }
-
-    .detail-info {
-        width: 100%;
-    }
-
     .detail-actions {
         justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-wrapper {
+        margin-top: 130px;
     }
 }

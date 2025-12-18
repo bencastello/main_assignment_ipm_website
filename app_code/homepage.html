@@ -9,54 +9,50 @@
 </head>
 
 <body>
+
 <header class="top-bar">
     <h1 class="logo" onclick="window.location.href='homepage.html'">shelves.</h1>
-    <div class="search-wrapper" id="searchTrigger">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search shelves… (⌘K / Ctrl+K)" readonly>
+
+    <nav class="top-nav">
+        <a href="my_books/my_books.html">My Books</a>
+        <a href="for_u/for_u.html">For You</a>
+        <a href="friends/friends.html">Friends</a>
+        <a href="curators/curators.html">Curated</a>
+        <a href="store/store.html">Store</a>
+    </nav>
+
+    <div class="top-right">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+
+        <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open chat"
+                onclick="window.location.href='chat/chat.html'">💬
+            <span class="chat-badge" id="chatBadge" hidden></span>
+        </button>
+
+        <img src="user_icon.png" class="profile-mini" alt="Profile"
+             onclick="window.location.href='profile/profile.html'">
     </div>
-    <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open chat" onclick="window.location.href='chat/chat.html'">
-        💬
-        <span class="chat-badge" id="chatBadge" hidden></span>
-    </button>
-    <img src="user_icon.png" class="profile-mini" alt="Profile" onclick="window.location.href='profile/profile.html'">
 </header>
+
 
 <div id="globalSearchOverlay" class="search-overlay hidden">
     <div class="search-panel">
-        <input id="globalSearchInput" type="text" class="search-input" placeholder="Search books, curators, friends, store…">
+        <input id="globalSearchInput" type="text" class="search-input"
+               placeholder="Search books, curators, friends, store…">
         <div id="globalSearchResults" class="search-results"></div>
     </div>
 </div>
 
+
 <main class="home-wrapper">
+
     <section class="home-hero">
         <h2>Hello, fellow reader.</h2>
-        <p>Welcome to our Computational Prototype, we hope you are feeling comfortable here. Not everything will run smoothly (sorry), but there is still a lot to explore.</p>
+        <p>Welcome to our Final Version, we hope you are feeling comfortable here.</p>
     </section>
-
-    <nav class="home-nav">
-        <button class="home-nav-item" onclick="window.location.href='my_books/my_books.html'">
-            <span class="nav-label">My Books</span>
-            <span class="nav-sub">library &amp; reading history</span>
-        </button>
-        <button class="home-nav-item" onclick="window.location.href='for_u/for_u.html'">
-            <span class="nav-label">For You</span>
-            <span class="nav-sub">algorithm &amp; friend picks</span>
-        </button>
-        <button class="home-nav-item" onclick="window.location.href='friends/friends.html'">
-            <span class="nav-label">Friends</span>
-            <span class="nav-sub">see what others read</span>
-        </button>
-        <button class="home-nav-item" onclick="window.location.href='curators/curators.html'">
-            <span class="nav-label">Curated</span>
-            <span class="nav-sub">editorial shelves</span>
-        </button>
-        <button class="home-nav-item" onclick="window.location.href='store/store.html'">
-            <span class="nav-label">Store</span>
-            <span class="nav-sub">buy new books</span>
-        </button>
-    </nav>
 
     <section class="home-section">
         <div class="home-section-header">
@@ -70,8 +66,11 @@
         <div class="home-section-header">
             <h3>Featured</h3>
         </div>
-        <article class="home-featured-card" onclick="window.location.href='my_books/book_detail.html?id=hitchhike'">
-            <div class="home-featured-cover" style="background-image:url('covers/hitchhiker_guide.jpg')"></div>
+
+        <article class="home-featured-card"
+                 onclick="window.location.href='my_books/book_detail.html?id=hitchhike'">
+            <div class="home-featured-cover"
+                 style="background-image:url('covers/hitchhiker_guide.jpg')"></div>
             <div class="home-featured-text">
                 <h4>Hitchhike through the Galaxy</h4>
                 <p>Douglas Adams · Sci-Fi · absurdist humor</p>
@@ -82,14 +81,15 @@
     <section class="home-section">
         <div class="home-section-header">
             <h3>Trending</h3>
-            <a href="store/store.html">Open store</a>
         </div>
         <div id="trendingList" class="home-row"></div>
     </section>
+
 </main>
 
 <script src="homepage.js"></script>
 <script src="search/search.js"></script>
 <script src="chat/chat.js"></script>
+
 </body>
 </html>

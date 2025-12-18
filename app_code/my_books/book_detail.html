@@ -5,18 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shelves. – book</title>
     <link rel="stylesheet" href="../shelves.css">
+    <link rel="stylesheet" href="../homepage.css">
     <link rel="stylesheet" href="book_detail.css">
 </head>
 <body>
 <header class="top-bar">
     <button class="back-button" onclick="history.back()">←</button>
     <h1 class="logo" onclick="window.location.href='../homepage.html'">shelves.</h1>
-    <h2 class="section">book</h2>
-    <div class="search-wrapper">
-        <span class="search-icon">⌕</span>
-        <label><input type="text" placeholder="find..."></label>
+    <nav class="top-nav">
+        <a href="../my_books/my_books.html" class="active">My Books</a>
+        <a href="../for_u/for_u.html">For You</a>
+        <a href="../friends/friends.html">Friends</a>
+        <a href="../curators/curators.html">Curated</a>
+        <a href="../store/store.html">Store</a>
+    </nav>
+    <div class="top-right">
+        <div class="search-wrapper" id="searchTrigger">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search" readonly>
+        </div>
+        <img src="../user_icon.png" class="profile-mini" alt="Profile" onclick="window.location.href='../profile/profile.html'">
     </div>
 </header>
+<div id="globalSearchOverlay" class="search-overlay hidden">
+    <div class="search-panel">
+        <input id="globalSearchInput" class="search-input" type="text" placeholder="Search books, curators, friends, store…">
+        <div id="globalSearchResults" class="search-results"></div>
+    </div>
+</div>
 <main class="detail-wrapper">
     <section class="detail-layout">
         <div class="detail-cover" id="detailCover"></div>
@@ -33,8 +49,8 @@
                 </div>
             </div>
             <div class="detail-actions">
-                <button type="button" class="primary-btn" id="continueBtn">Continue reading</button>
-                <button type="button" class="secondary-btn" onclick="window.location.href='my_books.html'">Back to my books</button>
+                <button type="button" class="primary-btn" id="continueBtn">Continue reading →</button>
+                <button type="button" class="secondary-btn" onclick="window.location.href='../my_books/my_books.html'">Back to my books</button>
             </div>
         </div>
     </section>
@@ -43,7 +59,7 @@
         <p id="detailDescription">Loading description…</p>
     </section>
 </main>
+<script src="../search/search.js"></script>
 <script src="book_detail.js"></script>
-<script src="../animations.js"></script>
 </body>
 </html>

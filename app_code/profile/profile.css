@@ -1,14 +1,20 @@
 .profile-page {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 150px 20px 80px;
+    padding: 120px 20px 80px;
     font-family: inherit;
-    animation: profileFadeIn .4s ease-out;
+    animation: fadeIn 0.35s ease-out;
 }
 
-@keyframes profileFadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .profile-hero {
@@ -17,16 +23,15 @@
 }
 
 .profile-avatar {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 18px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
     border-radius: 50%;
     overflow: hidden;
-    position: relative;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     cursor: pointer;
-    transition: transform .2s ease, box-shadow .2s ease;
-    background: #eee;
+    position: relative;
+    background: #e9e9e9;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
 }
 
 .profile-avatar img {
@@ -37,273 +42,74 @@
 
 .avatar-overlay {
     position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #222;
-    background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+    bottom: 0;
+    width: 100%;
+    padding: 8px 0;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
     opacity: 0;
-    transition: opacity .25s ease;
+    transition: 0.25s ease;
 }
 
 .profile-avatar:hover .avatar-overlay {
     opacity: 1;
 }
 
-.profile-avatar.disabled {
-    cursor: default;
-    pointer-events: none;
-}
-
-.profile-avatar.disabled .avatar-overlay {
-    display: none;
-}
-
 .profile-username {
     font-size: 26px;
     font-weight: 800;
-    margin-bottom: 4px;
 }
 
 .profile-realname {
-    color: #555;
-    margin-bottom: 8px;
+    color: #666;
+    margin-bottom: 4px;
 }
 
 .profile-bio {
-    max-width: 520px;
-    margin: 0 auto 16px;
-    color: #444;
+    max-width: 500px;
+    margin: 6px auto 14px;
     font-size: 15px;
-    line-height: 1.4;
+    color: #444;
 }
 
 .badge-row {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .badge {
-    background: #f1f1f1;
     padding: 4px 10px;
-    font-size: 12px;
     border-radius: 999px;
+    background: #eee;
+    font-size: 12px;
 }
 
 .reading-progress {
-    max-width: 320px;
-    margin: 0 auto 20px;
+    width: 280px;
+    margin: 0 auto 16px;
 }
 
 .progress-label {
-    color: #555;
     font-size: 13px;
+    color: #555;
     margin-bottom: 6px;
 }
 
 .progress-bar {
     height: 6px;
     border-radius: 999px;
-    background: #ececec;
+    background: #e3e3e3;
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
-    width: 0;
+    width: 0%;
     background: #111;
-    border-radius: 999px;
-    transition: width .4s ease-out;
+    transition: width 0.4s ease-out;
 }
 
-.edit-profile-btn,
-.profile-message-btn {
-    margin-top: 10px;
-    padding: 9px 20px;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.edit-profile-btn {
-    background: #fff;
-}
-
-.profile-message-btn {
-    background: #111;
-    color: #fff;
-}
-
-.profile-message-btn.hidden {
-    display: none;
-}
-
-.profile-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 28px;
-}
-
-.profile-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 22px 22px 24px;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-}
-
-.profile-card h3 {
-    margin: 0 0 12px;
-    font-size: 18px;
-}
-
-.pref-group + .pref-group {
-    margin-top: 14px;
-}
-
-.pref-group h4 {
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: #555;
-}
-
-.pill-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.pill {
-    padding: 4px 12px;
-    border-radius: 999px;
-    border: none;
-    background: #f1f1f1;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background .2s ease, transform .15s ease;
-}
-
-.pill:hover {
-    background: #e4e4e4;
-    transform: translateY(-1px);
-}
-
-.pill.selected {
-    background: #111;
-    color: #fff;
-    transform: translateY(-1px) scale(1.03);
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px 18px;
-}
-
-.stat-item {
-    background: #f7f7f7;
-    padding: 10px 12px;
-    border-radius: 14px;
-}
-
-.stat-label {
-    font-size: 12px;
-    color: #777;
-}
-
-.stat-value {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.favorites-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.fav-book {
-    text-align: center;
-}
-
-.fav-cover {
-    width: 100%;
-    aspect-ratio: 2/3;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
-    margin-bottom: 6px;
-    background-color: #333;
-}
-
-.current-layout {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-}
-
-.current-cover {
-    width: 90px;
-    height: 140px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #283048, #859398);
-    box-shadow: 0 12px 26px rgba(0,0,0,0.2);
-    background-size: cover;
-    background-position: center;
-}
-
-.current-info {
-    flex: 1;
-}
-
-.current-title {
-    margin: 0;
-    font-weight: 600;
-}
-
-.current-meta {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.current-progress {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.current-percent {
-    font-size: 13px;
-    color: #555;
-}
-
-.continue-btn {
-    padding: 6px 14px;
-    border-radius: 999px;
-    border: none;
-    background: #111;
-    color: white;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.modal.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-#editModalOverlay.hidden {
-    display: none;
-}
+.edit-profile-bt
